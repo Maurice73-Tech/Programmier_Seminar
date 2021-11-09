@@ -1,5 +1,8 @@
 from django.shortcuts import render,redirect
 
+def impressum(request):
+    return render(request,'impressum.html')
+
 def home(request):
     return render(request, 'login_beratung.html')
 
