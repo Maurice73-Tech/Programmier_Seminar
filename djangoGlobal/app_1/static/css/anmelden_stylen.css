@@ -12,7 +12,8 @@ body{
     background: white;
     text-align: center;
     margin-right: 30%;
-    border: 1px solid rgb(216, 221, 230)
+    border: 1px solid rgb(216, 221, 230);
+    box-shadow: 0 0 1em grey;
 }
 
 .button{
@@ -27,6 +28,10 @@ body{
     margin: 7px 2px;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.button:hover{
+    background-color: rgb(6, 85, 155);
 }
 
 input{
