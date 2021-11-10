@@ -40,6 +40,8 @@ def registrieren(request):
 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+        print('Post Request wurder erkannt')
+        print(form.fields)
         if form.is_valid():
             form.save()
 
