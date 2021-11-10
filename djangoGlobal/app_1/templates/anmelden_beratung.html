@@ -6,8 +6,8 @@
   <title>Registrieren</title>
 </head>
 <body>
-
 <div class="container">
+  <form action ="" method="POST"> {% csrf_token %}
   <img src="../static/bilder/logo.jpeg">
   <h1>Registrieren - Mitarbeiterforum</h1>
   <span style="width:150px; display: inline-block;">Vorname:</span><input type="vorname" name="name" placeholder="vorname"><br>
@@ -22,6 +22,14 @@
   <a href="{% url 'login' %}">
     Zum Login
   </a>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert- {{ message.tags }}">
+        {{ message}}
+      </div>
+    {% endfor %}
+  {% endif %}
+</form>
 </div>
 
 <script>

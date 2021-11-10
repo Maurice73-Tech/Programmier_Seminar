@@ -24,6 +24,7 @@ from app_1 import views as user_views
 urlpatterns = [
     path('',views.home,name='home'),
     path('impressum/',views.impressum,name='impressum'),
+    path('forum/',views.forum,name='forum'),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(template_name='login_beratung.html'),name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='anmelden_beratung.html'),name='logout'),
