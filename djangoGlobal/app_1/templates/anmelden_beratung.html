@@ -7,7 +7,8 @@
 </head>
 <body>
 <div class="container">
-  <form action ="" method="POST"> {% csrf_token %}
+  <form method="POST" actions =""> 
+    {% csrf_token %}
   <img src="../static/bilder/logo.jpeg">
   <h1>Registrieren - Mitarbeiterforum</h1>
   <span style="width:150px; display: inline-block;">Vorname:</span><input type="vorname" name="name" placeholder="vorname"><br>
