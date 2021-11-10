@@ -15,10 +15,11 @@
   <span style="width:150px; display: inline-block;">Geburtsdatum:</span><input type="Geburtsdatum" name="birthdate" placeholder="geburtsdatum"><br>
   <span style="width:150px; display: inline-block;">Abteilung:</span><input type="abteilung" name="department" placeholder="abteilung"><br>
   <span style="width:150px; display: inline-block;">Benutzername:</span><input type="benutzername" name="username" placeholder="benutzer"><br>
-  <span style="width:150px; display: inline-block;">Passwort:</span><input type="password" name="password" id="myInput" placeholder="passwort"><br>
-  <span style="width:150px; display: inline-block;">Passwort bestätigen: </span><input type="password" name="password" id="myInput2" placeholder="passwort wiederholen"><br>
+  <span style="width:150px; display: inline-block;">Passwort:</span><input type="password" name="password1" id="myInput" placeholder="passwort"><br>
+  <span style="width:150px; display: inline-block;">Passwort bestätigen: </span><input type="password" name="password2" id="myInput2" placeholder="passwort wiederholen"><br>
   <input type="checkbox" onclick="myFunction()">Passwort anzeigen<br>
   <button type="submit" name="submit" class="button">Anmelden</button><br>
+  </form>
   <a href="{% url 'login' %}">
     Zum Login
   </a>
@@ -29,19 +30,18 @@
       </div>
     {% endfor %}
   {% endif %}
-</form>
 </div>
 
 <script>
   function myFunction() {
     var x = document.getElementById("myInput");
     var y = document.getElementById("myInput2");
-    if (x.type === "password" && y.type == "password") {
+    if (x.type === "password1" && y.type == "password2") {
       x.type = "text";
       y.type = "text";
     } else {
-      x.type = "password";
-      y.type = "password";
+      x.type = "password1";
+      y.type = "password2";
     }
   }
 </script>

@@ -38,11 +38,18 @@ def login(request):
 def registrieren(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+        print('Post Request wurder erkannt')
+        print(form.fields)
         if form.is_valid():
+            print('form is valid.')
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account registriert für {username}!')
-            return redirect('anmelden_beratung')
+            password = form.cleaned_data.get('password1')
+            passwordValidation = form.cleaned_data.get('password2')
+            messages.success(request, f'Account registriert für {username},{password},{passwordValidation}!')
+            return redirect('login')
+        else:print('form is invalid!',form.errors)
     else:
+        
         form = UserCreationForm()
     return render(request, 'anmelden_beratung.html', {'form': form})
 
