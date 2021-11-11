@@ -1,6 +1,11 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from datetime import datetime
+
+
+class profil(models.Model):
+    birthdate = models.DateField(default=datetime.now, blank=True, null=True)
 
 
 class Post(models.Model):

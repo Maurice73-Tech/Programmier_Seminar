@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.template import RequestContext, context
-
+from .forms import Registrierungsform
 
 # Dynamische dummy daten die ich so in die html abrufen kann
 """ post =[
@@ -36,10 +36,10 @@ def login(request):
     return render(request,'app_1/login_beratung.html')
 
 def registrieren(request):
-    form = UserCreationForm()
+    form = Registrierungsform()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = Registrierungsform(request.POST)
         print('Post Request wurder erkannt')
         print(form.fields)
         if form.is_valid():
@@ -50,3 +50,17 @@ def registrieren(request):
 
 def forum(request):
     return render(request,'forum.html')
+
+def registrierung_sicht(request):
+    if request.method == 'POST':
+        signform= Registrierungsform(request.POST)
+        if signform.is_valid():
+            signform.save()
+
+    else:
+        signform=Registrierungsform()
+
+    context= {
+        'signform_schlüssel': signform
+    }
+    return render (request, 'login.html', context)
