@@ -7,7 +7,7 @@ class Registrierungsform(forms.ModelForm):
     nachname = forms.CharField (label="Nachname")
     abteilung = forms.CharField (label="Abteilung")
     geburtsdatum= forms.DateField(label="Geburtsdatum")
-    #kommentar für commit
+    #kommentar für commit2
     class Meta:
         model= User
         fields = ('vorname', 'nachname','abteilung','username', 'geburtsdatum', 'password',)
