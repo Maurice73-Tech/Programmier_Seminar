@@ -8,4 +8,4 @@ class Registrierungsform(forms.ModelForm):
     abteilung = forms.CharField (label="Abteilung")
     class Meta:
         model= User
-        fields = ('vorname', 'nachname','abteilung','username', 'password','password1',)
+        fields = ('vorname', 'nachname','abteilung','username', 'password',)

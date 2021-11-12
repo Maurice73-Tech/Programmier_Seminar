@@ -1,10 +1,10 @@
-from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.db import models
 from django.db.models.fields import TimeField
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import PermissionsMixin
 
 
 #class UserProfile(models.Model):
@@ -35,7 +35,7 @@ class Benutzermanager(BaseUserManager):
         if not benutzername:
             raise ValueError(gettext_lazy('Du musst einen Benutzernamen angeben'))
         
-        benutzername=self.get_by_natural_key (benutzername)
+        benutzername=self.model (benutzername)
         user = self.model(benutzername=benutzername, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, abteilung= abteilung, **other_fields)
         user.set_password(password)
         user.save()
@@ -48,7 +48,7 @@ class NeueBenutzer(AbstractBaseUser,PermissionsMixin):
     geburtsdatum = models.DateField(default=datetime.now)
     abteilung = models.CharField(max_length=30, blank=True)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     objects = Benutzermanager()
     
