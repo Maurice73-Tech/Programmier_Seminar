@@ -64,3 +64,5 @@ def registrierung_sicht(request):
         'signform_schlüssel': signform
     }
     return render (request, 'login.html', context)
+
+    

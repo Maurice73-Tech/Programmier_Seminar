@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'djangoGlobal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'C:\Programmier_Seminar\djangoGlobal\db.sqlite3',
     }
 }
 
@@ -126,4 +126,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+AUTH_PROFILE_MODULE = "app_1.UserProfile"
+AUTH_USER_MODEL = 'app_1.NeueBenutzer'
+AUTHENTICATION_BACKENDS = (
+    ('django.contrib.auth.backends.ModelBackend'),
+)
