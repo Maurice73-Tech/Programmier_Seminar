@@ -4,7 +4,7 @@ from django.db.models.fields import TimeField
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
-from django.contrib.auth.models import PermissionsMixin
+
 
 
 #class UserProfile(models.Model):
@@ -18,45 +18,54 @@ from django.contrib.auth.models import PermissionsMixin
 
 class Benutzermanager(BaseUserManager):
     
-    def create_superuser(self, benutzername,vorname, nachname, geburtsdatum, abteilung, password, **other_fields):
-        other_fields.setdefault('is_staff', True)
-        other_fields.setdefault('is_superuser', True)
-        other_fields.setdefault('is_active', True)
+    def create_superuser(self, username,vorname, nachname, geburtsdatum, abteilung, password, **other_fields):
+       user = self.create_user (username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, abteilung= abteilung, password=password)
+       user.is_admin = True
+       user.is_staff = True
+       user.is_superuser = True
+       user.save(using=self._db)
+       return user
 
-        if other_fields.get('is_staff') is not True:
-            raise ValueError ('Superuser muss staff= True sein')
-        if other_fields.get('is_superuser') is not True:
-            raise ValueError ('Superuser muss superuser= True sein')
 
-        return self.create_user (benutzername, vorname, nachname, geburtsdatum, abteilung, password, **other_fields)
+    #return self.create_user (username, vorname, nachname, geburtsdatum, abteilung, password, **other_fields)
     
-    def create_user(self, benutzername, vorname,nachname, geburtsdatum, abteilung, password, **other_fields):
+    def create_user(self, username, vorname,nachname, geburtsdatum, abteilung, password):
         
-        if not benutzername:
+        if not username:
             raise ValueError(gettext_lazy('Du musst einen Benutzernamen angeben'))
         
-        benutzername=self.model (benutzername)
-        user = self.model(benutzername=benutzername, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, abteilung= abteilung, **other_fields)
+        user = self.model(username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, abteilung= abteilung,)
         user.set_password(password)
-        user.save()
+        user.save(using=self._db)
         return user
 
-class NeueBenutzer(AbstractBaseUser,PermissionsMixin):
-    benutzername= models.CharField (max_length=30, unique=True)
+class NeueBenutzer(AbstractBaseUser):
+    username= models.CharField (max_length=30, unique=True)
     vorname =models.CharField(max_length=30, blank=True)
     nachname =models.CharField(max_length=30, blank=True)
     geburtsdatum = models.DateField(default=datetime.now)
     abteilung = models.CharField(max_length=30, blank=True)
-    is_staff = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
+    last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
+    is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+ 
 
     objects = Benutzermanager()
     
-    USERNAME_FIELD= 'benutzername'
-    REQUIRED_FIELDS = ['vorname','nachname','geburtsdatum','abteilung',]
+    USERNAME_FIELD= 'username'
+    REQUIRED_FIELDS = ['vorname' , 'nachname', 'geburtsdatum', 'abteilung']
 
     def __str__(self):
-        return str(self.benutzername)
+        return self.username
+
+    def has_perm(self, perm, obj =None):
+        return self.is_admin
+
+    def has_module_perms(self, app_label):
+        return True  
 
 #class Post(models.Model):
     #title = models.CharField(max_length=100)
