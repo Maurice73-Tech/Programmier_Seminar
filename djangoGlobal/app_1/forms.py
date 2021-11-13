@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.forms import fields
 from django import forms
+from .models import Post
 
 class Registrierungsform(forms.ModelForm):
     vorname = forms.CharField (label="Vorname")
@@ -11,3 +12,12 @@ class Registrierungsform(forms.ModelForm):
     class Meta:
         model= User
         fields = ('vorname', 'nachname','abteilung','username', 'geburtsdatum', 'password',)
+
+        widgets = {
+            'vorname': forms.TextInput(attrs={'class': 'form-control'}),
+            'nachname': forms.TextInput(attrs={'class': 'form-control'}),
+            'abteilung': forms.TextInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'geburtsdatum': forms.TextInput(attrs={'class': 'form-control'}),
+            'password': forms.TextInput(attrs={'class': 'form-control'})
+        }
