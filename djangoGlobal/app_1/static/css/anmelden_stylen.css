@@ -4,13 +4,13 @@ body{
     margin-left: 25%;
     margin-top: 5%;
 }
-.container{
+
+#submissionsField{
     width: 100%;
     padding: 50px;
     box-sizing: border-box;
     border-radius: 15px 15px 15px 15px;
     background: white;
-    text-align: center;
     margin-right: 30%;
     border: 1px solid rgb(216, 221, 230);
     box-shadow: 0 0 1em grey;
