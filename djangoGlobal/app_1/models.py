@@ -1,4 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.db.models.fields import TimeField
 from django.utils import timezone
@@ -39,7 +40,7 @@ class Benutzermanager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class NeueBenutzer(AbstractBaseUser):
+class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     username= models.CharField (max_length=30, unique=True)
     vorname =models.CharField(max_length=30, blank=True)
     nachname =models.CharField(max_length=30, blank=True)
