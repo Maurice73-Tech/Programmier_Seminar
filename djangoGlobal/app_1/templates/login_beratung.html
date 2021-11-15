@@ -14,16 +14,17 @@
 <body>
 
 <div id="submissionsField">
-<form>
+<form method ="post" action="">
+  {% csrf_token %}
   <img src="../static/bilder/logo.jpeg">
   <h1>Login - Mitarbeiterforum</h1>
   <div class="form-group">
     <label for="exampleInputEmail1">Benutzername:</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="benutzername">
+    <input type="text" class="form-control" placeholder="benutzername">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Passwort:</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="passwort">
+    <input type="password" class="form-control" placeholder="passwort">
   </div>
   <div class="form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="myFunction()">

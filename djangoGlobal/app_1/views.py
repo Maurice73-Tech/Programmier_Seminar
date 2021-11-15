@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.template import RequestContext, context
 from .forms import Registrierungsform
+from django.contrib.auth import authenticate, login, logout, get_user_model
+User = get_user_model()
 
 # Dynamische dummy daten die ich so in die html abrufen kann
 """ post =[
@@ -41,9 +43,9 @@ def registrieren(request):
     if request.method == 'POST':
         form = Registrierungsform(request.POST)
         print('Post Request wurder erkannt')
-        print(form.fields)
         if form.is_valid():
             form.save()
+            return redirect ('/login')
 
     context={'form':form}
     return render(request, 'login.html', context)
@@ -51,18 +53,19 @@ def registrieren(request):
 def forum(request):
     return render(request,'forum.html')
 
-def registrierung_sicht(request):
+#noch fixen funktioniert noch nicht POST Methode klappt nicht, bzw holt die Daten nicht
+def login(request):
     if request.method == 'POST':
-        signform= Registrierungsform(request.POST)
-        if signform.is_valid():
-            signform.save()
+        username= request.POST.get('username')
+        password= request.POST.get('password')
+    
+    user = authenticate(request, username= username, password= password)
+    
+    if user is not None:
+        login (request, user)
+        return redirect('/impressum')
 
-    else:
-        signform=Registrierungsform()
-
-    context= {
-        'signform_schlüssel': signform
-    }
-    return render (request, 'login.html', context)
+    context= {}
+    return render (request, 'login_beratung.html', context)
 
     #probieren

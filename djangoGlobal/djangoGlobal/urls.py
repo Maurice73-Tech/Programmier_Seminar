@@ -25,8 +25,7 @@ urlpatterns = [
     path('impressum/',user_views.impressum,name='impressum'),
     path('forum/',user_views.forum,name='forum'),
     path('admin/', admin.site.urls),
-    path('login/', auth_views.LoginView.as_view(template_name='login_beratung.html'),name='login'),
+    path('login/', auth_views.LogoutView.as_view(template_name='login_beratung.html'),name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='anmelden_beratung.html'),name='logout'),
-    path('registrieren/',user_views.registrieren,name='registrieren'),
-    path ('benutzer_registration/', user_views.registrierung_sicht, name='signup')
+    path('registrieren/',user_views.registrieren,name='registrieren')
 ]
