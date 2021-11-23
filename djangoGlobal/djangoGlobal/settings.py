@@ -126,4 +126,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'app_1.NeueBenutzer'
-LOGIN_REDIRECT_URL='/'
+LOGIN_REDIRECT_URL='/forum'

@@ -58,10 +58,10 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
         return True  
 
 class Post(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, name='Titel')
     content = models.TextField(name='Inhalt')
-    date_posted = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(NeueBenutzer, on_delete=models.CASCADE)
+    date_posted = models.DateTimeField(default=timezone.now, name='Postdatum')
+    author = models.ForeignKey(NeueBenutzer, on_delete=models.CASCADE, name= 'Autor')
 
     def __str__(self):
-        return 'Titel: ' + self.title + '  / Autor: ' + str(self.author)
+        return 'Titel: ' + self.Titel + '  / Inhalt: ' + str(self.Inhalt)

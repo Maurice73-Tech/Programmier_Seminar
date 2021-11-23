@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Post</h1>
+<small>Autor: {{post.Autor.username}}
+</small>
+<hr>
+<br/>
+{{post.Inhalt}}
+
+<br/><br/>
+<a href="{% url 'forum' %}">Zurück zum Forum</a>
+
+{% endblock %}

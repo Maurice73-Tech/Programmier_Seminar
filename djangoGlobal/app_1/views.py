@@ -34,11 +34,15 @@ class ForumView (ListView):
     model = Post
     template_name = 'forum.html'
 
+class BlogDetailView (DetailView):
+    model = Post
+    template_name = 'blog-details.html'
+
 def impressum(request):
     return render(request,'impressum.html')
 
 def home(request):
-    return render(request, 'login_beratung.html')
+    return render(request, 'forum.html')
 
 def forum(request):
     return render(request,'forum.html')
@@ -75,7 +79,7 @@ def login(request):
         return redirect('/impressum')
 
     context= {}
-    return render (request, 'login.html', context)
+    return render (request, '/forum', context)
 
 @login_required (login_url= 'login2.html')
 def profile (request):

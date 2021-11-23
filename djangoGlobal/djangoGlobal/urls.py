@@ -17,13 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from app_1 import views as user_views
+from app_1.views import ForumView, BlogDetailView
+from app_1.models import Post
 
 
 
 urlpatterns = [
     path('',user_views.home,name='home'),
     path('impressum/',user_views.impressum,name='impressum'),
-    path('forum/',user_views.forum,name='forum'),
+    path('forum/',ForumView.as_view (model=Post),name='forum'),
+    path('blog-details/<int:pk>',BlogDetailView.as_view (model=Post),name='blog-details'),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LogoutView.as_view(template_name='login_beratung.html'),name='login'),
     path('login2/', auth_views.LoginView.as_view(template_name='login.html'),name='login'),
