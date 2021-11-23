@@ -2,13 +2,15 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.template import RequestContext, context
+from .models import Post
 from .forms import Registrierungsform
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView
 User = get_user_model()
 
-# Dynamische dummy daten die ich so in die html abrufen kann
-""" post =[
+
+Post =[
     {
         'author': 'Phillip Kunze',
         'title': 'Blog Post 1',
@@ -20,7 +22,7 @@ User = get_user_model()
         'title': 'Blog Post 2',
         'content': 'Wieder mal ein wilder beitrag',      
     }
-] """
+] 
 
 #beispielfunktion wie daten über ein dictionary zur html kommen
 
@@ -28,12 +30,18 @@ User = get_user_model()
     context={'posts':post}
     return render(request, 'app_1/index.html', context) """
 
+class ForumView (ListView):
+    model = Post
+    template_name = 'forum.html'
 
 def impressum(request):
     return render(request,'impressum.html')
 
 def home(request):
     return render(request, 'login_beratung.html')
+
+def forum(request):
+    return render(request,'forum.html')
 
 def login(request):
     return render(request,'app_1/login_beratung.html')
@@ -68,7 +76,7 @@ def login(request):
 
     context= {}
     return render (request, 'login.html', context)
-    
+
 @login_required (login_url= 'login2.html')
 def profile (request):
     return render(request, 'profile.html')

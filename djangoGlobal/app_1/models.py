@@ -1,21 +1,10 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import PermissionsMixin, User
 from django.db import models
 from django.db.models.fields import TimeField
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
-
-
-
-#class UserProfile(models.Model):
-    #user = models.OneToOneField(User, null= True, on_delete=models.CASCADE)
-    #geburtsdatum = models.TextField()
-    #abteilung = models.TextField()
-
-    #def __str__(self):
-        #return str(self.user)
-
 
 class Benutzermanager(BaseUserManager):
     
@@ -68,13 +57,11 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         return True  
 
-#class Post(models.Model):
-    #title = models.CharField(max_length=100)
-    #content = models.TextField()
-    #date_posted = models.DateTimeField(default=timezone.now)
-    #author = models.ForeignKey(User, on_delete=models.CASCADE)
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField(name='Inhalt')
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(NeueBenutzer, on_delete=models.CASCADE)
 
-    #def __str__(self):
-        #return self.title
-
-        #asdad
+    def __str__(self):
+        return 'Titel: ' + self.title + '  / Autor: ' + str(self.author)
