@@ -45,10 +45,10 @@ def registrieren(request):
         print('Post Request wurder erkannt')
         if form.is_valid():
             form.save()
-            return redirect ('/login')
+            return redirect ('/login2')
 
     context={'form':form}
-    return render(request, 'login.html', context)
+    return render(request, 'registrieren.html', context)
 
 def forum(request):
     return render(request,'forum.html')
@@ -66,6 +66,6 @@ def login(request):
         return redirect('/impressum')
 
     context= {}
-    return render (request, 'login_beratung.html', context)
+    return render (request, 'login.html', context)
 
     #probieren
