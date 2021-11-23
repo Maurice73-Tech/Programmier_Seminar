@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.template import RequestContext, context
 from .forms import Registrierungsform
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
 User = get_user_model()
 
 # Dynamische dummy daten die ich so in die html abrufen kann
@@ -67,5 +68,7 @@ def login(request):
 
     context= {}
     return render (request, 'login.html', context)
-
-    #probieren
+    
+@login_required (login_url= 'login2.html')
+def profile (request):
+    return render(request, 'profile.html')
