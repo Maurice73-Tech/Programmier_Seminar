@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,15 +11,18 @@
 
     
     <title>
+
       {% block title %}
         
       {% endblock %}
       
     </title>
+    {% if request.user.is_authenticated %}
+      <p>Hello, {{request.user.username}}  <a href="/logout">Logout</a></p>
+    {% endif %}
 
   </head>
   <body>
-    
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,13 +30,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/login2">Login</a>
+            <a class="nav-item nav-link" href="/login">Login</a>
             <a class="nav-item nav-link" href="/forum">Forum</a>
             <a class="nav-item nav-link" href="/registrieren">Registrieren</a>
             <a class="nav-item nav-link" href="/profile">Profil</a>
+            <a class="nav-item nav-link" href="/logout">Logout</a>
             
           </div>
         </div>
+        
       </nav>
 
       <br/>
@@ -40,10 +46,10 @@
         
       
     <div class="container">
-      
-        {% block content %}
 
-        {% endblock %}
+      {% block content %}
+
+      {% endblock %}
     </div>
     <img src="../static/bilder/logo.jpeg" class="rounded float-end" width="150px" height="150px">
 

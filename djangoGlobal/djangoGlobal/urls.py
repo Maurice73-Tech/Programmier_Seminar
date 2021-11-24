@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
 from app_1 import views as user_views
-from app_1.views import ForumView, BlogDetailView
+from app_1.views import ForumView, BlogDetailView, registrieren
+from app_1.views import (registrieren, benutzer_logout, benutzer_login)
 from app_1.models import Post
 
 
@@ -28,8 +28,8 @@ urlpatterns = [
     path('forum/',ForumView.as_view (model=Post),name='forum'),
     path('blog-details/<int:pk>',BlogDetailView.as_view (model=Post),name='blog-details'),
     path('admin/', admin.site.urls),
-    path('login2/', user_views.benutzer_login, name='login'),
-    path('logout/',auth_views.LogoutView.as_view(template_name='anmelden_beratung.html'),name='logout'),
-    path('registrieren/',user_views.registrieren,name='registrieren'),
+    path('login/', benutzer_login, name='login'),
+    path('logout/',benutzer_logout,name='logout'),
+    path('registrieren/',registrieren ,name='registrieren'),
     path('profile/',user_views.profile,name='profile')
 ]
