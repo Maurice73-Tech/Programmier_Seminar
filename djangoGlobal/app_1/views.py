@@ -66,20 +66,22 @@ def registrieren(request):
 def forum(request):
     return render(request,'forum.html')
 
-#noch fixen funktioniert noch nicht POST Methode klappt nicht, bzw holt die Daten nicht
+
 def login(request):
     if request.method == 'POST':
         username= request.POST.get('username')
         password= request.POST.get('password')
+        user = authenticate(request, username= username, password= password)
     
-    user = authenticate(request, username= username, password= password)
-    
-    if user is not None:
-        login (request, user)
-        return redirect('/impressum')
+        if user is not None:
+            login (request, user)
+            messages.success(request, ('Sie sind jetzt angemeldet'))
+            redirect('/forum')
+        else:
+            messages.info (request,'Username oder Passwort ist nicht korrekt!')
 
     context= {}
-    return render (request, '/forum', context)
+    return render (request, 'login.html', context)
 
 
 def profile (request):
