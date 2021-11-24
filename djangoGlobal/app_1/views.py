@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.template import RequestContext, context
-from .models import Post
+from .models import Post, NeueBenutzer
 from .forms import Registrierungsform
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
@@ -58,7 +58,7 @@ def registrieren(request):
         print('Post Request wurder erkannt')
         if form.is_valid():
             form.save()
-            return redirect ('/login2')
+            return redirect ('/forum')
 
     context={'form':form}
     return render(request, 'registrieren.html', context)
@@ -81,6 +81,6 @@ def login(request):
     context= {}
     return render (request, '/forum', context)
 
-@login_required (login_url= 'login2.html')
+
 def profile (request):
     return render(request, 'profile.html')
