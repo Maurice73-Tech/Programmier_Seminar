@@ -7,6 +7,7 @@ from .forms import Registrierungsform
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
+from django.contrib.auth import login as auth_login
 User = get_user_model()
 
 
@@ -41,14 +42,6 @@ class BlogDetailView (DetailView):
 def impressum(request):
     return render(request,'impressum.html')
 
-def home(request):
-    return render(request, 'forum.html')
-
-def forum(request):
-    return render(request,'forum.html')
-
-def login(request):
-    return render(request,'app_1/login_beratung.html')
 
 def registrieren(request):
     form = Registrierungsform()
@@ -67,14 +60,16 @@ def forum(request):
     return render(request,'forum.html')
 
 
-def login(request):
+def benutzer_login(request):
     if request.method == 'POST':
         username= request.POST.get('username')
         password= request.POST.get('password')
         user = authenticate(request, username= username, password= password)
+        print ('Komme bis hier1')
     
         if user is not None:
-            login (request, user)
+            login (request, NeueBenutzer)
+            print ('Komme bis hier2')
             messages.success(request, ('Sie sind jetzt angemeldet'))
             redirect('/forum')
         else:

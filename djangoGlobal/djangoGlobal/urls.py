@@ -23,13 +23,12 @@ from app_1.models import Post
 
 
 urlpatterns = [
-    path('',user_views.home,name='home'),
+    path('',user_views.forum,name='forum'),
     path('impressum/',user_views.impressum,name='impressum'),
     path('forum/',ForumView.as_view (model=Post),name='forum'),
     path('blog-details/<int:pk>',BlogDetailView.as_view (model=Post),name='blog-details'),
     path('admin/', admin.site.urls),
-    path('login/', auth_views.LogoutView.as_view(template_name='login_beratung.html'),name='login'),
-    path('login2/', auth_views.LoginView.as_view(template_name='login.html'),name='login'),
+    path('login2/', user_views.benutzer_login, name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='anmelden_beratung.html'),name='logout'),
     path('registrieren/',user_views.registrieren,name='registrieren'),
     path('profile/',user_views.profile,name='profile')

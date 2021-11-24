@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-asda
 <div class="container h-100">
   <div class="d-flex justify-content-center h-100">
     <div class="user_card">
@@ -23,10 +22,10 @@ asda
             <div class="input-group-append">
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-              <input type="password" name="password" placeholder="Password..." class="form-control" >
+              <input type="password" name="password" placeholder="Passwort..." class="form-control" >
           </div>
             <div class="d-flex justify-content-center mt-3 login_container">
-               <input class="btn login_btn" type="submit" value="Login">
+               <input class="btn btn-secondary" type="submit" value="Login">
                </div>
         </form>
 
@@ -34,7 +33,7 @@ asda
   
       <div class="mt-4">
         <div class="d-flex justify-content-center links">
-          Don't have an account? <a href="" class="ml-2">Sign Up</a>
+          Noch keinen Account? <a href="{% url 'registrieren' %}" class="ml-2">Registrieren</a>
         </div>
     
       </div>
