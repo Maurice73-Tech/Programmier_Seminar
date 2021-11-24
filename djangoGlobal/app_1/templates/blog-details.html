@@ -1,15 +1,31 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  Forum-Details
+{% endblock %}
+
+
+
 {% block content %}
 
-<h1>Post</h1>
+<h1>Details zu {{post.Titel}} </h1>
 <small>Autor: {{post.Autor.username}}
 </small>
 <hr>
 <br/>
 {{post.Inhalt}}
+<br/>
+<br/>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Antwort verfassen.." aria-label="Recipient's username" aria-describedby="button-addon2">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Antworten</button>
+  </div>
 
-<br/><br/>
-<a href="{% url 'forum' %}">Zurück zum Forum</a>
+<br/>
+<br/>
+
+<a href="{% url 'forum' %}" class="btn btn-outline-primary"> Test</a>
+<a href="{% url 'forum' %}" class="btn btn-outline-primary"> Test</a>
+<a href="{% url 'forum' %}" class="btn btn-outline-primary"> Zurück zum Forum </a>
 
 {% endblock %}

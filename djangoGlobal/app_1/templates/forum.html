@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  Forum
+{% endblock %}
+
 {% block content %}
 
-<h1>Post</h1>
+<h1>User Posts</h1>
+<br/>
 <ul>
  {% for post in object_list %}
-    <li><a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a><br/>
-      Autor: {{post.Autor.username}}<br/>
-      {{post.Inhalt}}</li> 
+    <li>
+      <a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a> Erstellt von {{post.Autor.username}}
+    </li> 
+      <br/>
  {% endfor %}
 </ul>
 
