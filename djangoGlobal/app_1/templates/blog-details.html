@@ -24,6 +24,24 @@
 <br/>
 <br/>
 
+<h2>Kommentare...</h2>
+{% if not post.kommentare.all %}
+  Es sind noch keine Kommentare für diese Frage gestellt worden <a href="#">Erstelle einen Kommentar</a>
+  <br><br>
+  <hr>
+{% else %}
+  {% for Kommentar in post.kommentare.all %}
+    <strong>
+      {{Kommentar.name}} - 
+      {{Kommentar.date_added}}
+  </strong>
+  <br>
+  {{Kommentar.content}}
+  <br><br>
+  <hr>
+  {% endfor %}
+{% endif %}
+
 <a href="{% url 'forum' %}" class="btn btn-outline-primary"> Test</a>
 <a href="{% url 'forum' %}" class="btn btn-outline-primary"> Test</a>
 <a href="{% url 'forum' %}" class="btn btn-outline-primary"> Zurück zum Forum </a>

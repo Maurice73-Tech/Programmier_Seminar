@@ -3,10 +3,11 @@ from django.contrib.admin.helpers import Fieldset
 from django.contrib.auth.models import Permission
 from app_1.models import NeueBenutzer
 from django.contrib.auth.admin import UserAdmin
-from .models import Post
+from .models import Post, Kommentar
 
 
 admin.site.register(Post)
+admin.site.register(Kommentar)
 # Admin Seite konfiguriert: Attribute angeordnet und unwichtige ausgeblendet
 class UserAdminKonfig (UserAdmin):
     search_fields = ('username', 'vorname', 'nachname', 'abteilung')
