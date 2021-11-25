@@ -83,6 +83,9 @@ def benutzer_logout(request):
 
 
 def profile (request):
+    user=request.user
+    if not user.is_authenticated:
+        return redirect ('authentifizieren')    
     return render(request, 'profile.html')
 
 def add_block_view(request):
