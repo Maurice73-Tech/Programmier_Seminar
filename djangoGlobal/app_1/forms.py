@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 
-from .models import NeueBenutzer
+from .models import NeueBenutzer, Post
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import fields
 from django import forms
@@ -37,3 +37,7 @@ class Anmeldeform (forms.ModelForm):
         password = self.cleaned_data ('password')
         if not authenticate (username=username, password= password):
             raise forms.ValidationError ('Keine Anmeldung möglich!')
+class AddBlogForm (forms.ModelForm):
+    class Meta:
+        model= Post
+        fields = ['Titel', 'Inhalt']

@@ -1,24 +1,10 @@
 from django.http import request 
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .forms import Registrierungsform, Anmeldeform
+from .forms import AddBlogForm, Registrierungsform, Anmeldeform
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
-from .models import NeueBenutzer
-
-Post =[
-    {
-        'author': 'Phillip Kunze',
-        'title': 'Blog Post 1',
-        'content': 'Wieder mal ein dummer eintrag eines dummen users',
-        
-    },
-    {
-        'author': 'Andy wandnageln',
-        'title': 'Blog Post 2',
-        'content': 'Wieder mal ein wilder beitrag',      
-    }
-] 
+from .models import NeueBenutzer, Post
 
 #beispielfunktion wie daten über ein dictionary zur html kommen
 
@@ -81,9 +67,9 @@ def benutzer_login(request):
     
         if user:
             login (request, user)
-            print ('Komme bis hier2')
             messages.info(request, ('Sie sind jetzt angemeldet'))
             redirect('/forum')
+            print ('Komme bis hier2')
         else:
             messages.info (request,'Username oder Passwort ist nicht korrekt!')
 
@@ -98,3 +84,27 @@ def benutzer_logout(request):
 
 def profile (request):
     return render(request, 'profile.html')
+
+def add_block_view(request):
+    context = {}
+    user = request.user
+    if not user.is_authenticated:
+        return redirect ('authentifizieren')
+    form = AddBlogForm (request.POST or None)
+    if form.is_valid():
+        obj = form.save (commit=False)
+        Autor = NeueBenutzer.objects.filter(username =user.username).first()
+        obj.Autor = Autor
+        obj.save ()
+        form = Post()
+        return redirect ('forum')
+
+    context ['form'] = form
+
+    return render (request, 'addpost.html', context)     
+
+def authentifizieren_view (request):
+    return render (request, 'authentifizieren.html', {})
+
+        
+

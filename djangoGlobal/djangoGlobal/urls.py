@@ -15,21 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app_1 import views as user_views
-from app_1.views import ForumView, BlogDetailView, registrieren
-from app_1.views import (registrieren, benutzer_logout, benutzer_login)
+from app_1.views import ForumView, BlogDetailView
+from app_1.views import (registrieren, benutzer_logout, benutzer_login, profile, forum, impressum,authentifizieren_view,add_block_view)
 from app_1.models import Post
 
 
 
 urlpatterns = [
-    path('',user_views.forum,name='forum'),
-    path('impressum/',user_views.impressum,name='impressum'),
+    path('',forum,name='forum'),
+    path('impressum/',impressum,name='impressum'),
     path('forum/',ForumView.as_view (model=Post),name='forum'),
     path('blog-details/<int:pk>',BlogDetailView.as_view (model=Post),name='blog-details'),
+    path('addpost/',add_block_view ,name='authentifizieren'),
     path('admin/', admin.site.urls),
     path('login/', benutzer_login, name='login'),
     path('logout/',benutzer_logout,name='logout'),
     path('registrieren/',registrieren ,name='registrieren'),
-    path('profile/',user_views.profile,name='profile')
+    path('authentifizieren/',authentifizieren_view ,name='authentifizieren'),
+    path('profile/',profile ,name='profile')
 ]

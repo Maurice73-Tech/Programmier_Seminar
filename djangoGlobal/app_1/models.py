@@ -65,3 +65,13 @@ class Post(models.Model):
 
     def __str__(self):
         return 'Titel: ' + self.Titel + '  / Inhalt: ' + str(self.Inhalt)
+
+class Kommentar (models.Model):
+    post= models.ForeignKey(Post, related_name= "kommentare", on_delete=models.CASCADE)
+    name= models.CharField(max_length=250)
+    content = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.post.Titel , self.name)
+
