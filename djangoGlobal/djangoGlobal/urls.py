@@ -26,7 +26,7 @@ urlpatterns = [
     path('impressum/',impressum,name='impressum'),
     path('forum/',ForumView.as_view (model=Post),name='forum'),
     path('blog-details/<int:pk>',BlogDetailView.as_view (model=Post),name='blog-details'),
-    path('addpost/',add_block_view ,name='authentifizieren'),
+    path('addpost/',add_block_view ,name='addpost'),
     path('admin/', admin.site.urls),
     path('login/', benutzer_login, name='login'),
     path('logout/',benutzer_logout,name='logout'),
