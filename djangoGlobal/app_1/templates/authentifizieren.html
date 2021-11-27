@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{%load static%}
+
+{%block link%}
+<link rel=stylesheet href="{% static 'css/navigationsbar.css' %}"/>
+{% endblock %}
 
 {% block title %}
   Authentifizierung
