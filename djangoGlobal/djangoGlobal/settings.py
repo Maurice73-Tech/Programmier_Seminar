@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATICFILES_DIRS = [
+    "/djangoGlobal/app1/static"
+]
+
 
 # Application definition
 

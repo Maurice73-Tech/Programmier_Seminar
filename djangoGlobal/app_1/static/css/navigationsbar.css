@@ -1,0 +1,9 @@
+#page-id{
+    display: normal;
+    visibility: visible;
+}
+
+#loggedinpage-id{
+    display:none;
+    visibility: hidden;
+}
