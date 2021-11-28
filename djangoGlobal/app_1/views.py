@@ -63,13 +63,11 @@ def benutzer_login(request):
         username= request.POST['username']
         password= request.POST ['password']
         user = authenticate(username= username, password= password)
-        print ('Komme bis hier1')
     
         if user:
             login (request, user)
             messages.info(request, ('Sie sind jetzt angemeldet'))
-            redirect('/forum')
-            print ('Komme bis hier2')
+            return redirect('/forum')
         else:
             messages.info (request,'Username oder Passwort ist nicht korrekt!')
 
