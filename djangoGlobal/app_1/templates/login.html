@@ -3,9 +3,12 @@
 
 {%block link%}
 <link rel=stylesheet href="{% static 'css/navigationsbar.css' %}"/>
+<link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
 {%endblock%}
 
 {% block content %}
+
+<div id="submissionsField">
 <div class="container h-100">
   <div class="d-flex justify-content-center h-100">
     <div class="user_card">
@@ -48,5 +51,6 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 {% endblock %}
