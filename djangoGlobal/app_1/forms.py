@@ -17,13 +17,7 @@ class Registrierungsform(UserCreationForm):
         model= NeueBenutzer
         fields = ('vorname', 'nachname','abteilung','username', 'geburtsdatum', 'email', 'password1', 'password2')
 
-        widgets = {
-            'vorname': forms.TextInput(attrs={'class': 'form-control'}),
-            'nachname': forms.TextInput(attrs={'class': 'form-control'}),
-            'abteilung': forms.TextInput(attrs={'class': 'form-control'}),
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'geburtsdatum': forms.TextInput(attrs={'class': 'form-control'}),
-        }
+        
 
 class Anmeldeform (forms.ModelForm):
     password = forms.CharField (label='Password', widget=forms.PasswordInput)

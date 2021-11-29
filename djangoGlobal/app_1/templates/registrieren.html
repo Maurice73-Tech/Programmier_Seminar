@@ -6,15 +6,54 @@
 {%endblock%}
 
 {% block content %}
-<h3>Registrieren</h3>
+<h3>Registrieren</h3> <br>
 
-<form method= "POST">
-    {% csrf_token %}
+<form class="create-form" method= "POST">{% csrf_token %}
+    
+    <div class="row">
+        <div class="col">
+          <input type="text" name="vorname" class="form-control" placeholder="Vorname" aria-label="First name">
+        </div>
+        <div class="col">
+          <input type="text" name="nachname" class="form-control" placeholder="Nachname" aria-label="Last name">
+        </div>
+      </div>
+   
+   <br>
+    
+    <input type="text" name="username" class="form-control" id="floatingInput3" placeholder="Username eingeben">
+    <br>
+
+    <input type="date" name="geburtsdatum" class="form-control" id="floatingInput4" value="2000-01-01" >
+    <br>
+
+    <input type="email" name="email" class="form-control" id="floatingInput5" placeholder="name@beispiel.com">
+   
+    <br>
+    <input type="password" name="password1" class="form-control" id="floatingInput6" placeholder="Passwort eingeben">
+    <br>
+
+    <input type="password" name="password2" class="form-control" id="floatingInput7" placeholder="Passwort wiederholen">
+    <br>
+
+    
+        <label for="floatingSelect">Hier noch die Abteilung auswählen:</label>
+        <select class="form-select" name="abteilung" id="floatingSelect" aria-label="Floating label select example">
+          <option selected>Auswahl</option>
+          <option value="1">IT</option>
+          <option value="2">Support</option>
+          <option value="3">Privatsache</option>
+        </select>
+    
+    
+      
+
+    
+    
     {% for field in registrierungs_form %}
         <p>
-            {{field.label_tag}}
-            {{field}}
-
+            
+           
             {% if field.help_text %}
                 <small style="color: grey;">{{field.help_text}}</small>
             {% endif %}
