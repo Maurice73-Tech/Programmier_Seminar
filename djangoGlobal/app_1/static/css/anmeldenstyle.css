@@ -28,3 +28,11 @@ img{
     margin-left: auto;
     margin-right: auto;
 }
+
+a:not([href]):not([tabindex]) {
+    color: white;
+}
+
+.btn-primary{
+    cursor: pointer;
+}
