@@ -3,9 +3,12 @@
 
 {%block link%}
 <link rel="stylesheet" href={% static 'css/navigationsbar.css'%}/>
+<link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
 {%endblock%}
 
 {% block content %}
+
+<div id="submissionsField">
 <h3>Registrieren</h3> <br>
 
 <form class="create-form" method= "POST">{% csrf_token %}
@@ -67,7 +70,12 @@
     <!--
     <button type= "submit">Registrieren</button>
     -->
-    <button class="btn btn-success" type="submit">Registrieren</button>
-    <a class="btn btn-primary" href="/login" role="button">Zum Login</a>
+    <div class="d-flex justify-content-center links">
+      <button class="btn btn-success" type="submit">Registrieren</button><br/>
+    </div>
+    <div class="d-flex justify-content-center links">
+      Schon ein Konto angelegt?<a href="/login" class="ml-2">Zum Login</a>
+    </div>
 </form>
+</div>
 {% endblock %}
