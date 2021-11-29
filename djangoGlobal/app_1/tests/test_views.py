@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-import json
 from app_1.models import Benutzermanager, NeueBenutzer, Post, Kommentar
 
 class TestViews(TestCase):
@@ -17,9 +16,6 @@ class TestViews(TestCase):
         self.add_block_view_url = reverse('addpost')
         self.authentifizieren_view_url = reverse('authentifizieren')
         
-
-       
-
 
     def test_benutzerübergabe_GET(self):
         
@@ -75,4 +71,5 @@ class TestViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'authentifizieren.html')
 
-    
+#POST Funktionen fehlen noch 
+
