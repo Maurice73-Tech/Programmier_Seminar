@@ -18,6 +18,7 @@ input{
     margin-top: 5px;
 }
 
+/*
 img{
     width: 20%;
     height: 20%;
@@ -28,6 +29,7 @@ img{
     margin-left: auto;
     margin-right: auto;
 }
+*/
 
 a:not([href]):not([tabindex]) {
     color: white;
@@ -35,4 +37,8 @@ a:not([href]):not([tabindex]) {
 
 .btn-primary{
     cursor: pointer;
+}
+
+a:not([href]):not([tabindex]):hover{
+    color: white;
 }
