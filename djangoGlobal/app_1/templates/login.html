@@ -19,8 +19,7 @@ Login
       <div class="d-flex justify-content-center h-100">
         <div class="user_card">
           <div class="d-flex justify-content-center flex-column">
-            <img src="../static/bilder/LogoOhneText.jpeg" class="rounded float-end center" width="200px"
-              height="200px"><br>
+            <img src="../static/bilder/LogoOhneText.jpeg" class="rounded float-end center" height="200px"><br>
             <h3 id="form-title" style="text-align: center;">LOGIN</h3>
           </div>
           <div class="d-flex justify-content-center form_container">
@@ -28,101 +27,23 @@ Login
               {% csrf_token %}
               Username:
               <div class="input-group mb-3">
-                <!--
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fas fa-user"></i></span>
-                </div>
-                -->
                 <input type="text" name="username" placeholder="Username..." class="form-control">
               </div>
               Passwort:
               <div class="input-group mb-3">
-                <!--
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fas fa-key"></i></span>
-                </div>
-                -->
                 <input type="password" name="password" placeholder="Passwort..." class="form-control">
-
-
               </div>
-
-
-
-
-
               <div class="d-grid gap-2 col-6 mx-auto">
-
                 <input class="btn btn-primary" onclick="window.location='/forum';" type="submit" value="Einloggen">
-                
-
-                <a href="/registrieren">Registrieren</a>
+                <a href="/registrieren" style="margin-left: 6px;">Registrieren</a>
               </div>
-
               <br>
-              
-
-
             </form>
           </div>
-
-
-
-
-
-          <!--
-          <div class="mt-4">
-            <div class="d-flex justify-content-center links">
-              Noch keinen Account? <a href="{% url 'registrieren' %}" class="ml-2">Registrieren</a>
-            </div>
-            <div class="d-flex justify-content-center links">
-              Zum Impressum: <a href="{% url 'impressum' %}" class="ml-2">Impressum</a>
-            </div>
-          </div>-->
-
-
-
-
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!--
-<form>
-  <div id="submissionsField">
-    <img src="../static/bilder/logo.jpeg" class="rounded float-end center" style="text-align: center;" width="150px" height="150px">
-    <h1>Login</h1>
-    <form method="POST" action="">
-      {% csrf_token %}
-      Username:
-      <div class="input-group mb-3">
-        <div class="input-group-append">
-          <span class="input-group-text"><i class="fas fa-user"></i></span>
-        </div>
-        <input type="text" name="username" placeholder="Username..." class="form-control">
-      </div>
-      Passwort:
-      <div class="input-group mb-2">
-        <div class="input-group-append">
-          <span class="input-group-text"><i class="fas fa-key"></i></span>
-        </div>
-          <input type="password" name="password" placeholder="Passwort..." class="form-control" >
-      </div>
-      <div class="d-flex justify-content-center mt-3 login_container">
-        <input class="btn btn-primary" onclick="window.location='/forum';" type="submit" value="Login">
-      </div>
-    </form>
-    <div class="mt-4">
-      <div class="d-flex justify-content-center links">
-        Noch keinen Account? <a href="{% url 'registrieren' %}" class="ml-2">Registrieren</a>
-      </div>
-      <div class="d-flex justify-content-center links">
-        Zum Impressum: <a href="{% url 'impressum' %}" class="ml-2">Impressum</a>
-      </div>
-    </div>
-  </div>
-</form>
--->
 {% endblock %}
