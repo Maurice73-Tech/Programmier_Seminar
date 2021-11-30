@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block link%}
+<link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
+{% endblock %}
+
+{% block title %}
+Kommentar erstellen
+{% endblock %}
+
+
+
+{% block content %}
+
+<h1>Kommentar hinzufügen </h1>
+<small>Autor: {{post.Autor.username}}
+</small>
+<hr>
+<br/>
+{{post.Inhalt}}
+<br/>
+<br/>
+
+
+<h2>Kommentare...</h2>
+<br/> <br/>
+  <div class="comment-group">
+<form method="post" >
+  {% csrf_token %}
+  {{ form }}
+  <button class="btn btn-secondary">Kommentar hinzufügen>
+  </div>
+</form>	
+{% endblock %}

@@ -1,10 +1,14 @@
+from django.contrib.messages.api import success
+from django.db.models.fields import CommaSeparatedIntegerField
 from django.http import request 
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .forms import AddBlogForm, Registrierungsform, Anmeldeform
+from django.views.generic.edit import CreateView
+from .forms import AddBlogForm, Registrierungsform, Anmeldeform,KommentarForm,UnterKommentarForm
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
-from .models import NeueBenutzer, Post
+from .models import NeueBenutzer, Post,Kommentar
+from django.urls import reverse_lazy
 
 #beispielfunktion wie daten über ein dictionary zur html kommen
 
@@ -106,6 +110,20 @@ def add_block_view(request):
 
 def authentifizieren_view (request):
     return render (request, 'authentifizieren.html', {})
+
+class AddKommentarView(CreateView):
+    model=Kommentar  
+    form_class= KommentarForm
+    template_name = 'addcomment.html'
+    #fields= '__all__'
+    
+    def get_success_url(self):
+       print('posten erfolgreich')
+       return reverse_lazy('blog-details', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self,form):
+        form.instance.post_id=self.kwargs['pk']
+        return super().form_valid(form)
 
         
 

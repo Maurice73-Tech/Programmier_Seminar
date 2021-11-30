@@ -1,6 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, User
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.db.models.fields import TimeField
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
@@ -69,8 +70,20 @@ class Post(models.Model):
 class Kommentar (models.Model):
     post= models.ForeignKey(Post, related_name= "kommentare", on_delete=models.CASCADE)
     name= models.CharField(max_length=250)
-    content = models.TextField()
+    content = models.CharField(max_length=250)
     date_added = models.DateTimeField(auto_now_add=True)
+    
+
+def addComment():
+    pass
+
+class UnterKommentar(models.Model):
+    post=models.ForeignKey(Post,related_name="unterkommentar", on_delete= models.CASCADE)
+    name=models.CharField(max_length=250)
+    content=models.TextField()
+    date_added=models.DateTimeField(auto_now_add=True)
+    parent=models.ForeignKey('self', on_delete=models.CASCADE,blank=True,null=True)
+
 
     def __str__(self):
         return '%s - %s' % (self.post.Titel , self.name)
