@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model
 
-from .models import NeueBenutzer, Post
+from .models import NeueBenutzer, Post, Kommentar, UnterKommentar
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import fields
+from django.forms import fields, widgets
 from django import forms
 from django.contrib.auth import authenticate
 
@@ -35,3 +35,21 @@ class AddBlogForm (forms.ModelForm):
     class Meta:
         model= Post
         fields = ['Titel', 'Inhalt']
+
+class KommentarForm(forms.ModelForm):
+    class Meta:
+        model=Kommentar
+        fields = ('name','content')
+        
+
+    widgets={
+        'name':forms.TextInput(attrs={'class':'form-control'}),
+        'content': forms.Textarea(attrs={'class':'form-control'}),
+    }
+class UnterKommentarForm(KommentarForm) :
+    model=UnterKommentar
+    fields=('content')
+
+    widgets={
+        'body':forms.TextInput(attrs={'class':'form-control'})
+    }
