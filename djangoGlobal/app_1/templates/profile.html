@@ -4,8 +4,8 @@
 {%block link%}
 <link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
 {% endblock %}
-
 {% block content %}
+
 
 <div class="container">
     <div class="row">
@@ -16,28 +16,39 @@
                         <div class="card-body">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                Username: <strong class="float-right"></strong>
-                                {{user.username}}
+                                Email: {{forms.EmailField}}<strong class="float-right"></strong>
                             </li>
                             <li class="list-group-item">
-                                Vorname: <strong class="float-right"></strong>
-                                {{user.vorname}}
+                                Username: {{user}}<strong class="float-right"></strong> 
                             </li>
                             <li class="list-group-item">
-                                Nachname: <strong class="float-right"></strong>
-                                {{user.nachname}}
+                                Vorname: {{user.vorname}}<strong class="float-right"></strong> 
                             </li>
                             <li class="list-group-item">
-                                Email: <strong class="float-right"></strong>
-                                {{user.email}}
-                            </li><li class="list-group-item">
-                                Geburtsdatum: <strong class="float-right"></strong>
-                                {{user.geburtsdatum}}
+                                Nachname: {{user.nachname}}<strong class="float-right"></strong> 
                             </li>
-                        </li><li class="list-group-item">
-                            Abteilung: <strong class="float-right"></strong>
-                            {{user.abteilung}}
-                        </li>
+                              <li class="list-group-item">
+                                Abteilung: {{user.abteilung}}<strong class="float-right"></strong> 
+                            </li>
+                            <li class="list-group-item">
+                                Anzahl der Beiträge: <strong class="float-right"></strong>                           
+                            </li>
+                            <li class="list-group-item">
+                                Registriert seit: {{user.date_joined}}<strong class="float-right"></strong>                           
+                            </li>
+                            <li class="list-group-item">
+                                Aktiv: {{user.is_active}}<strong class="float-right"></strong>                           
+                            </li>
+                            <li class="list-group-item">
+                                Mitarbeiter: {{user.is_staff}}<strong class="float-right"></strong>                           
+                            </li>
+                            <li class="list-group-item">
+                                Letzter login: {{user.last_login}}<strong class="float-right"></strong>                           
+                            </li>
+                            <li class="list-group-item">
+                                Geburtsdatum: {{user.geburtsdatum}}<strong class="float-right"></strong>                           
+                            </li>
+                            <div class=" d-flex mt-2"> <button class="btn1 btn-dark">Profil bearbeiten</button> </div>
                         </ul>
                     </div>
                     </div>
