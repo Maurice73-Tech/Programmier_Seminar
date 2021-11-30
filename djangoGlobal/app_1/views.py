@@ -19,13 +19,12 @@ from django.urls import reverse_lazy
 class ForumView (ListView):
     model = Post
     template_name = 'forum.html'
-
+    
 class BlogDetailView (DetailView):
     model = Post
     template_name = 'blog-details.html'
 
 def benutzerübergabe (request):
-    
     context = {}
     accounts= NeueBenutzer.objects.all()
     context ['accounts'] = accounts
@@ -57,10 +56,6 @@ def registrieren(request):
 
     return render(request, 'registrieren.html', context)
 
-def forum(request):
-    return render(request,'forum.html')
-
-
 def benutzer_login(request):
     if request.method == 'POST':
         form = Registrierungsform(request.POST)
@@ -81,7 +76,6 @@ def benutzer_login(request):
 def benutzer_logout(request):
     logout(request)
     return redirect ('/login')
-    print ('Erfolgreich abgemeldet!')
 
 
 def profile (request):
