@@ -70,7 +70,7 @@ class Post(models.Model):
 class Kommentar (models.Model):
     post= models.ForeignKey(Post, related_name= "kommentare", on_delete=models.CASCADE)
     name= models.CharField(max_length=250)
-    content = models.CharField
+    content = models.CharField(max_length=250)
     date_added = models.DateTimeField(auto_now_add=True)
     
 
