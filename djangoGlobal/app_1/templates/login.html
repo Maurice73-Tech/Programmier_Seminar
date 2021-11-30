@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+Login
+{% endblock %}
+
 {%block link%}
-<link rel=stylesheet href="{% static 'css/navigationsbar.css' %}"/>
-<link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
+<link rel=stylesheet href="{% static 'css/navigationsbar.css' %}" />
+<link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now " U" %}" />
 {%endblock%}
 
 {% block content %}
@@ -15,7 +19,8 @@
       <div class="d-flex justify-content-center h-100">
         <div class="user_card">
           <div class="d-flex justify-content-center flex-column">
-            <img src="../static/bilder/logo.jpeg" class="rounded float-end center" width="150px" height="150px"><br>
+            <img src="../static/bilder/LogoOhneText.jpeg" class="rounded float-end center" width="200px"
+              height="200px"><br>
             <h3 id="form-title" style="text-align: center;">LOGIN</h3>
           </div>
           <div class="d-flex justify-content-center form_container">
@@ -37,14 +42,35 @@
                   <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
                 -->
-                <input type="password" name="password" placeholder="Passwort..." class="form-control" >
+                <input type="password" name="password" placeholder="Passwort..." class="form-control">
+
+
               </div>
-              <div class="d-flex justify-content-center mt-3 login_container">
-                <input class="btn btn-primary" onclick="window.location='/forum';" type="submit" value="Login">
+
+
+
+
+
+              <div class="d-grid gap-2 col-6 mx-auto">
+
+                <input class="btn btn-primary" onclick="window.location='/forum';" type="submit" value="Einloggen">
+                
+
+                <a href="/registrieren">Registrieren</a>
               </div>
+
+              <br>
+              
+
+
             </form>
           </div>
-      
+
+
+
+
+
+          <!--
           <div class="mt-4">
             <div class="d-flex justify-content-center links">
               Noch keinen Account? <a href="{% url 'registrieren' %}" class="ml-2">Registrieren</a>
@@ -52,8 +78,11 @@
             <div class="d-flex justify-content-center links">
               Zum Impressum: <a href="{% url 'impressum' %}" class="ml-2">Impressum</a>
             </div>
-          </div>
-        
+          </div>-->
+
+
+
+
         </div>
       </div>
     </div>
