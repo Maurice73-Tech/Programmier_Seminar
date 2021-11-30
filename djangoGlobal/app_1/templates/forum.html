@@ -3,6 +3,7 @@
 
 {%block link%}
 <link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
+<link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
 {% endblock %}
 
 {% block title %}
@@ -11,11 +12,14 @@
 
 {% block content %}
 
+<div id="submissionsField">
 <div class="container" style="text-align: center;">
+  <!--
   <img src="../static/bilder/logo.jpeg" class="rounded float-end" width="150px" height="150px">
+  -->
   <h1>User Posts:</h1>
   <br/>
-  <a class="btn btn-outline-success" href="/addpost" role="button">Neue Frage stellen</a>  
+  <a class="btn btn-outline-success" href="/addpost" role="button">&#10002; Neue Frage stellen</a>  
   <br/><br/>
 </div>
 
@@ -28,5 +32,5 @@
 </div>
 
 {% endfor %}
-
+</div>
 {% endblock %}
