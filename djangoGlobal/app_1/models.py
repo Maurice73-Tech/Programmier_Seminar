@@ -20,12 +20,12 @@ class Benutzermanager(BaseUserManager):
 
     #return self.create_user (username, vorname, nachname, geburtsdatum, abteilung, password, **other_fields)
     
-    def create_user(self, username, vorname,nachname, geburtsdatum, abteilung, password):
+    def create_user(self, username, vorname,nachname, geburtsdatum, abteilung, email, password):
         
         if not username:
             raise ValueError(gettext_lazy('Du musst einen Benutzernamen angeben'))
         
-        user = self.model(username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, abteilung= abteilung,)
+        user = self.model(username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, email=email, abteilung= abteilung,)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -34,6 +34,7 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     username= models.CharField (max_length=30, unique=True)
     vorname =models.CharField(max_length=30, blank=True)
     nachname =models.CharField(max_length=30, blank=True)
+    email =models.EmailField(max_length=30, blank=True)
     geburtsdatum = models.DateField(default=datetime.now)
     abteilung = models.CharField(max_length=30, blank=True)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
