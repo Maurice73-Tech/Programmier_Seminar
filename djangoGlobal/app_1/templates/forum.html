@@ -2,8 +2,19 @@
 {%load static%}
 
 {%block link%}
-<link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
+
 <link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
+
+{% if user.is_authenticated %}
+
+  <link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
+
+{% else %}
+
+  <link rel=stylesheet href="{% static 'css/navigationsbar.css' %}"/>
+
+{% endif %}
+
 {% endblock %}
 
 {% block title %}
@@ -12,25 +23,41 @@
 
 {% block content %}
 
-<div id="submissionsField">
-<div class="container" style="text-align: center;">
-  <!--
-  <img src="../static/bilder/logo.jpeg" class="rounded float-end" width="150px" height="150px">
-  -->
-  <h1>User Posts:</h1>
-  <br/>
-  <a class="btn btn-outline-success" href="/addpost" role="button">&#10002; Neue Frage stellen</a>  
-  <br/><br/>
-</div>
+{% if user.is_authenticated %}
+  <div id="submissionsField">
+  <div class="container" style="text-align: center;">
+    <!--
+    <img src="../static/bilder/logo.jpeg" class="rounded float-end" width="150px" height="150px">
+    -->
+    <h1>User Posts:</h1>
+    <br/>
+    <a class="btn btn-outline-success" href="/addpost" role="button">&#10002; Neue Frage stellen</a>  
+    <br/><br/>
+  </div>
 
-{% for post in object_list %}
-<div class="card mx-auto mt-3" style="width: 18rem">
+  {% for post in object_list %}
+  <div class="card mx-auto mt-3" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title"><a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a></h5>
+      <h6 class="card-subtitle mb-2 text-muted">Erstellt von {{post.Autor.username}}</h6>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+
+{% else %}
+
+<div class="card ml-auto" id="submissionsField" style="width: 20rem;">
+  <img class="card-img-top" src="../static/bilder/logo.jpeg" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title"><a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a></h5>
-    <h6 class="card-subtitle mb-2 text-muted">Erstellt von {{post.Autor.username}}</h6>
+    <h4 class="card-title">Keine Authentifizierung!</h4>
+    <p class="card-text">Um auf das Forum zugreifen zu können, müssen Sie sich einloggen oder registrieren.</p>
+    <a onclick="location.href= '/login'" class="btn btn-primary" role="button">Login</a>
+    <a onclick="location.href= '/registrieren'" class="btn btn-primary" role="button">Registrieren</a>
   </div>
 </div>
-
-{% endfor %}
 </div>
+
+{% endif %}
+
 {% endblock %}
