@@ -3,18 +3,23 @@
 
 {%block link%}
 <link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
+<link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
 {% endblock %}
 {% block content %}
 
+<div id="submissionsField" >
+<div id="ueberschrift" style="text-align: center;" >
+<h1>Profil:</h1>
+</div>
 
-<div class="container">
+<div class="container" style="center;">
     <div class="row">
-        <div class="col-lg-5 col-lg-offset-0">
+        <div class="col-lg-12 col-lg-offset-0">
             <div class="row pad">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="card-body">
-                        <ul class="list-group">
+                        <ul class="list-group" >
                         
                             <li class="list-group-item">
                                 <b>Username:</b> {{user}}<strong class="float-right"></strong> 
