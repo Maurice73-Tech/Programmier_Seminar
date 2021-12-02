@@ -1,3 +1,40 @@
+@media (prefers-color-scheme: dark) {
+    body {
+      background: #121212;
+    }
+
+    #submissionsField{
+        width: 100%;
+        padding: 30px;
+        box-sizing: border-box;
+        border-radius: 15px 15px 15px 15px;
+        background: rgb(32, 31, 31);
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 10px;
+        border: 1px solid rgb(216, 221, 230);
+        box-shadow: 0 0 1em grey;
+    }
+    
+    input{
+        margin-top: 5px;
+    }
+    
+    a:not([href]):not([tabindex]) {
+        color: white;
+    }
+    
+    .btn-primary{
+        cursor: pointer;
+    }
+    
+    a:not([href]):not([tabindex]):hover{
+        color: white;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
 body{
     background-color: whitesmoke;
 }
@@ -19,19 +56,6 @@ input{
     margin-top: 5px;
 }
 
-/*
-img{
-    width: 20%;
-    height: 20%;
-    border-radius: 30px;
-    margin-bottom: 10px;
-    text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-*/
-
 a:not([href]):not([tabindex]) {
     color: white;
 }
@@ -42,4 +66,5 @@ a:not([href]):not([tabindex]) {
 
 a:not([href]):not([tabindex]):hover{
     color: white;
+}
 }
