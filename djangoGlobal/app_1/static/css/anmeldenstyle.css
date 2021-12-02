@@ -8,12 +8,24 @@
         padding: 30px;
         box-sizing: border-box;
         border-radius: 15px 15px 15px 15px;
-        background: rgb(32, 31, 31);
+        background: #121212;
         margin-right: auto;
         margin-left: auto;
         margin-bottom: 10px;
         border: 1px solid rgb(216, 221, 230);
         box-shadow: 0 0 1em grey;
+    }
+
+    #form-title{
+        color: white;
+    }
+
+    h6{
+        color: white;
+    }
+
+    .form-check-label{
+        color: white;
     }
     
     input{
