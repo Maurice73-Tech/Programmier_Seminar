@@ -43,6 +43,22 @@
     a:not([href]):not([tabindex]):hover{
         color: white;
     }
+
+    .navbar-dark .navbar-toggler{
+        border-color: transparent;
+    }
+
+    h1{
+        color:white;
+    }
+
+    h3{
+        color: white;
+    }
+
+    .card{
+        background-color: rgb(24, 27, 29);
+    }
 }
 
 @media (prefers-color-scheme: light) {
@@ -78,5 +94,9 @@ a:not([href]):not([tabindex]) {
 
 a:not([href]):not([tabindex]):hover{
     color: white;
+}
+
+.navbar-dark .navbar-toggler{
+    border-color: transparent;
 }
 }
