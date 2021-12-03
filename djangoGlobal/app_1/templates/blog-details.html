@@ -20,8 +20,13 @@
 </small>
 <hr>
 <br/>
-{{post.Inhalt}}
+{{post.Inhalt}} 
 <br/>
+<form action ="{% url 'like_post' post.pk %}" method="POST">
+  {% csrf_token %}
+  <button type="submit",name="button_like", value="{{post.id}}", class="btn btn-info btn-sm float-right">Like 👍</button>
+</form>
+<br>
 <br/>
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Antwort verfassen.." aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -51,10 +56,8 @@
   </strong>
   <br>
     {{Kommentar.content}}
-    <div class="input-group mb-3" align="right">
-    <button class="btn btn-outline-secondary btn-sm pull-right" type="button"  id="button-addon2" onclick="{% url 'addcomment' post.pk%}">Kommentieren</button>
-  </div>
-  <br><br>
+    <button class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" onclick="{% url 'addcomment' post.pk%}">Kommentieren</button>
+  <br>
   <hr>
   {% endfor %}
 {% endif %}

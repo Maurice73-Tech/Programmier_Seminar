@@ -1,14 +1,14 @@
 from django.contrib.messages.api import success
 from django.db.models.fields import CommaSeparatedIntegerField
-from django.http import request 
-from django.shortcuts import render,redirect
+from django.http import request,HttpResponseRedirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 from django.views.generic.edit import CreateView
-from .forms import AddBlogForm, Registrierungsform, Anmeldeform,KommentarForm,UnterKommentarForm
+from app_1.forms import AddBlogForm, Registrierungsform, Anmeldeform,KommentarForm,UnterKommentarForm,Post
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
-from .models import NeueBenutzer, Post,Kommentar
-from django.urls import reverse_lazy
+from app_1.models import NeueBenutzer,Kommentar, Post
+from django.urls import reverse_lazy,reverse
 
 #beispielfunktion wie daten über ein dictionary zur html kommen
 
@@ -23,6 +23,8 @@ class ForumView (ListView):
 class BlogDetailView (DetailView):
     model = Post
     template_name = 'blog-details.html'
+
+
 
 def benutzerübergabe (request):
     context = {}
@@ -97,13 +99,33 @@ def add_block_view(request):
         obj.save ()
         form = Post()
         return redirect ('forum')
-
     context ['form'] = form
 
-    return render (request, 'addpost.html', context)     
+    return render (request, 'addpost.html', context) 
+
+def get_context_data(self,*args,**kwargs):
+    context = super(BlogDetailView,self).get_context_data(**kwargs)
+
+    specificPost=get_object_or_404(Post,id=self.kwargs['pkPost'])
+    likes=specificPost.getTotalLikes()
+    context["likes"] =likes 
+    return context
+ 
 
 def authentifizieren_view (request):
     return render (request, 'authentifizieren.html', {})
+
+def LikesPostView(request, pk):
+    print("wird gecalled")
+    print(request.POST.get('button_like'))
+    print(request.POST.get('id'))
+    print(request.POST.get('post_id'))
+    print(request.POST.get('user_id'))
+    
+    #post=get_object_or_404(Post, id=request.POST.get('button_like'))
+    #post.likes.add(request.NeueBenutzer)
+    print("Button wird gedrückt und weitergeleitet")
+    return HttpResponseRedirect(reverse('blog-details', args=[str(pk)]))
 
 class AddKommentarView(CreateView):
     model=Kommentar  
@@ -119,5 +141,6 @@ class AddKommentarView(CreateView):
         form.instance.post_id=self.kwargs['pk']
         return super().form_valid(form)
 
-        
+
+
 
