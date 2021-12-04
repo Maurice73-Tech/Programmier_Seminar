@@ -16,11 +16,14 @@
 
 <div id="submissionsField">
 <h1>Details zu: {{post.Titel}} </h1>
-<small>Autor: {{post.Autor.username}}
+<small id="titlePost">
+  Autor: {{post.Autor.username}}
 </small>
 <hr>
 <br/>
-{{post.Inhalt}} 
+<h5 id="inhaltPost">
+  {{post.Inhalt}}
+</h5>
 <br/>
 <form action ="{% url 'like_post' post.pk %}" method="POST">
   {% csrf_token %}
@@ -50,13 +53,13 @@
 {% else %}
 
   {% for Kommentar in post.kommentare.all %}
-    <strong>
-      {{Kommentar.name}} - 
+    <h6>
+      {{Kommentar.name}}- 
       {{Kommentar.date_added}}
-  </strong>
+    </h6>
   <br>
-    {{Kommentar.content}}
-    <button class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" onclick="{% url 'addcomment' post.pk%}">Kommentieren</button>
+    <h6>{{Kommentar.content}}</h6>
+    <button class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addcomment' post.pk%}">Kommentieren</button>
   <br>
   <hr>
   {% endfor %}
