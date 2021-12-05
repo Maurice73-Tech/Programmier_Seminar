@@ -15,36 +15,29 @@
 {% block content %}
 
 <div id="submissionsField">
-<h1>Details zu: {{post.Titel}} </h1>
+<h1 style="color: #3e5fc2;">Details zu:</h1>
+<h1>{{post.Titel}} </h1>
 <small id="titlePost">
   Autor: {{post.Autor.username}}
 </small>
 <hr>
 <br/>
+<!--
+<h5 style="color: #3e5fc2;">Inhalt:</h5>
+-->
 <h5 id="inhaltPost">
   {{post.Inhalt}}
 </h5>
 <br/>
-<form action ="{% url 'like_post' post.pk %}" method="POST">
-  {% csrf_token %}
-  <button type="submit",name="button_like", value="{{post.id}}", class="btn btn-info btn-sm float-right">Like 👍</button>
-</form>
 <br>
+<hr>
 <br/>
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Antwort verfassen.." aria-label="Recipient's username" aria-describedby="button-addon2">
-    <a class="btn btn-success" type="button" id="button-addon2" href="{% url 'addcomment' post.pk %}" >Antworten</a>
-  </div>
-
-<br/>
-<br/>
-
+<div class="input-group mb-3">
+  <a class="btn btn-success" type="button" id="button-addon2" href="{% url 'addcomment' post.pk %}" >Antworten</a>
+</div>
 <h2>Kommentare...</h2>
 {% if post.kommentare.all%}
-<div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Beitrag Kommentieren" aria-label="Recipient's username" aria-describedby="button-addon2">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Senden</button>
-</div>
+
 
 {% if not post.kommentare.all %}
   Es sind noch keine Kommentare für diese Frage gestellt worden <a href="#">Sei der Erste!</a>
@@ -53,15 +46,27 @@
 {% else %}
 
   {% for Kommentar in post.kommentare.all %}
+  <div>
     <h6>
       {{Kommentar.name}}- 
       {{Kommentar.date_added}}
     </h6>
-  <br>
-    <h6>{{Kommentar.content}}</h6>
-    <button class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addcomment' post.pk%}">Kommentieren</button>
+    <br>
+    <h6>
+      &#9492; {{Kommentar.content}}
+    </h6>
+    <div>
+      <button style="margin-left: 5px;" class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addcomment' post.pk%}">
+        Kommentieren
+      </button>
+      <form action ="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit",name="button_like", value="{{post.id}}", class="btn btn-info btn-sm float-right">Like 👍</button>
+      </form>
+    </div>
   <br>
   <hr>
+  </div>
   {% endfor %}
 {% endif %}
 {%endif%}

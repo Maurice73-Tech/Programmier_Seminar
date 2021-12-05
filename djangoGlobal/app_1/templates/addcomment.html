@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-{%load static%}
+{% load static %}
 
-{%block link%}
+{% block link %}
 <link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
+<link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
 {% endblock %}
 
 {% block title %}
@@ -12,24 +13,25 @@ Kommentar erstellen
 
 
 {% block content %}
+<div id="submissionsField">
+  <h1>Kommentar hinzufügen </h1>
+  <small>Autor: {{post.Autor.username}}
+  </small>
+  <hr>
+  <br/>
+  {{post.Inhalt}}
+  <br/>
 
-<h1>Kommentar hinzufügen </h1>
-<small>Autor: {{post.Autor.username}}
-</small>
-<hr>
-<br/>
-{{post.Inhalt}}
-<br/>
-<br/>
-
-
-<h2>Kommentare...</h2>
-<br/> <br/>
-  <div class="comment-group">
-<form method="post" >
-  {% csrf_token %}
-  {{ form }}
-  <button class="btn btn-secondary">Kommentar hinzufügen>
-  </div>
-</form>	
+  <h2>Kommentare...</h2>
+  <br/> <br/>
+    <div class="comment-group">
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-secondary">
+          Kommentar hinzufügen
+        </button>
+    </div>
+  </form>	
+</div>
 {% endblock %}
