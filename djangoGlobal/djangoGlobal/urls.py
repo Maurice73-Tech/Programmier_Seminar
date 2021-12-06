@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app_1.views import (registrieren, benutzer_logout, benutzer_login, profile, impressum,authentifizieren_view,add_block_view, ForumView, BlogDetailView,AddKommentarView)
+from app_1.views import (registrieren, benutzer_logout, benutzer_login, profile, impressum,authentifizieren_view,add_block_view,LikesPostView,ForumView, BlogDetailView,AddKommentarView)
 from app_1.models import Post
 
 
@@ -33,5 +33,8 @@ urlpatterns = [
     path('registrieren/',registrieren ,name='registrieren'),
     path('authentifizieren/',authentifizieren_view ,name='authentifizieren'),
     path('profile/',profile ,name='profile'),
-    path('blog-details/<int:pk> /kommentieren',AddKommentarView.as_view(),name='addcomment')
+    path('likes/<int:pk>',LikesPostView, name='like_post'),
+    path('blog-details/<int:pk> /kommentieren',AddKommentarView.as_view(),name='addcomment'),
+    
+    
 ]

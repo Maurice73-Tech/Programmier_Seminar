@@ -66,9 +66,13 @@ class Post(models.Model):
     content = models.TextField(name='Inhalt')
     date_posted = models.DateTimeField(default=timezone.now, name='Postdatum')
     author = models.ForeignKey(NeueBenutzer, on_delete=models.CASCADE, name= 'Autor')
+    likes = models.ManyToManyField(NeueBenutzer, related_name='blog_posts')
 
     def __str__(self):
         return 'Titel: ' + self.Titel + '  / Inhalt: ' + str(self.Inhalt)
+
+    def getTotalLikes(self):
+        return self.likes.count()
 
 class Kommentar (models.Model):
     post= models.ForeignKey(Post, related_name= "kommentare", on_delete=models.CASCADE)

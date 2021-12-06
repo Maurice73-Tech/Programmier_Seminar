@@ -6,6 +6,9 @@
 <link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
 {% endblock %}
 
+{% block title %}
+  Neue Frage stellen
+{% endblock %}
 
 {% block content %}
 
@@ -16,12 +19,12 @@
 			<form class="create-form" method="post" >{% csrf_token %}
 
 				<div class="form-group">
-					<label for="id_title">Titel</label>
+					<label for="id_title" id="titleID">Titel</label>
 					<input class="form-control" type="text" name="Titel" id="id_title" placeholder="Titel der Frage" required autofocus>
 				</div>
 
 				<div class="form-group">
-					<label for="id_body">Inhalt</label>
+					<label for="id_body" id="bodyID">Inhalt</label>
 					<textarea class="form-control" rows="10" type="text" name="Inhalt" id="id_body" placeholder="Stellen Sie hier ihre Frage..." required></textarea>
 				</div>
 
