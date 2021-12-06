@@ -9,13 +9,13 @@ from datetime import datetime
 
 class Benutzermanager(BaseUserManager):
     
-    def create_superuser(self, username,vorname, nachname, geburtsdatum, abteilung, password, **other_fields):
-       user = self.create_user (username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, abteilung= abteilung, password=password)
-       user.is_admin = True
-       user.is_staff = True
-       user.is_superuser = True
-       user.save(using=self._db)
-       return user
+    def create_superuser(self, username,vorname, nachname, geburtsdatum, email, abteilung, password, **other_fields):
+        user = self.create_user (username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, email=email, abteilung= abteilung, password=password)
+        user.is_admin = True
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
 
 
     #return self.create_user (username, vorname, nachname, geburtsdatum, abteilung, password, **other_fields)
@@ -50,7 +50,7 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     objects = Benutzermanager()
     
     USERNAME_FIELD= 'username'
-    REQUIRED_FIELDS = ['vorname' , 'nachname', 'geburtsdatum', 'abteilung']
+    REQUIRED_FIELDS = ['vorname' , 'nachname', 'geburtsdatum', 'abteilung', 'email']
 
     def __str__(self):
         return self.username
