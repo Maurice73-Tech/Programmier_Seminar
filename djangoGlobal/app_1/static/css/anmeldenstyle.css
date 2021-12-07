@@ -59,6 +59,16 @@
     .card{
         background-color: rgb(24, 27, 29);
     }
+
+    #searchInput{
+        margin-bottom: 20px;
+    }
+    
+    #myList{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
 }
 
 @media (prefers-color-scheme: light) {
@@ -98,5 +108,15 @@ a:not([href]):not([tabindex]):hover{
 
 .navbar-dark .navbar-toggler{
     border-color: transparent;
+}
+
+#searchInput{
+    margin-bottom: 20px;
+}
+
+#myList{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 }
