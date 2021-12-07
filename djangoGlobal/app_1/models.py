@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, User
 from django.db import models
 from django.db.models.deletion import CASCADE
-from django.db.models.fields import TimeField
+from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
@@ -65,7 +65,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100, name='Titel')
     content = models.TextField(name='Inhalt')
     date_posted = models.DateTimeField(default=timezone.now, name='Postdatum')
-    author = models.ForeignKey(NeueBenutzer, on_delete=models.CASCADE, name= 'Autor')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, name= 'Autor')
     likes = models.ManyToManyField(NeueBenutzer, related_name='blog_posts')
 
     def __str__(self):

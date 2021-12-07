@@ -117,9 +117,9 @@ def authentifizieren_view (request):
 
 def LikesPostView(request, pk):
     print("wird gecalled")
-    print(request.POST.get('button_like'))
+ 
     print(request.POST.get('id'))
-    print(request.POST.get('post_id'))
+    print(request.POST.get('post_titel'))
     print(request.POST.get('user_id'))
     
     #post=get_object_or_404(Post, id=request.POST.get('button_like'))
@@ -134,12 +134,12 @@ class AddKommentarView(CreateView):
     #fields= '__all__'
     
     def get_success_url(self):
-       print('posten erfolgreich')
        return reverse_lazy('blog-details', kwargs={'pk': self.kwargs['pk']})
 
     def form_valid(self,form):
         form.instance.post_id=self.kwargs['pk']
         return super().form_valid(form)
+    
 
 
 
