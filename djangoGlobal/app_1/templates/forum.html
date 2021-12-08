@@ -26,25 +26,26 @@
 {% if user.is_authenticated %}
   <div id="submissionsField">
     <div class="container" style="text-align: center;">
-      <!--
-      <img src="../static/bilder/logo.jpeg" class="rounded float-end" width="150px" height="150px">
-      -->
       <h1 id="userpost">User Posts:</h1>
       <br/>
+      <input type="text" id="searchInput" style="color: blue;" onkeyup="searchFunction()" placeholder="Nach Titel suchen... &#x1F50D;"><br>
       <a class="btn btn-outline-success" href="/addpost" role="button">&#10002; Neue Frage stellen</a>  
       <br/><br/>
     </div>
 
+    <ul id="myList">
     {% for post in object_list %}
-    <div class="card mx-auto mt-3" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title"><a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a></h5>
-        <h6 class="card-subtitle mb-2 text-muted">Erstellt von {{post.Autor.username}}</h6>
+      <li>
+      <div class="card mx-auto mt-3" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Erstellt von {{post.Autor.username}}</h6>
+        </div>
       </div>
-    </div>
+      </li>
     {% endfor %}
+    </ul>
   </div>
-  
 
 {% else %}
 
@@ -58,6 +59,7 @@
   </div>
 </div>
 </div>
+  
 
 {% endif %}
 
