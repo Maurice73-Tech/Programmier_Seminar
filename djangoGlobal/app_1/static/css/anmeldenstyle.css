@@ -66,6 +66,8 @@
 
     #searchInput{
         margin-bottom: 20px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
     }
     
     #myList{
@@ -116,6 +118,8 @@ a:not([href]):not([tabindex]):hover{
 
 #searchInput{
     margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
 }
 
 #myList{
