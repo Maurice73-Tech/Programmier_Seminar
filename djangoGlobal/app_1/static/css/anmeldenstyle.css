@@ -60,6 +60,10 @@
         background-color: rgb(24, 27, 29);
     }
 
+    .card-text{
+        color: white;
+    }
+
     #searchInput{
         margin-bottom: 20px;
     }
