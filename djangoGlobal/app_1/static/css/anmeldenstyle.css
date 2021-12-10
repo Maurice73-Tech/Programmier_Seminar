@@ -56,6 +56,10 @@
         color: white;
     }
 
+    .card-body:hover{
+        background-color: rgb(27, 32, 35);
+    }
+
     .card{
         background-color: rgb(24, 27, 29);
     }
@@ -114,6 +118,10 @@ a:not([href]):not([tabindex]):hover{
 
 .navbar-dark .navbar-toggler{
     border-color: transparent;
+}
+
+.card-body:hover{
+    background-color: whitesmoke;
 }
 
 #searchInput{
