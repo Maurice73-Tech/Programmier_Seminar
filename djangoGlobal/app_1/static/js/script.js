@@ -33,7 +33,7 @@ recognition.onresult = function(event) {
   content = transcript
 
   searchInput.val(content)
-
+  //$("#searchInput").trigger(e);
 }
 
 $("#start-btn").click(function (event) {
@@ -42,7 +42,7 @@ $("#start-btn").click(function (event) {
   }
 
   recognition.start()
-
+  //$("#searchInput").trigger($.Event("keypress", { keyCode: 13 }));
 })
 
 $("#stop-btn").click( function (event) {
