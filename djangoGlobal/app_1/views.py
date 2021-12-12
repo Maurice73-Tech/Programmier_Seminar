@@ -1,14 +1,15 @@
 from django.contrib.messages.api import success
-from django.db.models.fields import CommaSeparatedIntegerField
 from django.http import request,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
+from django.views import generic
 from django.views.generic.edit import CreateView
-from app_1.forms import AddBlogForm, Registrierungsform, Anmeldeform,KommentarForm,UnterKommentarForm,Post
+from app_1.forms import AddBlogForm, Registrierungsform,KommentarForm,Post, Profile_edit_form
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
 from app_1.models import NeueBenutzer,Kommentar, Post
 from django.urls import reverse_lazy,reverse
+
 
 #beispielfunktion wie daten über ein dictionary zur html kommen
 
@@ -85,6 +86,14 @@ def profile (request):
     if not user.is_authenticated:
         return redirect ('authentifizieren')    
     return render(request, 'profile.html')
+
+class profile_edit (generic.UpdateView):
+   form_class= Profile_edit_form
+   template_name = 'profile_edit.html'
+   success_url = reverse_lazy ('profile')
+
+   def get_object (self):
+       return self.request.user
 
 def add_block_view(request):
     context = {}

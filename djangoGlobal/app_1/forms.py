@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from .models import NeueBenutzer, Post, Kommentar, UnterKommentar
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django import forms
 from django.contrib.auth import authenticate
 
@@ -51,3 +51,16 @@ class UnterKommentarForm(KommentarForm) :
     widgets={
         'body':forms.TextInput(attrs={'class':'form-control'})
     }
+
+class Profile_edit_form(UserChangeForm):
+    username = forms.CharField (label="Username")
+    vorname = forms.CharField (label="Vorname")
+    nachname = forms.CharField (label="Nachname")
+    email = forms.EmailField (max_length=50, label='E-Mail')
+    abteilung = forms.CharField (label="Abteilung")
+    geburtsdatum= forms.DateField(label="Geburtsdatum")
+    
+
+    class Meta:
+        model= NeueBenutzer
+        fields = ('username','vorname', 'nachname','email','abteilung', 'geburtsdatum')
