@@ -7,6 +7,8 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
 
+from djangoGlobal.settings import AUTH_USER_MODEL
+
 class Benutzermanager(BaseUserManager):
     
     def create_superuser(self, username,vorname, nachname, geburtsdatum, email, abteilung, password, **other_fields):
@@ -67,7 +69,7 @@ class Post(models.Model):
     content = models.TextField(name='Inhalt')
     date_posted = models.DateTimeField(default=timezone.now, name='Postdatum')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, name= 'Autor')
-    likes = models.ManyToManyField(NeueBenutzer, related_name='blog_posts')
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_posts')
 
     def __str__(self):
         return 'Titel: ' + self.Titel + '  / Inhalt: ' + str(self.Inhalt)

@@ -99,16 +99,18 @@ def add_block_view(request):
         obj.save ()
         form = Post()
         return redirect ('forum')
+        
+    specificPost=get_object_or_404(Post)    
     context ['form'] = form
+    context['total_likes'] = total_likes
 
     return render (request, 'addpost.html', context) 
 
 def get_context_data(self,*args,**kwargs):
     context = super(BlogDetailView,self).get_context_data(**kwargs)
-
-    specificPost=get_object_or_404(Post,id=self.kwargs['pkPost'])
+    specificPost=get_object_or_404(Post,id=self.kwargs['post_id'])
     likes=specificPost.getTotalLikes()
-    context["likes"] =likes 
+    context["likes"] ="2"
     return context
  
 
@@ -117,13 +119,13 @@ def authentifizieren_view (request):
 
 def LikesPostView(request, pk):
     print("wird gecalled")
- 
     print(request.POST.get('id'))
     print(request.POST.get('post_titel'))
     print(request.POST.get('user_id'))
-    
-    #post=get_object_or_404(Post, id=request.POST.get('button_like'))
-    #post.likes.add(request.NeueBenutzer)
+    print(request.POST.get('post_id'))
+    print(Post.objects.get(id=pk))
+    post= Post.objects.get(id=pk)
+    post.likes.add(request.user)
     print("Button wird gedrückt und weitergeleitet")
     return HttpResponseRedirect(reverse('blog-details', args=[str(pk)]))
 
