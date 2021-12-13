@@ -40,8 +40,15 @@ Login
 
               {% if messages %}
               {% for message in messages %}
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
               
+              <div class="alert alert-primary" role="alert"> {{ message }}</div>
+              {% endif %}
+
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
               <div class="alert alert-danger" role="alert"> {{ message }}</div>
+             
+              {% endif %}
               {% endfor %}
               {% endif %}
 
