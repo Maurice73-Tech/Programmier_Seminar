@@ -65,7 +65,7 @@ Registrieren
       <label for="formGroupExampleInput">Bitte wähle deine Abteilung aus</label>
     </small>
 
-      
+    
     
     <div class="form-group">
 
@@ -100,6 +100,13 @@ Registrieren
     <button type= "submit">Registrieren</button> 
     -->
     <br>
+
+    {% if messages %}
+    {% for message in messages %}
+    
+    <div class="alert alert-danger" role="alert"> {{ message }}</div>
+    {% endfor %}
+    {% endif %}
 
 
     <div style="text-align: center;">

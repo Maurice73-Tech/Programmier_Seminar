@@ -44,8 +44,10 @@ def registrieren(request):
             account = authenticate (username=username, password=raw_password)
             login (request, account)
             return redirect ('forum')
+       
         else:
             context ['registrierungs_form']=form
+            messages.error(request,'Passwort oder Username ist falsch!')
     else:
         form = Registrierungsform ()
         context ['registrierungs_form'] = form
