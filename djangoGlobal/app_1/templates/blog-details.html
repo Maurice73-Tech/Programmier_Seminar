@@ -20,6 +20,15 @@
 <small id="titlePost">
   Autor: {{post.Autor.username}}
 </small>
+
+<div>
+<form action ="{% url 'like_post' post.pk %}"
+       method="POST">
+          {% csrf_token %}
+          <button style="margin-left: 5px;" class="btn btn-info btn-sm float-right" type="submit"  name="post_id" href="{% url 'addcomment' post.pk%}">Like Post <span class ="badge badge-light">{{post.getTotalLikes}}</span></button>
+      </form>
+    </div>
+<br/>
 <hr>
 <br/>
 <!--
