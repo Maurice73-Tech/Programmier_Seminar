@@ -10,11 +10,6 @@ from django.views.generic import ListView, DetailView
 from app_1.models import NeueBenutzer,Kommentar, Post
 from django.urls import reverse_lazy,reverse
 
-#beispielfunktion wie daten über ein dictionary zur html kommen
-
-""" def index(request):
-    context={'posts':post}
-    return render(request, 'app_1/index.html', context) """
 
 class ForumView (ListView):
     model = Post
@@ -23,8 +18,6 @@ class ForumView (ListView):
 class BlogDetailView (DetailView):
     model = Post
     template_name = 'blog-details.html'
-
-
 
 def benutzerübergabe (request):
     context = {}
@@ -35,7 +28,6 @@ def benutzerübergabe (request):
 
 def impressum(request):
     return render(request,'impressum.html')
-
 
 def registrieren(request):
     context = {}
@@ -66,19 +58,27 @@ def benutzer_login(request):
         user = authenticate(username= username, password= password)
     
         if user:
+            
             login (request, user)
             messages.info(request, ('Sie sind jetzt angemeldet'))
             return redirect('/forum')
-        else:
-            messages.info (request,'Username oder Passwort ist nicht korrekt!')
+            
+        else:        
+                
+                messages.error(request,'Passwort oder Username ist falsch!')
+
+            
+
+
+
 
     context= {}
     return render (request, 'login.html', context)
 
 def benutzer_logout(request):
     logout(request)
+    messages.info (request, 'Sie wurden ausgeloggt, bis zum nächsten mal!')
     return redirect ('/login')
-
 
 def profile (request):
     user=request.user
@@ -111,7 +111,6 @@ def get_context_data(self,*args,**kwargs):
     context["likes"] =likes 
     return context
  
-
 def authentifizieren_view (request):
     return render (request, 'authentifizieren.html', {})
 
