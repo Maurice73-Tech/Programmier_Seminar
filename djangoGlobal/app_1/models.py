@@ -22,12 +22,12 @@ class Benutzermanager(BaseUserManager):
 
     #return self.create_user (username, vorname, nachname, geburtsdatum, abteilung, password, **other_fields)
     
-    def create_user(self, username, vorname,nachname, geburtsdatum, abteilung, email, taggs, password):
+    def create_user(self, username, vorname,nachname, geburtsdatum, abteilung, email,  password):
         
         if not username:
             raise ValueError(gettext_lazy('Du musst einen Benutzernamen angeben'))
         
-        user = self.model(username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, taggs= taggs, email=email, abteilung= abteilung,)
+        user = self.model(username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum,  email=email, abteilung= abteilung,)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -40,7 +40,6 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     geburtsdatum = models.DateField(default=datetime.now)
     abteilung = models.CharField(max_length=30, blank=True)
     profile_pic = models.ImageField (null=True, blank = True, upload_to = 'profilbilder', default='/profilbilder/default.jpg')
-    taggs = models.CharField(max_length=100, blank=True)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_admin = models.BooleanField(default=False)
