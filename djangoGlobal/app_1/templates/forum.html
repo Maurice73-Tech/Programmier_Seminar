@@ -26,25 +26,35 @@
 {% if user.is_authenticated %}
   <div id="submissionsField">
     <div class="container" style="text-align: center;">
-      <!--
-      <img src="../static/bilder/logo.jpeg" class="rounded float-end" width="150px" height="150px">
-      -->
       <h1 id="userpost">User Posts:</h1>
       <br/>
-      <a class="btn btn-outline-success" href="/addpost" role="button">&#10002; Neue Frage stellen</a>  
+      <div>
+        <input type="text" id="searchInput" placeholder="&#x1F50D; Nach Titel suchen..." style="font-family: Arial, 'Font Awesome 5 Free'; color:blue;" onkeyup="searchFunction()"/>
+        <button id="start-btn" class=".btn btn-success">
+          <span><i class="fas fa-microphone"></i></span>
+        </button>
+        <button id="stop-btn" class=".btn btn-danger">
+          <i class="fas fa-microphone-slash"></i>
+        </button><br/>
+      </div>
+      <p id="instructions" style="display: inline-block;">Für Spracherkennung den Startknopf drücken [Funktioniert nur in Chrome]</p><br/>
+      <a class="btn btn-outline-success" href="/addpost" role="button"><i class="fas fa-pen-fancy"></i> Neue Frage stellen</a>  
       <br/><br/>
     </div>
 
+    <ul id="myList">
     {% for post in object_list %}
-    <div class="card mx-auto mt-3" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title"><a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a></h5>
-        <h6 class="card-subtitle mb-2 text-muted">Erstellt von {{post.Autor.username}}</h6>
+      <li>
+      <div class="card mx-auto mt-3"> 
+        <div class="card-body">
+          <h5 class="card-title"><a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Erstellt von {{post.Autor.username}}</h6>
+        </div>
       </div>
-    </div>
+      </li>
     {% endfor %}
+    </ul>
   </div>
-  
 
 {% else %}
 
@@ -58,6 +68,7 @@
   </div>
 </div>
 </div>
+  
 
 {% endif %}
 

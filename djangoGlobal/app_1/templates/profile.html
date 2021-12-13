@@ -14,7 +14,7 @@
 
 <div id="submissionsField" >
 <div id="ueberschrift" style="text-align: center;" >
-<h1>&#128100;Profil:</h1>
+<h1><i class="far fa-user"></i> Profil:</h1>
 </div>
 
 <div class="container">
@@ -56,7 +56,10 @@
                              <li class="list-group-item">
                                 <b>Letzter login:</b> {{user.last_login}}<strong class="float-right"></strong>                           
                             </li>
-                           <div class=" d-flex mt-2"> <button class="btn1 btn-dark">Profil bearbeiten</button> </div>
+                            <br>
+                            <div class="input-group mb-3">
+                                <a class="btn btn-success" type="button" id="button-addon2" href="{% url 'profile_edit' %}" >Profil updaten</a>
+                              </div>
                         </ul>
                     </div>
                     </div>

@@ -7,6 +7,8 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
 
+from djangoGlobal.settings import AUTH_USER_MODEL
+
 class Benutzermanager(BaseUserManager):
     
     def create_superuser(self, username,vorname, nachname, geburtsdatum, email, abteilung, password, **other_fields):
@@ -20,12 +22,12 @@ class Benutzermanager(BaseUserManager):
 
     #return self.create_user (username, vorname, nachname, geburtsdatum, abteilung, password, **other_fields)
     
-    def create_user(self, username, vorname,nachname, geburtsdatum, abteilung, email, password):
+    def create_user(self, username, vorname,nachname, geburtsdatum, abteilung, email, taggs, password):
         
         if not username:
             raise ValueError(gettext_lazy('Du musst einen Benutzernamen angeben'))
         
-        user = self.model(username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, email=email, abteilung= abteilung,)
+        user = self.model(username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, taggs= taggs, email=email, abteilung= abteilung,)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -37,6 +39,7 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     email =models.EmailField(max_length=30, blank=True)
     geburtsdatum = models.DateField(default=datetime.now)
     abteilung = models.CharField(max_length=30, blank=True)
+    taggs = models.CharField(max_length=100, blank=True)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_admin = models.BooleanField(default=False)
@@ -66,7 +69,7 @@ class Post(models.Model):
     content = models.TextField(name='Inhalt')
     date_posted = models.DateTimeField(default=timezone.now, name='Postdatum')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, name= 'Autor')
-    likes = models.ManyToManyField(NeueBenutzer, related_name='blog_posts')
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_posts')
 
     def __str__(self):
         return 'Titel: ' + self.Titel + '  / Inhalt: ' + str(self.Inhalt)

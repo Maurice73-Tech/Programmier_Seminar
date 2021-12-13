@@ -56,8 +56,45 @@
         color: white;
     }
 
+    .card-body:hover{
+        background-color: rgb(27, 32, 35);
+    }
+
     .card{
         background-color: rgb(24, 27, 29);
+    }
+
+    .card-text{
+        color: white;
+    }
+
+    #searchInput{
+        margin-bottom: 20px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    #myList{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .container :is(#start-btn, #stop-btn) {
+        border-radius: 50%;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        height: 30px;
+        width: 30px;
+      }
+    
+    #instructions{
+        color: white;
     }
 }
 
@@ -99,4 +136,33 @@ a:not([href]):not([tabindex]):hover{
 .navbar-dark .navbar-toggler{
     border-color: transparent;
 }
+
+.card-body:hover{
+    background-color: whitesmoke;
+}
+
+#searchInput{
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+#myList{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.container :is(#start-btn, #stop-btn) {
+    border-radius: 50%;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    height: 30px;
+    width: 30px;
+  }
 }

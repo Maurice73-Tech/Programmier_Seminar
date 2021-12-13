@@ -11,12 +11,12 @@ admin.site.register(Kommentar)
 # Admin Seite konfiguriert: Attribute angeordnet und unwichtige ausgeblendet
 class UserAdminKonfig (UserAdmin):
     search_fields = ('username', 'vorname', 'nachname', 'abteilung', 'email')
-    list_filter = ('username', 'vorname', 'nachname', 'abteilung', 'is_staff', 'is_active', 'email')
+    list_filter = ('username', 'vorname', 'nachname', 'abteilung', 'is_staff', 'is_active', 'email', 'taggs')
     ordering = ('username',)
-    list_display =('username', 'vorname', 'nachname', 'abteilung', 'email')
+    list_display =('username', 'vorname', 'nachname', 'abteilung', 'email', 'taggs')
 
     fieldsets =(
-        (None, {'fields':('username', 'vorname', 'nachname', 'abteilung', 'email', 'geburtsdatum',)}),
+        (None, {'fields':('username', 'vorname', 'nachname', 'abteilung', 'email', 'geburtsdatum', 'taggs',)}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
 
     )

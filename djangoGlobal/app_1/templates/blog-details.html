@@ -59,9 +59,10 @@
       <button style="margin-left: 5px;" class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addcomment' post.pk%}">
         Kommentieren
       </button>
-      <form action ="{% url 'like_post' post.pk %}" method="POST">
-        {% csrf_token %}
-        <button type="submit",name="button_like", value="{{post.id}}", class="btn btn-info btn-sm float-right">Like 👍</button>
+      <form action ="{% url 'like_post' post.pk %}"
+       method="POST">
+          {% csrf_token %}
+          <button type="submit",name="post_id", value="{{post.id}}", class="btn btn-info btn-sm float-right">Like👍</button> - {{likes}} Likes
       </form>
     </div>
   <br>

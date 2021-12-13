@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block link%}
+<link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
+<link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
+{% endblock %}
+
+{% block title %}
+  Profil Update
+{% endblock %}
+
+{% block content %}
+
+<div id="submissionsField" >
+<div id="ueberschrift" style="text-align: center;" >
+<h1><i class="far fa-user"></i> Profil Update:</h1>
+</div>
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class ='btn btn-secondary' >Profil updaten</button>
+    </form>
+  
+
+    </div>
+</div>
+{% endblock %}

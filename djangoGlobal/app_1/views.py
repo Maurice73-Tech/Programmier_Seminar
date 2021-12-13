@@ -1,15 +1,26 @@
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.api import success
-from django.db.models.fields import CommaSeparatedIntegerField
 from django.http import request,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
+from django.views import generic
 from django.views.generic.edit import CreateView
-from app_1.forms import AddBlogForm, Registrierungsform, Anmeldeform,KommentarForm,UnterKommentarForm,Post
+from app_1.forms import AddBlogForm, Registrierungsform,KommentarForm,Post, Profile_edit_form, Password_change_form
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
 from app_1.models import NeueBenutzer,Kommentar, Post
 from django.urls import reverse_lazy,reverse
 
+<<<<<<< HEAD
+=======
+
+#beispielfunktion wie daten über ein dictionary zur html kommen
+
+""" def index(request):
+    context={'posts':post}
+    return render(request, 'app_1/index.html', context) """
+>>>>>>> 8271138a7d13db92b77a2cbcf051d3ba28ebe282
 
 class ForumView (ListView):
     model = Post
@@ -19,6 +30,10 @@ class BlogDetailView (DetailView):
     model = Post
     template_name = 'blog-details.html'
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8271138a7d13db92b77a2cbcf051d3ba28ebe282
 def benutzerübergabe (request):
     context = {}
     accounts= NeueBenutzer.objects.all()
@@ -86,6 +101,19 @@ def profile (request):
         return redirect ('authentifizieren')    
     return render(request, 'profile.html')
 
+class profile_edit (generic.UpdateView):
+   form_class= Profile_edit_form
+   template_name = 'profile_edit.html'
+   success_url = reverse_lazy ('profile')
+
+   def get_object (self):
+       return self.request.user
+
+class Passwords_View (PasswordChangeView):
+    form_class = Password_change_form
+    success_url = reverse_lazy ('profile')
+
+
 def add_block_view(request):
     context = {}
     user = request.user
@@ -99,16 +127,18 @@ def add_block_view(request):
         obj.save ()
         form = Post()
         return redirect ('forum')
+        
+    specificPost=get_object_or_404(Post)    
     context ['form'] = form
+    context['total_likes'] = total_likes
 
     return render (request, 'addpost.html', context) 
 
 def get_context_data(self,*args,**kwargs):
     context = super(BlogDetailView,self).get_context_data(**kwargs)
-
-    specificPost=get_object_or_404(Post,id=self.kwargs['pkPost'])
+    specificPost=get_object_or_404(Post,id=self.kwargs['post_id'])
     likes=specificPost.getTotalLikes()
-    context["likes"] =likes 
+    context["likes"] ="2"
     return context
  
 def authentifizieren_view (request):
@@ -116,13 +146,13 @@ def authentifizieren_view (request):
 
 def LikesPostView(request, pk):
     print("wird gecalled")
- 
     print(request.POST.get('id'))
     print(request.POST.get('post_titel'))
     print(request.POST.get('user_id'))
-    
-    #post=get_object_or_404(Post, id=request.POST.get('button_like'))
-    #post.likes.add(request.NeueBenutzer)
+    print(request.POST.get('post_id'))
+    print(Post.objects.get(id=pk))
+    post= Post.objects.get(id=pk)
+    post.likes.add(request.user)
     print("Button wird gedrückt und weitergeleitet")
     return HttpResponseRedirect(reverse('blog-details', args=[str(pk)]))
 
