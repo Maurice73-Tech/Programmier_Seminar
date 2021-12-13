@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.forms.fields import ImageField
 from .models import NeueBenutzer, Post, Kommentar, UnterKommentar
 from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm, UserCreationForm
 from django import forms
 from django.contrib.auth import authenticate
-from django.forms.widgets import NumberInput
+from django.forms.widgets import NumberInput, Widget
 
 class Registrierungsform(UserCreationForm):
     vorname = forms.CharField (label="Vorname")
@@ -60,11 +61,11 @@ class Profile_edit_form(UserChangeForm):
     email = forms.EmailField (widget=forms.EmailInput (attrs={'class':'form-control'}), label="Email")
     abteilung = forms.CharField (widget=forms.TextInput ( attrs={'class':'form-control'}), label="Abteilung")
     geburtsdatum= forms.DateField(widget=forms.NumberInput (attrs={'class':'form-control', 'type':'date'}), label="Geburtsdatum")
-  
+    profile_pic = forms.ImageField
 
     class Meta:
         model= NeueBenutzer
-        fields = ('username','vorname', 'nachname','email','abteilung', 'geburtsdatum')
+        fields = ('username','vorname', 'nachname','email','abteilung', 'geburtsdatum', 'profile_pic')
 
 
 class Password_change_form(PasswordChangeForm):
