@@ -64,8 +64,9 @@ def benutzer_login(request):
         if user:
             
             login (request, user)
-            messages.info(request, ('Sie sind jetzt angemeldet'))
+            
             return redirect('/forum')
+           
             
         else:        
                 
@@ -81,8 +82,9 @@ def benutzer_login(request):
 
 def benutzer_logout(request):
     logout(request)
-    messages.info (request, 'Sie wurden ausgeloggt, bis zum nächsten mal!')
+    messages.info(request, 'Sie wurden ausgeloggt, bis zum nächsten mal!')
     return redirect ('/login')
+    
 
 def profile (request):
     user=request.user
