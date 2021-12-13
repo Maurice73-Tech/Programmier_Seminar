@@ -1,10 +1,12 @@
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.api import success
 from django.http import request,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 from django.views import generic
 from django.views.generic.edit import CreateView
-from app_1.forms import AddBlogForm, Registrierungsform,KommentarForm,Post, Profile_edit_form
+from app_1.forms import AddBlogForm, Registrierungsform,KommentarForm,Post, Profile_edit_form, Password_change_form
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
 from app_1.models import NeueBenutzer,Kommentar, Post
@@ -24,7 +26,6 @@ class ForumView (ListView):
 class BlogDetailView (DetailView):
     model = Post
     template_name = 'blog-details.html'
-
 
 
 def benutzerübergabe (request):
@@ -94,6 +95,11 @@ class profile_edit (generic.UpdateView):
 
    def get_object (self):
        return self.request.user
+
+class Passwords_View (PasswordChangeView):
+    form_class = Password_change_form
+    success_url = reverse_lazy ('profile')
+
 
 def add_block_view(request):
     context = {}
