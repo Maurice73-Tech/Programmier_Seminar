@@ -12,15 +12,6 @@ from django.views.generic import ListView, DetailView
 from app_1.models import NeueBenutzer,Kommentar, Post
 from django.urls import reverse_lazy,reverse
 
-<<<<<<< HEAD
-=======
-
-#beispielfunktion wie daten über ein dictionary zur html kommen
-
-""" def index(request):
-    context={'posts':post}
-    return render(request, 'app_1/index.html', context) """
->>>>>>> 8271138a7d13db92b77a2cbcf051d3ba28ebe282
 
 class ForumView (ListView):
     model = Post
@@ -30,10 +21,6 @@ class BlogDetailView (DetailView):
     model = Post
     template_name = 'blog-details.html'
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8271138a7d13db92b77a2cbcf051d3ba28ebe282
 def benutzerübergabe (request):
     context = {}
     accounts= NeueBenutzer.objects.all()
