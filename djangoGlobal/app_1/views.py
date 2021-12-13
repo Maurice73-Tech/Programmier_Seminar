@@ -90,15 +90,19 @@ def profile (request):
     user=request.user
     if not user.is_authenticated:
         return redirect ('authentifizieren')    
+    
     return render(request, 'profile.html')
+    
 
 class profile_edit (generic.UpdateView):
    form_class= Profile_edit_form
    template_name = 'profile_edit.html'
    success_url = reverse_lazy ('profile')
-
+   
    def get_object (self):
+       
        return self.request.user
+       
 
 class Passwords_View (PasswordChangeView):
     form_class = Password_change_form
