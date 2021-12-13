@@ -13,12 +13,6 @@ from app_1.models import NeueBenutzer,Kommentar, Post
 from django.urls import reverse_lazy,reverse
 
 
-#beispielfunktion wie daten über ein dictionary zur html kommen
-
-""" def index(request):
-    context={'posts':post}
-    return render(request, 'app_1/index.html', context) """
-
 class ForumView (ListView):
     model = Post
     template_name = 'forum.html'
@@ -26,7 +20,6 @@ class ForumView (ListView):
 class BlogDetailView (DetailView):
     model = Post
     template_name = 'blog-details.html'
-
 
 def benutzerübergabe (request):
     context = {}
@@ -37,7 +30,6 @@ def benutzerübergabe (request):
 
 def impressum(request):
     return render(request,'impressum.html')
-
 
 def registrieren(request):
     context = {}
@@ -52,8 +44,10 @@ def registrieren(request):
             account = authenticate (username=username, password=raw_password)
             login (request, account)
             return redirect ('forum')
+       
         else:
             context ['registrierungs_form']=form
+            messages.error(request,'Passwort oder Username ist falsch!')
     else:
         form = Registrierungsform ()
         context ['registrierungs_form'] = form
@@ -68,33 +62,47 @@ def benutzer_login(request):
         user = authenticate(username= username, password= password)
     
         if user:
+            
             login (request, user)
-            messages.info(request, ('Sie sind jetzt angemeldet'))
+            
             return redirect('/forum')
-        else:
-            messages.info (request,'Username oder Passwort ist nicht korrekt!')
+           
+            
+        else:        
+                
+                messages.error(request,'Passwort oder Username ist falsch!')
+
+            
+
+
+
 
     context= {}
     return render (request, 'login.html', context)
 
 def benutzer_logout(request):
     logout(request)
+    messages.info(request, 'Sie wurden ausgeloggt, bis zum nächsten mal!')
     return redirect ('/login')
-
+    
 
 def profile (request):
     user=request.user
     if not user.is_authenticated:
         return redirect ('authentifizieren')    
+    
     return render(request, 'profile.html')
+    
 
 class profile_edit (generic.UpdateView):
    form_class= Profile_edit_form
    template_name = 'profile_edit.html'
    success_url = reverse_lazy ('profile')
-
+   
    def get_object (self):
+       
        return self.request.user
+       
 
 class Passwords_View (PasswordChangeView):
     form_class = Password_change_form
@@ -128,7 +136,6 @@ def get_context_data(self,*args,**kwargs):
     context["likes"] ="2"
     return context
  
-
 def authentifizieren_view (request):
     return render (request, 'authentifizieren.html', {})
 
