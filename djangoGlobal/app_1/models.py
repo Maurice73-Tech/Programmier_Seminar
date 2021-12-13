@@ -39,7 +39,7 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     email =models.EmailField(max_length=30, blank=True)
     geburtsdatum = models.DateField(default=datetime.now)
     abteilung = models.CharField(max_length=30, blank=True)
-    profile_pic = models.ImageField (null=True, blank = True, upload_to = 'profilbilder', default='/profilbilder/default.jpg')
+    profile_pic = models.ImageField (null=True, blank = True, upload_to = 'profilbilder/', default='default.jpg')
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_admin = models.BooleanField(default=False)

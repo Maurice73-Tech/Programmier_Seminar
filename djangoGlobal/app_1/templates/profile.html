@@ -18,6 +18,7 @@
 </div>
 <form method="POST" enctype="multipart/form-data" >
     {%csrf_token%}
+    <img src="{{user.profile_pic.url}}" width="240">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-lg-offset-0">
@@ -47,11 +48,8 @@
                                 </li>
                                 <li class="list-group-item">
                                     <b>Profilbild:</b>  
-                                    {% if user.profile_pic %}
-                                    <img src="{{user.profile_pic.url}}">
-                                    {% endif %}
-                                     <strong class="float-right"></strong>  
-                                                             
+                                   
+                                     <strong class="float-right"></strong>                     
                                 </li>
                                 <li class="list-group-item">
                                     <b>Mitarbeiter:</b> {{user.is_staff}}<strong class="float-right"></strong>                           

@@ -95,12 +95,11 @@ def profile (request):
     
 
 class profile_edit (generic.UpdateView):
-   form_class= Profile_edit_form
+   form_class= Profile_edit_form 
    template_name = 'profile_edit.html'
    success_url = reverse_lazy ('profile')
    
    def get_object (self):
-       
        return self.request.user
        
 
