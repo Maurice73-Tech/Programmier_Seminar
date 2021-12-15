@@ -1,9 +1,10 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from app_1.views import benutzer_login, impressum, registrieren, benutzer_logout, profile, add_block_view, authentifizieren_view, ForumView
+from app_1.models import NeueBenutzer
 
 class TestUrls(SimpleTestCase):
-
+ 
 #login  
     def test_benutzer_login_url_resolves(self):
         url = reverse('login')
@@ -82,22 +83,23 @@ class TestUrls(SimpleTestCase):
         self.assertTemplateUsed(response, 'login.html')
 
 #profile (nicht angemeldet --> muss noch mit anmeldung durchgeführt werden)
+    
     def test_profile_url_resolves(self):
         url = reverse('profile')
         self.assertEquals(resolve(url).func, profile)
 
     def test_profile_status_code(self):
-        response = self.client.get('/registrieren/')
+        response = self.client.get('/profile/')
         self.assertEquals(response.status_code, 200)
 
     def test_profile_url_name(self):  
-        response = self.client.get(reverse('registrieren'))
+        response = self.client.get(reverse('profile'))
         self.assertEquals(response.status_code, 200)
 
     def test_profile_template(self):
-        response = self.client.get(reverse('registrieren'))
+        response = self.client.get(reverse('profile'))
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'registrieren.html')
+        self.assertTemplateUsed(response, 'profile.html')
 
 #addpost (nicht angemeldet --> muss noch mit anmeldung durchgeführt werden)
     def test_addpost_url_resolves(self):
