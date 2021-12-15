@@ -36,6 +36,4 @@ urlpatterns = [
     path('password/',Passwords_View.as_view(template_name='password_edit.html')),
     path('likes/<int:pk>',LikesPostView, name='like_post'),
     path('blog-details/<int:pk> /kommentieren',AddKommentarView.as_view(),name='addcomment'),    
-]
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

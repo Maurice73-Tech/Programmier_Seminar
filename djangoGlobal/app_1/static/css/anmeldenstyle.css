@@ -96,6 +96,13 @@
     #instructions{
         color: white;
     }
+
+    #profilbild-id{
+        width: 240px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 @media (prefers-color-scheme: light) {
@@ -165,4 +172,11 @@ a:not([href]):not([tabindex]):hover{
     height: 30px;
     width: 30px;
   }
+
+#profilbild-id{
+    width: 240px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 }

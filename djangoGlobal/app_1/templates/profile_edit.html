@@ -17,8 +17,9 @@
 <h1><i class="far fa-user"></i> Profil Update:</h1>
 </div>
 <div class="form-group">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data"> 
         {% csrf_token %}
+        {{ form.media }}
         {{ form.as_p }}
         <button class ='btn btn-secondary' >Profil updaten</button>
     </form>

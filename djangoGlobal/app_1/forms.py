@@ -61,7 +61,7 @@ class Profile_edit_form(UserChangeForm):
     email = forms.EmailField (widget=forms.EmailInput (attrs={'class':'form-control'}), label="Email")
     abteilung = forms.CharField (widget=forms.TextInput ( attrs={'class':'form-control'}), label="Abteilung")
     geburtsdatum= forms.DateField(widget=forms.NumberInput (attrs={'class':'form-control', 'type':'date'}), label="Geburtsdatum")
-    profile_pic = forms.ImageField
+    profile_pic = forms.ImageField(widget=forms.FileInput ( attrs={'class':'form-control'}),required=False)
 
     class Meta:
         model= NeueBenutzer
