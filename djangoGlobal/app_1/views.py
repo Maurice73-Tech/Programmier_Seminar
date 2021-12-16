@@ -122,9 +122,9 @@ def add_block_view(request):
         form = Post()
         return redirect ('forum')
         
-    specificPost=get_object_or_404(Post)    
+     
     context ['form'] = form
-    context['total_likes'] = total_likes
+    
 
     return render (request, 'addpost.html', context) 
 
