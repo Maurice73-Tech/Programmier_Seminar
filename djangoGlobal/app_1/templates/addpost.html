@@ -13,11 +13,8 @@
 {% block content %}
 
 <div id="submissionsField">
-<div class="container" style="text-align: center;">
-	<div class="row">
-		<div class="col-lg-7 offset-lg-1">
-			<form class="create-form" method="post" >{% csrf_token %}
-
+	<div class="container" style="text-align: center;">
+		<form class="create-form" method="post" >{% csrf_token %}
 				<div class="form-group">
 					<label for="id_title" id="titleID">Titel</label>
 					<input class="form-control" type="text" name="Titel" id="id_title" placeholder="Titel der Frage" required autofocus>
@@ -27,12 +24,9 @@
 					<label for="id_body" id="bodyID">Inhalt</label>
 					<textarea class="form-control" rows="10" type="text" name="Inhalt" id="id_body" placeholder="Stellen Sie hier ihre Frage..." required></textarea>
 				</div>
-
-				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">Frage stellen</button>
-			</form>	
-		</div>
+			<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">Frage stellen</button>
+		</form>	
 	</div>
-</div>
 </div>
 
 {% endblock content %}
