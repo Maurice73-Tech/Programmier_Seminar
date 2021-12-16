@@ -37,15 +37,13 @@ class AddBlogForm (forms.ModelForm):
         fields = ['Titel', 'Inhalt']
 
 class KommentarForm(forms.ModelForm):
+    name=forms.CharField (widget=forms.TextInput(attrs={'class':'form-control'}), label="Name")
+    content=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Kommentar")
+
     class Meta:
         model=Kommentar
         fields = ('name','content')
         
-
-    widgets={
-        'name':forms.TextInput(attrs={'class':'form-control'}),
-        'content': forms.Textarea(attrs={'class':'form-control'}),
-    }
 class UnterKommentarForm(KommentarForm) :
     model=UnterKommentar
     fields=('content')

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app_1.views import (registrieren, benutzer_logout, benutzer_login, profile, impressum,authentifizieren_view,add_block_view,LikesPostView,ForumView, BlogDetailView,AddKommentarView,profile_edit, Passwords_View)
+from app_1.views import (registrieren, benutzer_logout, benutzer_login, profile, impressum,authentifizieren_view,add_block_view,LikesPostView,DislikePostView,ForumView, BlogDetailView,AddKommentarView,profile_edit, Passwords_View)
 from app_1.models import Post
 from django.conf import settings
 from django.conf.urls.static import static
@@ -35,5 +35,6 @@ urlpatterns = [
     path('profile_edit/',profile_edit.as_view() ,name='profile_edit'),
     path('password/',Passwords_View.as_view(template_name='password_edit.html')),
     path('likes/<int:pk>',LikesPostView, name='like_post'),
-    path('blog-details/<int:pk> /kommentieren',AddKommentarView.as_view(),name='addcomment'),    
+    path('blog-details/<int:pk>/kommentieren',AddKommentarView.as_view(model=Post), name='addcomment'),
+    path('dislike/<int:pk>',DislikePostView, name='dislike_post')   
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

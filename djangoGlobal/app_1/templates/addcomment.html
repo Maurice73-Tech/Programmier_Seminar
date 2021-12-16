@@ -15,19 +15,19 @@ Kommentar erstellen
 {% block content %}
 <div id="submissionsField">
   <h1>Kommentar hinzufügen </h1>
-  <small>Autor: {{post.Autor.username}}
+  <small>Autor: {{user.username}}
   </small>
   <hr>
   <br/>
   {{post.Inhalt}}
   <br/>
 
-  <h2>Kommentare...</h2>
+  <h2>Kommentar hier hinzufügen</h2>
   <br/> <br/>
     <div class="comment-group">
       <form method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <button class="btn btn-secondary">
           Kommentar hinzufügen
         </button>

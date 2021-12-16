@@ -149,6 +149,12 @@ def LikesPostView(request, pk):
     post.likes.add(request.user)
     print("Button wird gedrückt und weitergeleitet")
     return HttpResponseRedirect(reverse('blog-details', args=[str(pk)]))
+    
+def DislikePostView(request, pk):
+    post=Post.objects.get(id=pk)
+    post.dislikes.add(request.user)
+    print("post ist gedisliked")
+    return HttpResponseRedirect(reverse('blog-details', args=[str(pk)]))
 
 class AddKommentarView(CreateView):
     model=Kommentar  
