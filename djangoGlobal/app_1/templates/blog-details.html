@@ -22,20 +22,19 @@
 </small>
 
 <div>
-<form action ="{%url 'dislike_post' post.pk%}"
+  <form action ="{%url 'dislike_post' post.pk%}"
       method="POST">
         {%csrf_token%}
-        <button style="margine-left: 5px;" value={{post.id}} class="btn btn-danger btn-sm float-right" type="submit" name="dislike_id" href="{%url 'addcomment' post.pk%}">Dislike Post</button>
-    </form>
-  </div>
+        <button style="margin-left: 5px;" value={{post.id}} class="btn btn-danger btn-sm float-right" type="submit" name="dislike_id" href="{%url 'addcomment' post.pk%}">Dislike Post</button>
+  </form>
+</div>
 <div>
-<form action ="{% url 'like_post' post.pk %}"
+    <form action ="{% url 'like_post' post.pk %}"
        method="POST">
           {% csrf_token %}
           <button style="margin-left: 5px;" class="btn btn-info btn-sm float-right" value={{post.id}} type="submit"  name="post_id" href="{% url 'addcomment' post.pk%}">Like Post <span class ="badge badge-light">{{post.getTotalLikes}}</span></button>
       </form>
-
-    </div>
+</div>
 <br/>
 <hr>
 <br/>
