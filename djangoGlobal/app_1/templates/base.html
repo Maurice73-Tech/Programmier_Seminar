@@ -44,11 +44,13 @@
             <a class="nav-item nav-link" id="loggedinpage-id" href="/profile">Profil</a>
           </div>
           <span class="navbar-nav ml-auto">
-            {% if request.user.is_authenticated %}
+        
              <a class="navbar-brand" href="/profile" style="margin-right: 5px;">
+              {% if request.user.is_authenticated %}
                <img id="loggedinpage-id" src="{{user.profile_pic.url}}" alt="Profilbild" style="height: 33px; border-radius: 20px;">
+               {% endif %}
              </a>
-           {% endif %}
+         
               
             <li class="nav-item dropdown" id="loggedinpage-id">
               {% if request.user.is_authenticated %}

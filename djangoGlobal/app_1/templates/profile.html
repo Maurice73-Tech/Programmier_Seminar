@@ -14,7 +14,7 @@
 
 <div id="submissionsField" >
 <div id="ueberschrift" style="text-align: center;" >
-<h1><i class="far fa-user"></i> Profil:</h1>
+<h1><i class="far fa-user"></i> Profilseite von {{user.username}}</h1>
 </div>
 <form method="POST" enctype="multipart/form-data" >
     {%csrf_token%}
@@ -45,11 +45,6 @@
                                 </li>
                                 <li class="list-group-item">
                                     <b>Aktiv:</b> {{user.is_active}}<strong class="float-right"></strong>                           
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Profilbild:</b>  
-                                   
-                                     <strong class="float-right"></strong>                     
                                 </li>
                                 <li class="list-group-item">
                                     <b>Mitarbeiter:</b> {{user.is_staff}}<strong class="float-right"></strong>                           
