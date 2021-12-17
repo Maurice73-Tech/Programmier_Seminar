@@ -6,6 +6,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
+from ckeditor.fields import RichTextField
 
 from djangoGlobal.settings import AUTH_USER_MODEL
 
