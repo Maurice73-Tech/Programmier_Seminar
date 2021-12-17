@@ -132,6 +132,7 @@ def get_context_data(self,*args,**kwargs):
     context = super(BlogDetailView,self).get_context_data(**kwargs)
     specificPost=get_object_or_404(Post,id=self.kwargs['post_id'])
     likes=specificPost.getTotalLikes()
+    dislikes=specificPost.get
     context["likes"] ="2"
     return context
  
