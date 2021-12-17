@@ -25,9 +25,14 @@ Kommentar erstellen
   <h2>Kommentar hier hinzufügen</h2>
   <br/> <br/>
     <div class="comment-group">
-      <form method="post">
+      <form method="POST">
         {% csrf_token %}
+<<<<<<< HEAD
         {{ form.as_p }}
+=======
+        {{ form.as_p}}
+        <br>
+>>>>>>> db13fd5b9fbd55904bcfadf81459df16d93e6fda
         <button class="btn btn-secondary">
           Kommentar hinzufügen
         </button>
