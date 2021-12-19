@@ -6,7 +6,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
-from ckeditor.fields import RichTextField
+#from ckeditor.fields import *
 
 from djangoGlobal.settings import AUTH_USER_MODEL
 
@@ -67,8 +67,8 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
 
 class Post(models.Model):
     title = models.CharField(max_length=100, name='Titel')
-    #content = models.TextField(name='Inhalt')
-    content = RichTextField(name='Inhalt', null=True, blank=True)
+    content = models.TextField(name='Inhalt')
+    #content = RichTextField(name='Inhalt', null=True, blank=True)
     date_posted = models.DateTimeField(default=timezone.now, name='Postdatum')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, name= 'Autor')
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_posts')
@@ -81,15 +81,17 @@ class Post(models.Model):
         likecounter=self.likes.count()-self.dislikes.count()
         return likecounter
 
-class Kommentar (models.Model):
+class Kommentar(models.Model):
     post= models.ForeignKey(Post, related_name="kommentare",on_delete=models.CASCADE)
     name= models.CharField(max_length=250)
     content = models.CharField(max_length=250)
     date_added = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_likes')
+
+    def getKommentarLikes(self):
+        return self.likes.count()
     
 
-def addComment():
-    pass
 
 class UnterKommentar(models.Model):
     post=models.ForeignKey(Post,related_name="unterkommentar", on_delete= models.CASCADE)
