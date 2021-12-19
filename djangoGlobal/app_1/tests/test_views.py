@@ -15,6 +15,15 @@ class TestViews(TestCase):
         self.profile_url = reverse('profile')
         self.add_block_view_url = reverse('addpost')
         self.authentifizieren_view_url = reverse('authentifizieren')
+    
+        self.credentials = {
+            'username': 'test',
+            'password': 'testtest123'}
+        NeueBenutzer.objects.create_user('test','testtest', 'tester',  '2020-01-01','IT', 'test@test.de','testtest123')
+    def test_login(self):
+        response = self.client.post('/login/', self.credentials, follow=True)
+        self.assertTrue(response.context['user'].is_authenticated)
+        
         
 
     def test_benutzerübergabe_GET(self):
@@ -54,13 +63,15 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'login.html')
 
     def test_profile_GET(self):
-#Hier wird ein User benötigt
+        response = self.client.post('/login/', self.credentials, follow=True)
+        self.assertTrue(response.context['user'].is_authenticated)
         response = self.client.get(self.profile_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'profile.html')
 
     def test_add_block_view_GET(self):
-#Hier wird ein User benötigt
+        response = self.client.post('/login/', self.credentials, follow=True)
+        self.assertTrue(response.context['user'].is_authenticated)
         response = self.client.get(self.add_block_view_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'addpost.html')
@@ -70,6 +81,11 @@ class TestViews(TestCase):
         response = self.client.get(self.authentifizieren_view_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'authentifizieren.html')
+
+#get context data
+#likes post view
+#dislike post view
+
 
 #POST Funktionen fehlen noch 
 

@@ -1,18 +1,18 @@
-from django.test import SimpleTestCase
+from django.contrib.auth.forms import UsernameField
+from django.test import TestCase
 from app_1.forms import Registrierungsform 
 
 
-class TestForms(SimpleTestCase):
+class TestForms(TestCase):
     
     def test_Registrierungsform(self):
         form = Registrierungsform(data={
-            'vorname':'Testuser',
-            'nachname':'Testnachname',
-            'abteilung':'IT',
-            'geburtsdatum':'01.01.2001',
-            'email':'Test@test.com'
+            "vorname":"Testuser",
+            "nachname":"Testnachname",
+            "abteilung":"IT",
+            "geburtsdatum": "2020-01-01",
+            "email":"Testtest@test.com"    
         })
-
         self.assertTrue(form.is_valid())
         
 
