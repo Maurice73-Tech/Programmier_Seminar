@@ -45,7 +45,7 @@
           </div>
           <span class="navbar-nav ml-auto">
         
-             <a class="navbar-brand" href="/profile" style="margin-right: 5px;">
+            <a class="navbar-brand" href="/profile" style="margin-right: 5px;"> 
               {% if request.user.is_authenticated %}
                <img id="loggedinpage-id" src="{{user.profile_pic.url}}" alt="Profilbild" style="height: 33px; border-radius: 20px;">
                {% endif %}

@@ -140,12 +140,6 @@ def authentifizieren_view (request):
     return render (request, 'authentifizieren.html', {})
 
 def LikesPostView(request, pk):
-    print("wird gecalled")
-    print(request.POST.get('id'))
-    print(request.POST.get('post_titel'))
-    print(request.POST.get('user_id'))
-    print(request.POST.get('post_id'))
-    print(Post.objects.get(id=pk))
     post= Post.objects.get(id=pk)
     post.likes.add(request.user)
     print("Button wird gedrückt und weitergeleitet")
@@ -156,6 +150,12 @@ def DislikePostView(request, pk):
     post.dislikes.add(request.user)
     print("post ist gedisliked")
     return HttpResponseRedirect(reverse('blog-details', args=[str(pk)]))
+
+def LikeKommentar(request, pkPost, pkKommentar):
+    kommentar=Kommentar.objects.get(id=pkKommentar)
+    print("like Kommentar wird aufgerufen")
+    kommentar.likes.add(request.user)
+    return HttpResponseRedirect(reverse('blog-details', args=[str(pkPost)]))
 
 class AddKommentarView(CreateView):
     model=Kommentar  

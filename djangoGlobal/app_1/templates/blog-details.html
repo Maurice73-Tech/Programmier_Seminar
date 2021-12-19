@@ -51,7 +51,7 @@
 <div class="input-group mb-3">
   <a class="btn btn-success" type="button" id="button-addon2" href="{% url 'addcomment' post.pk %}" >Antworten</a>
 </div>
-<h2>Kommentare...</h2>
+<h2>Kommentare</h2>
 {% if post.kommentare.all%}
 
 
@@ -74,11 +74,11 @@
     <div>
       <button style="margin-left: 5px;" class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addcomment' post.pk%}">
         Kommentieren
-      </button>
-      <form action ="{% url 'like_post' post.pk %}"
+</button>
+      <form action ="{% url 'kommentar_likes' post.pk 3 %}"
        method="POST">
           {% csrf_token %}
-          <button type="submit",name="post_id", value="{{post.id}}", class="btn btn-info btn-sm float-right">Like <i class="far fa-thumbs-up"></i></button> - {{post.getTotalLikes}} Likes
+          <button type="submit",name="kommentar_id", value="{{kommentar.id}}", class="btn btn-info btn-sm float-right">Like <i class="far fa-thumbs-up"></i></button><h6>{{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i></h6>
       </form>
     </div>
   <br>
