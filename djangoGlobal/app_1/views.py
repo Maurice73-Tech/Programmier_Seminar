@@ -99,8 +99,11 @@ class profile_edit (generic.UpdateView):
    template_name = 'profile_edit.html'
    success_url = reverse_lazy ('profile')
    
+
    def get_object (self):
        return self.request.user
+
+
        
 
 class Passwords_View (PasswordChangeView):
@@ -120,6 +123,7 @@ def add_block_view(request):
         obj.Autor = Autor
         obj.save ()
         form = Post()
+        messages.info(request, "Ihre Frage wurde erstellt!")
         return redirect ('forum')
         
      
