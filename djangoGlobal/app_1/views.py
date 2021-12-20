@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
 from app_1.models import NeueBenutzer,Kommentar, Post
 from django.urls import reverse_lazy,reverse
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class ForumView (ListView):
@@ -94,16 +95,17 @@ def profile (request):
     return render(request, 'profile.html')
     
 
-class profile_edit (generic.UpdateView):
+class profile_edit (SuccessMessageMixin ,generic.UpdateView):
    form_class= Profile_edit_form 
    template_name = 'profile_edit.html'
    success_url = reverse_lazy ('profile')
+   success_message = "Ihr Profil wurde geupdated!"
    
 
    def get_object (self):
        return self.request.user
 
-
+    
        
 
 class Passwords_View (PasswordChangeView):
