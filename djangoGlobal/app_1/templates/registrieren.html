@@ -20,13 +20,13 @@ Registrieren
     <div class="row">
       <div class="col">
         
-        <input type="text" name="vorname" class="form-control" placeholder="Vorname" aria-label="First name">
+        <input type="text"  name="vorname" class="form-control" placeholder="Vorname" aria-label="First name">
      
       </div>
       
       <div class="col">
         
-        <input type="text" name="nachname" class="form-control" placeholder="Nachname" aria-label="Last name">
+        <input type="text"  name="nachname" class="form-control" placeholder="Nachname" aria-label="Last name">
       
       </div>
     </div>
@@ -50,7 +50,8 @@ Registrieren
       Ihr Passwort muss 8-20 Zeichen lang sein, Buchstaben und Zahlen enthalten und darf keine Leerzeichen,
       Sonderzeichen oder Emojis enthalten.
     </small>
-    <input type="password" name="password1" class="form-control" id="floatingInput6" placeholder="Passwort eingeben">
+    <input type="password" name="password1" class="form-control" id="floatingInput6" placeholder="Passwort eingeben" onkeyup="isGood(this.value)" >
+    <small class="help-block" id="password-text"></small>
 
     <br>
 
@@ -77,35 +78,13 @@ Registrieren
       </select>
     </div>
 
-
-
-
-    <!--   
-    
-    {% for field in registrierungs_form %}
-        <p>
-            
-           
-            {% if field.help_text %}
-                <small style="color: grey;">{{field.help_text}}</small>
-            {% endif %}
-
-            {% for error in field.errors %}
-                <p style="color: red;">{{field.help_text}}</p>
-            {% endfor %}
-
-        </p>
-    {% endfor %}-->
-    <!--
-    <button type= "submit">Registrieren</button> 
-    -->
     <br>
 
     {% if messages %}
     {% for message in messages %}
     
     <div class="alert alert-danger" role="alert"> {{ message }}</div>
-    <div class="alert alert-danger" role="alert"> {{ message.info }}</div>
+    
     
     {% endfor %}
     {% endif %}
@@ -120,4 +99,53 @@ Registrieren
 
   </form>
 </div>
+
+
+
+<script>
+  function isGood(password) {
+      var password_strength = document.getElementById("password-text");
+
+      //TextBox left blank.
+      if (password.length == 0) {
+        password_strength.innerHTML = "";
+        return;
+      }
+
+      //Regular Expressions.
+      var regex = new Array();
+      regex.push("[A-Z]"); //Uppercase Alphabet.
+      regex.push("[a-z]"); //Lowercase Alphabet.
+      regex.push("[0-9]"); //Digit.
+      regex.push("[$@$!%*#?&]"); //Special Character.
+
+      var passed = 0;
+
+      //Validate for each Regular Expression.
+      for (var i = 0; i < regex.length; i++) {
+        if (new RegExp(regex[i]).test(password)) {
+          passed++;
+        }
+      }
+
+      //Display status.
+      var strength = "";
+      switch (passed) {
+        case 0:
+        case 1:
+        case 2:
+          strength = "<small class='progress-bar bg-danger' style='width: 15%'>Schwach</small>";
+          break;
+        case 3:
+          strength = "<small class='progress-bar bg-warning' style='width: 25%'>Medium</small>";
+          break;
+        case 4:
+          strength = "<small class='progress-bar bg-success' style='width: 35%'>Stark</small>";
+          break;
+
+      }
+      password_strength.innerHTML = strength;
+
+    }
+</script>
 {% endblock %}
