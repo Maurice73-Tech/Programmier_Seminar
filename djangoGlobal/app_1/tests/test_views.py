@@ -1,6 +1,8 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from app_1.models import Benutzermanager, NeueBenutzer, Post, Kommentar
+from app_1.forms import Registrierungsform
+from app_1.views import registrieren
 
 class TestViews(TestCase):
 
@@ -16,10 +18,12 @@ class TestViews(TestCase):
         self.add_block_view_url = reverse('addpost')
         self.authentifizieren_view_url = reverse('authentifizieren')
     
+    
         self.credentials = {
             'username': 'test',
             'password': 'testtest123'}
         NeueBenutzer.objects.create_user('test','testtest', 'tester',  '2020-01-01','IT', 'test@test.de','testtest123')
+
     def test_login(self):
         response = self.client.post('/login/', self.credentials, follow=True)
         self.assertTrue(response.context['user'].is_authenticated)
@@ -82,9 +86,13 @@ class TestViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'authentifizieren.html')
 
+  
+
 #get context data
 #likes post view
 #dislike post view
+#profile edit
+#like Kommentar
 
 
 #POST Funktionen fehlen noch 
