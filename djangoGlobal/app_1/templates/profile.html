@@ -16,6 +16,11 @@
 <div id="ueberschrift" style="text-align: center;" >
 <h1><i class="far fa-user"></i> Profilseite von {{user.username}}</h1>
 </div>
+{% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-info mx-auto" style="width: 224px; text-align: center; margin-top: 10px; margin-bottom: 10px;"> {{ message | safe}}</div>
+      {% endfor %}
+     {% endif %}
 <form method="POST" enctype="multipart/form-data" >
     {%csrf_token%}
     <img src="{{user.profile_pic.url}}" id="profilbild-id">
