@@ -42,6 +42,12 @@
       <br/><br/>
     </div>
 
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-info mx-auto" role="alert" style="width: 224px; text-align: center; margin-top: 10px; margin-bottom: 10px;"> {{ message }}</div>
+      {% endfor %}
+     {% endif %}
+
     <ul id="myList">
     {% for post in object_list %}
       <li>
