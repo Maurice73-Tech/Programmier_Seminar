@@ -36,7 +36,17 @@ class TestModels(TestCase):
         data = {"username":"IchBinEinTestuser1","password":"testtest1234"}
         response = self.client.post(login_url, data, follow=True)
         self.assertEqual(response.status_code, 200)
-        
+
+    #post ohne angemeldeten User
+    def test_invalid_request(self):
+        response = self.client.post("/addpost/", {"title":"Testtitel"})
+        self.assertNotEqual(response.status_code, 200)
+
+    #post mit angemeldeten User
+    def test_valid_request(self):
+        self.client.login(username="IchBinEinTestuser1", password="testtest1234")
+        response = self.client.post("/addpost/", {"title":"Testtitel1"})
+        self.assertEqual(response.status_code, 200)
         
     #Post
     def test_post(self):
