@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_1',
     'ckeditor',
-    'channels',
 ]
 
 MIDDLEWARE = [
@@ -76,16 +75,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'djangoGlobal.wsgi.application'
-ASGI_APPLICATION = 'djangoGlobal.asgi.application'
-
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG':{
-            'hosts': [('127.0.0.1', 6379)],
-        }
-    }
-}
 
 
 # Database

@@ -28,8 +28,11 @@
     <div class="container" style="text-align: center;">
       <h1 id="userpost">User Posts:</h1>
       <br/>
+
       <div>
-        <input type="text" id="searchInput" placeholder="&#x1F50D; Nach Titel suchen..." style="font-family: Arial, 'Font Awesome 5 Free'; color:blue;" onkeyup="searchFunction()"/>
+        <div class="form-outline">
+          <input type="text" id="searchInput" class="form-control" placeholder="Nach Titel suchen..." aria-label="search" onkeyup="searchFunction()" style="margin-bottom: 10px;"/>
+        </div>
         <button id="start-btn" class=".btn btn-success">
           <span><i class="fas fa-microphone"></i></span>
         </button>
@@ -52,7 +55,7 @@
     {% for post in object_list %}
       <li>
       <div class="card mx-auto mt-3"> 
-        <div class="card-body">
+        <div class="card-body" id="post-card">
           <h5 class="card-title"><a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a></h5>
           <h6 class="card-subtitle mb-2 text-muted">Erstellt von {{post.Autor.username}}</h6>
           <h6>{{post.getTotalLikes}} <i class="far fa-thumbs-up"></i></h6>
