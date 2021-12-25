@@ -115,6 +115,11 @@
     small{
         color: white;
     }
+
+    .input-group-text{
+        background-color: #121212;
+        border: none;
+    }
 }
 
 @media (prefers-color-scheme: light) {
@@ -190,5 +195,10 @@ a:not([href]):not([tabindex]):hover{
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.input-group-text{
+    background-color: white;
+    border: none;
 }
 }

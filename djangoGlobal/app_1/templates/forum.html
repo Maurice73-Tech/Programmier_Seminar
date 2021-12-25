@@ -28,10 +28,12 @@
     <div class="container" style="text-align: center;">
       <h1 id="userpost">User Posts:</h1>
       <br/>
-
       <div>
-        <div class="form-outline">
-          <input type="text" id="searchInput" class="form-control" placeholder="Nach Titel suchen..." aria-label="search" onkeyup="searchFunction()" style="margin-bottom: 10px;"/>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1" style="background-color:none;"><i class="fas fa-search"></i></span>
+          </div>
+          <input type="text" id="searchInput" class="form-control" placeholder="Nach Titel suchen..." aria-label="Username" aria-describedby="basic-addon1" onkeyup="searchFunction()" style="margin-top: 0px; margin-bottom: 0px;"/>
         </div>
         <button id="start-btn" class=".btn btn-success">
           <span><i class="fas fa-microphone"></i></span>
