@@ -1,16 +1,16 @@
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.api import success
-from django.http import request,HttpResponseRedirect
-from django.shortcuts import render,redirect,get_object_or_404
+from django.http import request, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views import generic
 from django.views.generic.edit import CreateView
-from app_1.forms import AddBlogForm, Registrierungsform,KommentarForm,Post, Profile_edit_form, Password_change_form
+from app_1.forms import AddBlogForm, Registrierungsform, KommentarForm, Post, Profile_edit_form, Password_change_form
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
-from app_1.models import NeueBenutzer,Kommentar, Post
-from django.urls import reverse_lazy,reverse
+from app_1.models import NeueBenutzer, Kommentar, Post
+from django.urls import reverse_lazy, reverse
 from django.contrib.messages.views import SuccessMessageMixin
 
 
@@ -22,7 +22,7 @@ class BlogDetailView (DetailView):
     model = Post
     template_name = 'blog-details.html'
 
-def benutzerübergabe (request):
+def benutzeruebergabe (request):
     context = {}
     accounts= NeueBenutzer.objects.all()
     context ['accounts'] = accounts

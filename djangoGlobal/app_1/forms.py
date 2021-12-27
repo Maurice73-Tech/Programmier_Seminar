@@ -31,6 +31,7 @@ class Anmeldeform (forms.ModelForm):
         password = self.cleaned_data ('password')
         if not authenticate (username=username, password= password):
             raise forms.ValidationError ('Keine Anmeldung möglich!')
+            
 class AddBlogForm (forms.ModelForm):
     class Meta:
         model= Post

@@ -30,7 +30,7 @@ class TestViews(TestCase):
         
         
 
-    def test_benutzerübergabe_GET(self):
+    def test_benutzeruebergabe_GET(self):
         
         response = self.client.get(self.forum_url)
         self.assertEquals(response.status_code, 200)
