@@ -64,7 +64,7 @@ Forum-Details
   {% for Kommentar in post.kommentare.all %}
   <div>
     <h6>
-      Kommentar von {{user.vorname}} {{user.nachname}}
+      Kommentar von {{Autor.username}}
       {{Kommentar.name}} am
       {{Kommentar.date_added}}
     </h6>
