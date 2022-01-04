@@ -86,7 +86,18 @@ class Kommentar(models.Model):
     name= models.CharField(max_length=250)
     content = models.CharField(max_length=250)
     date_added = models.DateTimeField(auto_now_add=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='+')
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_likes')
+
+    @property
+    def children (self):
+        return Kommentar.objects.filter(parent=self).order_by('-created_on').all()
+
+    @property
+    def is_parent (self):
+        if self.parent is None:
+            return True
+        return False
 
     def getKommentarLikes(self):
         return self.likes.count()
