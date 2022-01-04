@@ -1,8 +1,6 @@
 
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {%load static%}
-
 {%block link%}
 <link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
 <link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
@@ -54,21 +52,6 @@
   <a class="btn btn-success" type="button" id="button-addon2" href="{% url 'addcomment' post.pk %}" >Antworten</a>
 </div>
 <h2>Kommentare</h2>
-
-<div>
-  <button><i class="far fa-comment-dots"></i></button>  
-</div>
-<div>
-  <div>
-    <form method="POST">
-      {% csrf_token %}
-      {{form | crispy}}
-      <div class="d-grid gap-2">
-        <button class="btn btn-success mt-3">Submit!</button>
-      </div>
-    </form>
-  </div>
-</div>
 
 {% if post.kommentare.all%}
 
