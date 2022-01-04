@@ -64,8 +64,9 @@
   {% for Kommentar in post.kommentare.all %}
   <div>
     <h6>
-      {{Kommentar}} - 
+      {{Kommentar.name}} - 
       {{Kommentar.date_added}}
+      Das ist die Kommentar id:{{Kommentar.id}}
     </h6>
     <br>
     <h6>
@@ -77,7 +78,7 @@
 </button>
 <!--Es muss auf spezifischen kommentar zugrgriffen werden können(sozusagen kommentar.id)+ Kommentarfunktion für spezifischen Kommentar muss gebaut werden, am besten in der Seite und nicht über seperates Form-->
 <!---->
-      <form action ="{% url 'kommentar_likes' post.pk 3 %}"
+      <form action ="{% url 'kommentar_likes' post.pk Kommentar.id  %}"
        method="POST">
           {% csrf_token %}
           <button type="submit",name="kommentar_id", value="{{kommentar.id}}", class="btn btn-info btn-sm float-right">Like <i class="far fa-thumbs-up"></i></button><h6>{{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i></h6>
