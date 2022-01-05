@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UsernameField
 from django.test import TestCase
-from app_1.forms import Registrierungsform, Anmeldeform, AddBlogForm, KommentarForm, UnterKommentarForm, Profile_edit_form, Password_change_form
+from app_1.forms import Registrierungsform, Anmeldeform, AddBlogForm, KommentarForm, UnterKommentarForm, Profile_edit_form
 
 
 
@@ -18,9 +18,9 @@ class TestForms(TestCase):
             "password2":"Startpasswort123"
         })
         self.assertTrue(form.is_valid())
-
+        
     #Registrierungsform mit falschen Bestätigungspasswort
-    def test_Registrierungsform(self):
+    def test_Registrierungsform1(self):
         form = Registrierungsform(data={
             "vorname":"Testuser",
             "nachname":"Testnachname",
@@ -42,6 +42,18 @@ class TestForms(TestCase):
 
         self.assertFalse(form.is_valid())
         self.assertEquals(len(form.errors), 8)
+
+    def test_Profile_edit_form(self):
+        form = Profile_edit_form(data={
+            "vorname":"Testuser1",
+            "nachname":"Testnachname1",
+            "abteilung":"IT",
+            "geburtsdatum": "2020-01-01",
+            "email":"Testtest@test.com",
+            "username":"Testuser1",
+            "profile_pic":""            
+        })
+        self.assertTrue(form.is_valid())
 
     def test_Anmeldeform(self):
         form = Anmeldeform(data={
@@ -69,16 +81,6 @@ class TestForms(TestCase):
             "content":"Ich bin ein Unterkommentar"
         })
         self.assertTrue(form.is_valid)
-
-    def Profile_edit_Form(self):
-        form = Profile_edit_form(data={
-            "username":"testuser123",
-            "vorname":"Hans",
-            "nachname":"Jürgen",
-            "email":"Hans@test.de",
-            "abteilung":"IT",
-            "geburtsdatum":"2020-01-01",
-        })
-        self.assertTrue(form.is_valid)
+    
 
   

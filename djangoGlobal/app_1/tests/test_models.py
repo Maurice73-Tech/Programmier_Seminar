@@ -60,8 +60,8 @@ class TestModels(TestCase):
         
     #UnterKommentar     
     #def test_UnterKommentar(self):
-        #test_UnterKommentar = UnterKommentar()
-        #print(test_UnterKommentar)
+        #test_UnterKommentar = UnterKommentar('1','1','Ich bin ein UnterKommentar', 'Inhalt des UnterKommentars')
+        #print("Unterkommentar; " + str(test_UnterKommentar))
     
   
         
