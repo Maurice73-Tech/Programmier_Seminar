@@ -122,7 +122,11 @@
 
     .btn-warning{
         margin-right: 5px;
-        margin-top: 0px;
+        margin-top: 5px;
+    }
+    
+    .btn-light{
+        margin-top: 5px;
     }
 }
 
@@ -207,6 +211,10 @@ a:not([href]):not([tabindex]):hover{
 
 .btn-warning{
     margin-right: 5px;
-    margin-top: 0px;
+    margin-top: 5px;
+}
+
+.btn-light{
+    margin-top: 5px;
 }
 }
