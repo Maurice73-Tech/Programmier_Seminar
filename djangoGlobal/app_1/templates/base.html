@@ -32,7 +32,7 @@
         <a class="navbar-brand" href="/forum">
           <img src="../static/bilder/LogoOhneText.jpeg" alt="Logo" style="width: 60px; border-radius: 25px;">
         </a>
-        <a class="navbar-brand" href="/forum"">Mitarbeiterforum</a>
+        <a class="navbar-brand" href="/forum">Mitarbeiterforum</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -81,6 +81,7 @@
     <br/>
 
     <script>
+      //Suche in der Suchleiste
       function searchFunction() {
           var input, filter, ul, li, a, i, txtValue;
           input = document.getElementById("searchInput");
@@ -97,6 +98,73 @@
                   li[i].style.display = "none";
               }
           }
+      }
+
+      //Findet Hashtags in der Überschrift
+      function findHashtags(searchText) {
+
+          var regexp = /(\s|^)\#\w\w+\b/gm
+          //result = String(searchText).match(regexp);
+          var result = searchText.match(regexp);
+ 
+          if (result) {
+              result = result.map(function(s){ return s.trim();});
+              //console.log(result);
+              return result;
+          } else {
+              return false;
+          }
+      }
+
+      //Macht einen neuen Hashtag Button
+      ul = document.getElementById("myList");
+      var x = ul.getElementsByClassName("titelid");
+      li = ul.getElementsByTagName("li");
+  
+      for (i = 0; i < li.length; i++) { 
+        //Soll prüfen ob der Hashtag schon als Button existiert
+        if(findHashtags(x[i].innerText)!=false && document.getElementById("new").innerHTML.includes(findHashtags(x[i].innerText)) == false) {
+          var element = document.createElement("input");
+          element.type = "button";
+          element.value = findHashtags(x[i].innerText);
+          element.name = "getInfo";
+          element.className ="btn btn-warning";
+          element.id = "HashtagButtonID" + i;
+          element.onclick = searchFunctionClick; 
+          document.getElementById('new').appendChild(element);
+        }
+      }
+
+      //Wenn auf den Hashtag Button geklickt wird, werden alle Beiträge mit dem Hashtag gezeigt
+      function searchFunctionClick() {
+          var input, filter, ul, li, a, i, txtValue;
+          input = document.getElementById(event.target.id);
+          filter = input.value.toUpperCase();
+          ul = document.getElementById("myList");
+          li = ul.getElementsByTagName("li");
+
+          for (i = 0; i < li.length; i++) {
+              a = li[i].getElementsByTagName("a")[0];
+              txtValue = a.textContent || a.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  li[i].style.display = "";
+              } else {
+                  li[i].style.display = "none";
+              }
+          }
+      }
+
+      //Alle Beiträge wieder anzeigen, unabhängig vom Hashtag
+      function undoClick() {
+        var input, filter, ul, li, a, i, txtValue;
+          //input = document.getElementById("HashtagButtonID");
+          //filter = input.value.toUpperCase();
+          ul = document.getElementById("myList");
+          li = ul.getElementsByTagName("li");
+
+          for (i = 0; i < li.length; i++) { 
+                  li[i].style.display = "";
+              }
       }
     </script>
 
