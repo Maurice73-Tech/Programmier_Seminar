@@ -31,7 +31,7 @@
 <div>
     <form action ="{% url 'like_post' post.pk %}"
        method="POST">
-          {% csrf_token %}
+          {%csrf_token%}
           <button style="margin-left: 5px;" class="btn btn-info btn-sm float-right" value={{post.id}} type="submit"  name="post_id" href="{% url 'addcomment' post.pk%}">Like Post <span class ="badge badge-light">{{post.getTotalLikes}}</span></button>
       </form>
 </div>
@@ -80,7 +80,7 @@
 <!---->
       <form action ="{% url 'kommentar_likes' post.pk Kommentar.id  %}"
        method="POST">
-          {% csrf_token %}
+          {%csrf_token%}
           <button type="submit",name="kommentar_id", value="{{kommentar.id}}", class="btn btn-info btn-sm float-right">Like <i class="far fa-thumbs-up"></i></button><h6>{{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i></h6>
       </form>
     </div>
