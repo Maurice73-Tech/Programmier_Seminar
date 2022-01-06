@@ -53,12 +53,17 @@
       {% endfor %}
      {% endif %}
 
+    <div id="new">
+      <button type="button" class="btn btn-light" onclick="undoClick()"><i class="fas fa-undo"></i></button>
+     <!-- Hier kommen die Buttons mit den Hashtags hin-->
+    </div>
+
     <ul id="myList">
     {% for post in object_list %}
       <li>
       <div class="card mx-auto mt-3"> 
         <div class="card-body" id="post-card">
-          <h5 class="card-title"><a href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a></h5>
+          <h5 class="card-title"><a class="titelid" href="{% url 'blog-details' post.pk %}">{{post.Titel}}</a></h5>
           <h6 class="card-subtitle mb-2 text-muted">Erstellt von {{post.Autor.username}}</h6>
           <h6>{{post.getTotalLikes}} <i class="far fa-thumbs-up"></i></h6>
         </div>

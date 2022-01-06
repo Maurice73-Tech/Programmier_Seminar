@@ -119,6 +119,15 @@
         background-color: #121212;
         border: none;
     }
+
+    .btn-warning{
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+    
+    .btn-light{
+        margin-top: 5px;
+    }
 }
 
 @media (prefers-color-scheme: light) {
@@ -198,5 +207,14 @@ a:not([href]):not([tabindex]):hover{
 .input-group-text{
     background-color: white;
     border: none;
+}
+
+.btn-warning{
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.btn-light{
+    margin-top: 5px;
 }
 }
