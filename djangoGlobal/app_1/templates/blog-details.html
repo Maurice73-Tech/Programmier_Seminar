@@ -67,16 +67,15 @@
     <h6>
       {{Kommentar.name}} - 
       {{Kommentar.date_added}}
-      Das ist die Kommentar id:{{Kommentar.id}}
     </h6>
     <br>
     <h6>
       &#9492; {{Kommentar.content}}
     </h6>
     <div>
-      <button style="margin-left: 5px;" class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addcomment' post.pk%}">
+      <a style="margin-left: 5px;" class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addsubcomment' 1 %}">
         Kommentieren
-</button>
+      </a>
 <!--Es muss auf spezifischen kommentar zugrgriffen werden können(sozusagen kommentar.id)+ Kommentarfunktion für spezifischen Kommentar muss gebaut werden, am besten in der Seite und nicht über seperates Form-->
 <!---->
       <form action ="{% url 'kommentar_likes' post.pk Kommentar.id  %}"
@@ -85,9 +84,18 @@
           <button type="submit",name="kommentar_id", value="{{kommentar.id}}", class="btn btn-info btn-sm float-right">Like <i class="far fa-thumbs-up"></i></button><h6>{{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i></h6>
       </form>
     </div>
+    {% if unterkommentare%}
+    <p>parent id existiert unterkommentar<p/>
+      {%endif%}
+    {% for unterkommentar in unterkommentare%}
+    <div class ='unterkommentare' id='unterkommentare'>
+      <p>{{unterkommentar.content}}</p>
+      <p>Es existiert ein Unterkommentar</p>
+      {% endfor%}
   <br>
   <hr>
   </div>
+
   {% endfor %}
 {% endif %}
 {%endif%}

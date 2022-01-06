@@ -6,12 +6,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views import generic
 from django.views.generic.edit import CreateView
-from app_1.forms import AddBlogForm, Registrierungsform, KommentarForm, Post, Profile_edit_form, Password_change_form
+from app_1.forms import AddBlogForm, Registrierungsform, KommentarForm,UnterKommentarForm, Post, Profile_edit_form, Password_change_form
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
-from app_1.models import NeueBenutzer, Kommentar, Post
+from app_1.models import NeueBenutzer, Kommentar, Post, UnterKommentar
 from django.urls import reverse_lazy, reverse
 from django.contrib.messages.views import SuccessMessageMixin
+
 
 
 class ForumView (ListView):
@@ -174,6 +175,18 @@ class AddKommentarView(CreateView):
 
     def form_valid(self,form):
         form.instance.post_id=self.kwargs['pk']
+        return super().form_valid(form)
+
+class AddUnterkommentarView(CreateView):
+    model= UnterKommentar
+    form_class= UnterKommentarForm
+    template_name='addsubcomment.html'
+
+    def get_success_url(self):
+       return reverse_lazy('blog-details', kwargs={'pk': self.kwargs['pk']})
+    
+    def form_valid(self,form):
+        form.instance.parent_id=self.kwargs['pk']
         return super().form_valid(form)
     
 

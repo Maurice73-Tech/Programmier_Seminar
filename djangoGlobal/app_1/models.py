@@ -87,6 +87,7 @@ class Kommentar(models.Model):
     content = models.CharField(max_length=250)
     date_added = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_likes')
+    
 
 
 
@@ -96,11 +97,12 @@ class Kommentar(models.Model):
 
 
 class UnterKommentar(models.Model):
-    post=models.ForeignKey(Post,related_name="unterkommentar", on_delete= models.CASCADE)
     name=models.CharField(max_length=250)
     content=models.TextField()
     date_added=models.DateTimeField(auto_now_add=True)
-    parent=models.ForeignKey('self', on_delete=models.CASCADE,blank=True,null=True)
+    parent=models.ForeignKey(Kommentar,related_name='unterkommentare',on_delete=models.CASCADE)
+    date_added = models.DateTimeField(auto_now_add=True)
+    #likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_likes')
 
 
     def __str__(self):
