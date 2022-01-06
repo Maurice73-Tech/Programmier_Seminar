@@ -20,7 +20,7 @@ class TestForms(TestCase):
         self.assertTrue(form.is_valid())
         
     #Registrierungsform mit falschen Bestätigungspasswort
-    def test_Registrierungsform1(self):
+    def test_Registrierungsform_wrong_password(self):
         form = Registrierungsform(data={
             "vorname":"Testuser",
             "nachname":"Testnachname",
@@ -34,7 +34,22 @@ class TestForms(TestCase):
         self.assertFalse(form.is_valid())
         self.assertEquals(len(form.errors), 1)
         print(form.errors)
-        
+
+    #Registrierungsform mit ungültiger Email
+    def test_Registrierungsform_invalid_email(self):
+        form = Registrierungsform(data={
+            "vorname":"Testuser",
+            "nachname":"Testnachname",
+            "abteilung":"IT",
+            "geburtsdatum": "2020-01-01",
+            "email":"Testtesttest.com",
+            "username":"Testuser1",
+            "password1":"Startpasswort123",
+            "password2":"Startpasswort123"
+        })
+        self.assertFalse(form.is_valid())
+        self.assertEquals(len(form.errors), 1)
+        print(form.errors)
         
     #Registrierungsform ohne Daten
     def test_Registrierungsform_no_data(self):
