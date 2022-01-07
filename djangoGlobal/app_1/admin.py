@@ -8,6 +8,7 @@ from .models import Post, Kommentar ,UnterKommentar
 
 admin.site.register(Post)
 admin.site.register(Kommentar)
+admin.site.register(UnterKommentar)
 # Admin Seite konfiguriert: Attribute angeordnet und unwichtige ausgeblendet
 class UserAdminKonfig (UserAdmin):
     search_fields = ('username', 'vorname', 'nachname', 'abteilung')

@@ -1,10 +1,15 @@
-/*Navigationsbar wenn eingeloggt*/
+/*Navigationsbar für Antworten und Kommentare*/
 #loggedinpage-id{
     display: normal;
     visibility: visible;
 }
 
 #page-id{
+    display: none;
+    visibility: hidden;
+}
+
+#robopicID{
     display: none;
     visibility: hidden;
 }

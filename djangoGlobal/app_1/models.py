@@ -100,11 +100,11 @@ class UnterKommentar(models.Model):
     name=models.CharField(max_length=250)
     content=models.TextField()
     date_added=models.DateTimeField(auto_now_add=True)
-    parent=models.ForeignKey(Kommentar,related_name='unterkommentare',on_delete=models.CASCADE)
+    parent=models.ForeignKey(Kommentar, related_name="unterkommentare", on_delete=models.CASCADE, blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
     #likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_likes')
 
-
-    def __str__(self):
-        return '%s - %s' % (self.post.Titel , self.name)
+    #Noch mal überprüfen
+    #def __str__(self):
+    #    return '%s - %s' % (self.parent.Titel , self.name)
 

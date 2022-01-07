@@ -86,12 +86,12 @@
     </div>
     {% if unterkommentare%}
     <p>parent id existiert unterkommentar<p/>
-      {%endif%}
-    {% for unterkommentar in unterkommentare%}
-    <div class ='unterkommentare' id='unterkommentare'>
+    {%endif%}
+    {% for unterkommentar in unterkommentare %}
+    <div class ='unterkommentare'>
       <p>{{unterkommentar.content}}</p>
       <p>Es existiert ein Unterkommentar</p>
-      {% endfor%}
+    {% endfor %}
   <br>
   <hr>
   </div>
