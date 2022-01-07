@@ -182,12 +182,16 @@ class AddUnterkommentarView(CreateView):
     form_class= UnterKommentarForm
     template_name='addsubcomment.html'
 
+
     def get_success_url(self):
-       return reverse_lazy('blog-details', kwargs={'pk': self.kwargs['pk']})
+       return reverse_lazy('blog-details', kwargs={'pk': self.kwargs['post']})
     
     def form_valid(self,form):
-        form.instance.parent_id=self.kwargs['pk']
+        form.instance.parent_id=self.kwargs['kommentar']
+        form.instance.post_id=self.kwargs['post']
         return super().form_valid(form)
+
+
     
 
 

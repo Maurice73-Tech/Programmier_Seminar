@@ -103,8 +103,8 @@ class UnterKommentar(models.Model):
     content=models.TextField()
     date_added=models.DateTimeField(auto_now_add=True)
     #war mit blank=true  und null=true
-    post=models.ForeignKey(Post, related_name="unterkommentarePost", on_delete=models.CASCADE,null=True)
-    parent=models.ForeignKey(Kommentar, related_name="unterkommentareKommentar", on_delete=models.CASCADE)
+    post=models.ForeignKey(Post, related_name="pkPost", on_delete=models.CASCADE)
+    parent=models.ForeignKey(Kommentar, related_name="pkKommentar", on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
     #likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_likes')
 

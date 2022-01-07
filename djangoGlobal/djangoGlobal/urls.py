@@ -24,5 +24,5 @@ urlpatterns = [
     path('blog-details/<int:pk>/kommentieren', AddKommentarView.as_view(model=Post), name='addcomment'),
     path('dislike/<int:pk>', DislikePostView, name='dislike_post'),
     path('Klikes/<int:pkPost>/<int:pkKommentar>', LikeKommentar, name='kommentar_likes'),
-    path('blog-details/<int:pk>/unterkommentar', AddUnterkommentarView.as_view(model=Kommentar), name ='addsubcomment'),
+    path('blog-details/<int:post>/<int:kommentar>/unterkommentar', AddUnterkommentarView.as_view(model=Kommentar), name ='addsubcomment'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

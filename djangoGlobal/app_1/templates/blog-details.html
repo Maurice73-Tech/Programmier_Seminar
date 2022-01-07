@@ -73,7 +73,7 @@
       &#9492; {{Kommentar.content}}
     </h6>
     <div>
-      <a style="margin-left: 5px;" class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addsubcomment' Kommentar.id %}">
+      <a style="margin-left: 5px;" class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addsubcomment' post.pk Kommentar.id %}">
         Kommentieren
       </a>
 <!--Es muss auf spezifischen kommentar zugrgriffen werden können(sozusagen kommentar.id)+ Kommentarfunktion für spezifischen Kommentar muss gebaut werden, am besten in der Seite und nicht über seperates Form-->
