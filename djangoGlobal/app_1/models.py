@@ -106,9 +106,12 @@ class UnterKommentar(models.Model):
     post=models.ForeignKey(Post, related_name="pkPost", on_delete=models.CASCADE)
     parent=models.ForeignKey(Kommentar, related_name="pkKommentar", on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
-    #likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_likes')
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_likes')
 
    
     def __str__(self):
        return '%s - %s' % (self.parent.post_id , self.name)
+    
+    def getUnterkommentarLikes(self):
+        return self.likes.count()
 

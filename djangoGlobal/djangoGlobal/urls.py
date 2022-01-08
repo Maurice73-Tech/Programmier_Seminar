@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from app_1.views import (registrieren, benutzer_logout, benutzer_login, profile, impressum,authentifizieren_view,add_block_view,LikesPostView,DislikePostView,LikeKommentar,ForumView, BlogDetailView, AddKommentarView,AddUnterkommentarView,profile_edit, Passwords_View)
+from app_1.views import (registrieren, benutzer_logout, benutzer_login, profile, impressum,authentifizieren_view,add_block_view,LikesPostView,DislikePostView,LikeKommentar,LikeUnterkommentare,ForumView, BlogDetailView, AddKommentarView,AddUnterkommentarView,profile_edit, Passwords_View)
 from app_1.models import Post,Kommentar,UnterKommentar
 from django.conf import settings
 from django.conf.urls.static import static
@@ -24,5 +24,6 @@ urlpatterns = [
     path('blog-details/<int:pk>/kommentieren', AddKommentarView.as_view(model=Post), name='addcomment'),
     path('dislike/<int:pk>', DislikePostView, name='dislike_post'),
     path('Klikes/<int:pkPost>/<int:pkKommentar>', LikeKommentar, name='kommentar_likes'),
+    path('uklikes/<int:pkPost>/<int:pkUnterkommentar>',LikeUnterkommentare, name='unterkommentar_likes'),
     path('blog-details/<int:post>/<int:kommentar>/unterkommentar', AddUnterkommentarView.as_view(model=Kommentar), name ='addsubcomment'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

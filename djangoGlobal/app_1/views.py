@@ -164,6 +164,11 @@ def LikeKommentar(request, pkPost, pkKommentar):
     kommentar.likes.add(request.user)
     return HttpResponseRedirect(reverse('blog-details', args=[str(pkPost)]))
 
+def LikeUnterkommentare(request, pkPost, pkUnterkommentar):
+    unterkommentar=UnterKommentar.objects.get(id=pkUnterkommentar)
+    unterkommentar.likes.add(request.user)
+    return HttpResponseRedirect(reverse('blog-details',args=[str(pkPost)]))
+
 class AddKommentarView(CreateView):
     model=Kommentar  
     form_class= KommentarForm
