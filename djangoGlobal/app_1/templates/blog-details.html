@@ -84,13 +84,13 @@
           <button type="submit",name="kommentar_id", value="{{kommentar.id}}", class="btn btn-info btn-sm float-right">Like <i class="far fa-thumbs-up"></i></button><h6>{{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i></h6>
       </form>
     </div>
-    {% if unterkommentar.content%}
-    <p>parent id existiert unterkommentar<p/>
-    {%endif%}
-    {% for unterkommentare in kommentare.unterkommentare.all %}
-    <div class ='unterkommentare'>
-      <p>{{unterkommentar.content}}</p>
-      <p>Es existiert ein Unterkommentar</p>
+    {% for unterkommentare in Kommentar.pkKommentar.all %}
+      <div class ='unterkommentare'>
+        <p>{{unterkommentare.name}}</p>
+        <p>{{unterkommentare.content}}</p>
+        <p>{{unterkommentare.date_added}}</p>
+        
+
     {% endfor %}
   <br>
   <hr>
