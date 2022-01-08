@@ -30,7 +30,7 @@ class TestModels(TestCase):
         self.assertTrue(user_exists)
         testuser1 = user_qs.first()
         self.assertTrue(testuser1.check_password("testtest1234"))
-
+    #Login testen
     def test_login_url(self):
         login_url = "/login/"
         data = {"username":"IchBinEinTestuser1","password":"testtest1234"}

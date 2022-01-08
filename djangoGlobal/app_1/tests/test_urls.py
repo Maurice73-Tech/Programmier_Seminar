@@ -208,34 +208,33 @@ class TestUrls(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'authentifizieren.html')
 
-#like_post (funktioniert nicht)
-    '''def test_likesPostView_url_resolves(self):
-        response = self.client.get('/')
-        self.assertEquals(response.status_code, 200)
-        # funktioniert nicht
+#blog-details   
+    def test_blog_post_details_resolves(self):
+        url = reverse('blog-details', args=[1])
+        self.assertEqual(url, '/blog-details/1')
+        resolver = resolve('/blog-details/1')
+        self.assertEqual(resolver.view_name, 'blog-details')
+        
+#like_post
     def test_like_post_url_resolves(self):
-        url = reverse('blog-details')
-        self.assertEquals(resolve(url).func, LikesPostView)
+        url = reverse('like_post', args=[1])
+        self.assertEqual(url, '/likes/1')
+        resolver = resolve('/likes/1')
+        self.assertEqual(resolver.view_name, 'like_post')
 
-    def test_like_post_status_code(self):
-        response = self.client.get('/blog-details/')
-        self.assertEquals(response.status_code, 200)
+#dislike_post
+    def test_dislike_post_url_resolves(self):
+        url = reverse('dislike_post', args=[1])
+        self.assertEqual(url, '/dislike/1')
+        resolver = resolve('/dislike/1')
+        self.assertEqual(resolver.view_name, 'dislike_post')
 
-    def test_like_post_url_name(self):  
-        response = self.client.get(reverse('blod-details'))
-        self.assertEquals(response.status_code, 200)
-
-    def test_like_post_template(self):
-        response = self.client.get(reverse('blog-details'))
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'blog-details.html')'''
-#forum
-    """def test_forum_url_resolves(self):
-        url = reverse('forum')
-        self.assertEquals(resolve(url).func, ForumView)
-        response = self.client.get('/')
-        self.assertEquals(response.status_code, 200)"""
-        # bei blog-details und addcomments das gleiche
+#Kommentar_likes
+    def test_kommentar_likes_url_resolves(self):
+        url = reverse('kommentar_likes', args=[1,1])
+        self.assertEqual(url, '/Klikes/1/1')
+        resolver = resolve('/Klikes/1/1')
+        self.assertEqual(resolver.view_name, 'kommentar_likes')
 
 
     
