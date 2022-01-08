@@ -236,6 +236,28 @@ class TestUrls(TestCase):
         resolver = resolve('/Klikes/1/1')
         self.assertEqual(resolver.view_name, 'kommentar_likes')
 
+#Kommentar
+    def test_kommentar_url_resolves(self):
+        url = reverse('addcomment', args=[1])
+        self.assertEqual(url, '/blog-details/1/kommentieren')
+        resolver = resolve('/blog-details/1/kommentieren')
+        self.assertEqual(resolver.view_name, 'addcomment')
+
+#Unterkommentar
+    def test_unterkommentar_url_resolves(self):
+        url = reverse('addsubcomment', args=[1,1])
+        self.assertEqual(url, '/blog-details/1/1/unterkommentar')
+        resolver = resolve('/blog-details/1/1/unterkommentar')
+        self.assertEqual(resolver.view_name, 'addsubcomment')
+
+#profile_edit
+    def test_profile_edit_url_resolves(self):
+        url = reverse('profile_edit')
+        self.assertEqual(url, '/profile_edit/')
+        resolver = resolve('/profile_edit/')
+        self.assertEqual(resolver.view_name, 'profile_edit')
+
+
 
     
         
