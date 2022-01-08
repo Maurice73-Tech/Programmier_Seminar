@@ -74,15 +74,15 @@
       &#9492; {{Kommentar.content}}
     </h6>
     <div>
-      <a style="margin-left: 5px;" class="btn btn-outline-secondary btn-sm float-right" type="button"  id="button-addon2" href="{% url 'addsubcomment' post.pk Kommentar.id %}">
-        Kommentieren
+      <a style="margin-left: 5px;" class="btn btn-outline-secondary btn float-right" type="button"  id="button-addon2" href="{% url 'addsubcomment' post.pk Kommentar.id %}">
+        <i class="fas fa-edit"></i>   
       </a>
 <!--Es muss auf spezifischen kommentar zugrgriffen werden können(sozusagen kommentar.id)+ Kommentarfunktion für spezifischen Kommentar muss gebaut werden, am besten in der Seite und nicht über seperates Form-->
 <!---->
       <form action ="{% url 'kommentar_likes' post.pk Kommentar.id  %}"
        method="POST">
           {%csrf_token%}
-          <button type="submit",name="kommentar_id", value="{{kommentar.id}}", class="btn btn-info btn-sm float-right">Like <i class="far fa-thumbs-up"></i></button><h6>{{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i></h6>
+          <button type="submit",name="kommentar_id", value="{{kommentar.id}}", class="btn btn-info btn float-right"><i class="far fa-thumbs-up"></i></button><h6>{{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i></h6>
       </form>
     </div>
     {% for unterkommentare in Kommentar.pkKommentar.all %}
@@ -92,15 +92,15 @@
           {{unterkommentare.date_added}}
           <i class="far fa-comment-dots"></i>
         </h6>
-        <form action ="{% url 'unterkommentar_likes' post.pk unterkommentare.id %}" 
-        method ="POST">
-          {%csrf_token%}
-          <button name= "ukLikes", value="unterkommentare.id", class="btn btn-info btn-sm float-right"> <i class="far fa-thumbs-up"></i></button>
-        </form>
         <br>
         <h6 style="margin-left: 1rem;">
           {{unterkommentare.content}}
           <br>
+          <form action ="{% url 'unterkommentar_likes' post.pk unterkommentare.id %}" 
+          method ="POST">
+            {%csrf_token%}
+            <button name= "ukLikes", value="unterkommentare.id", class="btn btn-info btn-sm float-right"> <i class="far fa-thumbs-up"></i></button>
+          </form>
           {{unterkommentare.getUnterkommentarLikes}}
           <i class="far fa-thumbs-up"></i>
         </h6>
