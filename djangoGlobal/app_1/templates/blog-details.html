@@ -47,10 +47,10 @@
 <br/>
 <br>
 <hr>
-<br/>
 <div class="input-group mb-3">
   <a class="btn btn-success" type="button" id="button-addon2" href="{% url 'addcomment' post.pk %}" >Antworten</a>
 </div>
+<br>
 <h2>Kommentare</h2>
 
 {% if post.kommentare.all%}
@@ -67,6 +67,7 @@
     <h6>
       {{Kommentar.name}} - 
       {{Kommentar.date_added}}
+      <i class="fas fa-comment-dots"></i>
     </h6>
     <br>
     <h6>
@@ -84,15 +85,20 @@
           <button type="submit",name="kommentar_id", value="{{kommentar.id}}", class="btn btn-info btn-sm float-right">Like <i class="far fa-thumbs-up"></i></button><h6>{{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i></h6>
       </form>
     </div>
-    {% if unterkommentar.content%}
-    <p>parent id existiert unterkommentar<p/>
-    {%endif%}
-    {% for unterkommentare in kommentare.unterkommentare.all %}
-    <div class ='unterkommentare'>
-      <p>{{unterkommentar.content}}</p>
-      <p>Es existiert ein Unterkommentar</p>
+    {% for unterkommentare in Kommentar.pkKommentar.all %}
+      <div class ="unterkommentare">
+        <h6>
+          &#9492; {{unterkommentare.name}} - 
+          {{unterkommentare.date_added}}
+          <i class="far fa-comment-dots"></i>
+        </h6>
+        <br>
+        <h6 style="margin-left: 1rem;">
+          {{unterkommentare.content}}
+        </h6>
+        <br>
+      </div>
     {% endfor %}
-  <br>
   <hr>
   </div>
 
