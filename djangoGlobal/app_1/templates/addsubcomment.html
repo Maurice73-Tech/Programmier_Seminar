@@ -14,8 +14,9 @@ Kommentar erstellen
 
 
 {% block content %}
-
-  <br/>
+<div id="submissionsField">
+  <h2>Unterkommentar hinzufügen:</h2>
+  <hr>
     <div class="comment-group">
       <form method="POST">
         {% csrf_token %}

@@ -217,4 +217,9 @@ a:not([href]):not([tabindex]):hover{
 .btn-light{
     margin-top: 5px;
 }
+
+.unterkommentare{
+    margin-left: 2rem;
+    color: #173361;
+}
 }

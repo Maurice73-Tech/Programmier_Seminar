@@ -47,8 +47,8 @@ class KommentarForm(forms.ModelForm):
         fields = ('name','content')
         
 class UnterKommentarForm(forms.ModelForm) :
-    name=forms.CharField (widget=forms.TextInput(attrs={'class':'form-control'}), label='ukName')
-    content=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="ukKommentar")
+    name=forms.CharField (widget=forms.TextInput(attrs={'class':'form-control'}), label='Name')
+    content=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Unterkommentar")
 
     class Meta:
         model=UnterKommentar
