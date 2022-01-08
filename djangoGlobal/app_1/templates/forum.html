@@ -26,23 +26,35 @@
 {% if user.is_authenticated %}
   <div id="submissionsField">
     <div class="container" style="text-align: center;">
-      <h1 id="userpost">User Posts:</h1>
+      <h1 id="userpost">Forumsbeiträge</h1>
       <br/>
+      
       <div>
+        
         <div class="input-group mb-3">
+          
+          
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1" style="background-color:none;"><i class="fas fa-search"></i></span>
           </div>
+          
           <input type="text" id="searchInput" class="form-control" placeholder="Nach Titel suchen..." aria-label="Username" aria-describedby="basic-addon1" onkeyup="searchFunction()" style="margin-top: 0px; margin-bottom: 0px;"/>
+          <div class="col-auto">
+          
+          <button id="start-btn" class=".btn btn-success">
+            <span><i class="fas fa-microphone"></i></span>
+          </button>
+          
+          <button id="stop-btn" class=".btn btn-danger">
+            <i class="fas fa-microphone-slash"></i>
+          </button><br/>
+
         </div>
-        <button id="start-btn" class=".btn btn-success">
-          <span><i class="fas fa-microphone"></i></span>
-        </button>
-        <button id="stop-btn" class=".btn btn-danger">
-          <i class="fas fa-microphone-slash"></i>
-        </button><br/>
-      </div>
-      <p id="instructions" style="display: inline-block;">Für Spracherkennung den Startknopf drücken [Funktioniert nur in Chrome]</p><br/>
+        </div>
+        </div>
+       
+        
+      
       <a class="btn btn-outline-success" href="/addpost" role="button"><i class="fas fa-pen-fancy"></i> Neue Frage stellen</a>  
       <br/><br/>
     </div>
