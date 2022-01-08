@@ -8,7 +8,7 @@ class TestForms(TestCase):
     
     def test_Registrierungsform(self):
         form = Registrierungsform(data={
-            "vorname":"Testuser",
+            "vorname":"Testuser1",
             "nachname":"Testnachname",
             "abteilung":"IT",
             "geburtsdatum": "2020-01-01",
