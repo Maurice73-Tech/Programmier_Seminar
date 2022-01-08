@@ -6,7 +6,7 @@ Registrieren
 {% endblock %}
 
 {%block link%}
-<link rel="stylesheet" href={% static 'css/navigationsbar.css' %} />
+<link rel=stylesheet href="{% static 'css/navigationsbar.css' %}" />
 <link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now " U" %}" />
 {%endblock%}
 
@@ -20,13 +20,13 @@ Registrieren
     <div class="row">
       <div class="col">
         
-        <input type="text"  name="vorname" class="form-control" placeholder="Vorname" aria-label="First name">
+        <input type="text"  name="vorname" id="vornameID" pattern="[A-Za-z]" title="Vorname darf nur aus Buchstaben bestehen!" class="form-control" placeholder="Vorname" aria-label="First name">
      
       </div>
       
       <div class="col">
         
-        <input type="text"  name="nachname" class="form-control" placeholder="Nachname" aria-label="Last name">
+        <input type="text"  name="nachname" id="nachnameID" pattern="[A-Za-z]" title="Nachname darf nur aus Buchstaben bestehen!" class="form-control" placeholder="Nachname" aria-label="Last name">
       
       </div>
     </div>
@@ -40,7 +40,7 @@ Registrieren
     <br>
 
     <small id="passwordHelpBlock" class="form-text text-muted">
-      Erforderlich- Bitte geben Sie eine gültige E-Mail ein!
+      Erforderlich - Bitte geben Sie eine gültige E-Mail ein!
     </small>
     <input type="email" name="email" class="form-control" id="floatingInput5" placeholder="name@beispiel.com">
 
