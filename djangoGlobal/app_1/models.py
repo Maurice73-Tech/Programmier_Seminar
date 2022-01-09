@@ -87,13 +87,15 @@ class Kommentar(models.Model):
     content = models.CharField(max_length=500)
     date_added = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_likes')
+    dislikes=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_dislikes')
     
     def __str__(self):
         return self.content
 
 
     def getKommentarLikes(self):
-        return self.likes.count()
+        likecounter=self.likes.count()-self.dislikes.count()
+        return likecounter
     
     
 
@@ -107,11 +109,13 @@ class UnterKommentar(models.Model):
     parent=models.ForeignKey(Kommentar, related_name="pkKommentar", on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_likes')
+    dislikes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_dislikes')
 
    
     def __str__(self):
        return '%s - %s' % (self.parent.post_id , self.name)
     
     def getUnterkommentarLikes(self):
-        return self.likes.count()
+        likecounter=self.likes.count()-self.dislikes.count()
+        return likecounter
 

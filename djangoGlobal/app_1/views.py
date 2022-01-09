@@ -135,13 +135,6 @@ def add_block_view(request):
 
     return render (request, 'addpost.html', context) 
 
-def get_context_data(self,*args,**kwargs):
-    context = super(BlogDetailView,self).get_context_data(**kwargs)
-    specificPost=get_object_or_404(Post,id=self.kwargs['post_id'])
-    likes=specificPost.getTotalLikes()
-    dislikes=specificPost.get
-    context["likes"] ="2"
-    return context
  
 def authentifizieren_view (request):
     return render (request, 'authentifizieren.html', {})
@@ -164,10 +157,21 @@ def LikeKommentar(request, pkPost, pkKommentar):
     kommentar.likes.add(request.user)
     return HttpResponseRedirect(reverse('blog-details', args=[str(pkPost)]))
 
+def DislikeKommentar(request,pkPost, pkKommentar):
+    kommentar=Kommentar.objects.get(id=pkKommentar)
+    kommentar.dislikes.add(request.user)
+    return HttpResponseRedirect(reverse('blog-details', args=[str(pkPost)]))
+
 def LikeUnterkommentare(request, pkPost, pkUnterkommentar):
     unterkommentar=UnterKommentar.objects.get(id=pkUnterkommentar)
     unterkommentar.likes.add(request.user)
     return HttpResponseRedirect(reverse('blog-details',args=[str(pkPost)]))
+
+def DislikeUnterkommentare(request,pkPost,pkUnterkommentar):
+    unterkommentar=UnterKommentar.objects.get(id=pkUnterkommentar)
+    unterkommentar.dislikes.add(request.user)
+    return HttpResponseRedirect(reverse('blog-details',args=[str(pkPost)]))
+
 
 class AddKommentarView(CreateView):
     model=Kommentar  
@@ -180,6 +184,7 @@ class AddKommentarView(CreateView):
 
     def form_valid(self,form):
         form.instance.post_id=self.kwargs['pk']
+        #Hier muss der Author übergeben werden laut munzi usw
         return super().form_valid(form)
 
 class AddUnterkommentarView(CreateView):
