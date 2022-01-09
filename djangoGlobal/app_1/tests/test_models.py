@@ -58,10 +58,7 @@ class TestModels(TestCase):
         test_kommentar = Kommentar('1','Ich bin ein Kommentar', 'Inhalt des Kommentars','2021-12-16')
         print("Kommentar: " + str(test_kommentar))
         
-    #UnterKommentar     
-    #def test_UnterKommentar(self):
-        #test_UnterKommentar = UnterKommentar('1','1','Ich bin ein UnterKommentar', 'Inhalt des UnterKommentars')
-        #print("Unterkommentar; " + str(test_UnterKommentar))
+   
     
   
         

@@ -88,12 +88,5 @@ class TestViews(TestCase):
 
   
 
-#get context data
-#likes post view
-#dislike post view
-#profile edit
-#like Kommentar
 
-
-#POST Funktionen fehlen noch 
 
