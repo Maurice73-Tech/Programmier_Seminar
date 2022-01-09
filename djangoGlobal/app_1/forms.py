@@ -38,21 +38,24 @@ class AddBlogForm (forms.ModelForm):
         fields = ['Titel', 'Inhalt']
 
 class KommentarForm(forms.ModelForm):
-    name = forms.CharField (widget=forms.TextInput(attrs={'class':'form-control'}), label="Name")
-    content=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Kommentar")
     
-
     class Meta:
         model=Kommentar
-        fields = ('name','content')
+        fields = ('content', )
+
+    
+    name: forms.HiddenInput() 
+    content = forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Kommentar")
+
         
 class UnterKommentarForm(forms.ModelForm) :
-    name=forms.CharField (widget=forms.TextInput(attrs={'class':'form-control'}), label='Name')
+    
+    name: forms.HiddenInput()
     content=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Unterkommentar")
 
     class Meta:
         model=UnterKommentar
-        fields=('name','content')
+        fields=('content', )
 
 class Profile_edit_form(UserChangeForm):
     username = forms.CharField (widget=forms.TextInput (attrs={'class':'form-control'}), label="Username")

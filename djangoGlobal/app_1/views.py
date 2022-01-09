@@ -184,7 +184,8 @@ class AddKommentarView(CreateView):
 
     def form_valid(self,form):
         form.instance.post_id=self.kwargs['pk']
-        #Hier muss der Author übergeben werden laut munzi usw
+        #Username
+        form.instance.name = self.request.user.username
         return super().form_valid(form)
 
 class AddUnterkommentarView(CreateView):
@@ -199,6 +200,8 @@ class AddUnterkommentarView(CreateView):
     def form_valid(self,form):
         form.instance.parent_id=self.kwargs['kommentar']
         form.instance.post_id=self.kwargs['post']
+        #Username hinzu
+        form.instance.name = self.request.user.username
         return super().form_valid(form)
 
 
