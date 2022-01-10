@@ -6,7 +6,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
-#from ckeditor.fields import *
+from ckeditor.fields import RichTextField
 
 from djangoGlobal.settings import AUTH_USER_MODEL
 
@@ -67,11 +67,12 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
 
 class Post(models.Model):
     title = models.CharField(max_length=100, name='Titel')
-    content = models.TextField(name='Inhalt',default='')
+    #content = models.TextField(name='Inhalt',default='')
+    content = RichTextField(name='Inhalt', default='', null=True, blank=True)
     date_posted = models.DateTimeField(default=timezone.now, name='Postdatum')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, name= 'Autor')
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_posts')
-    dislikes=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='dislikes')
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_posts', null=True, blank=True)
+    dislikes=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='dislikes', null=True, blank=True)
 
     def __str__(self): 
         return self.Inhalt
