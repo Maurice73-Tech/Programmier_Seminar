@@ -23,11 +23,11 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Kommentar)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('post', 'name', 'content', 'date_added')
+    list_display = ('post', 'name', 'kommentar', 'date_added')
 
 @admin.register(UnterKommentar)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('post', 'name', 'content', 'parent')
+    list_display = ('post', 'name', 'überkommentar', 'unterkommentar','date_added')
 
 
 admin.site.register (NeueBenutzer,UserAdminKonfig)

@@ -41,21 +41,21 @@ class KommentarForm(forms.ModelForm):
     
     class Meta:
         model=Kommentar
-        fields = ('content', )
+        fields = ('kommentar', )
 
     
     name: forms.HiddenInput() 
-    content = forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Kommentar")
+    kommentar = forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Kommentar")
 
         
 class UnterKommentarForm(forms.ModelForm) :
     
     name: forms.HiddenInput()
-    content=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Unterkommentar")
+    unterkommentar=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Unterkommentar")
 
     class Meta:
         model=UnterKommentar
-        fields=('content', )
+        fields=('unterkommentar', )
 
 class Profile_edit_form(UserChangeForm):
     username = forms.CharField (widget=forms.TextInput (attrs={'class':'form-control'}), label="Username")

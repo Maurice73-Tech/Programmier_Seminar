@@ -83,13 +83,13 @@ class Post(models.Model):
 class Kommentar(models.Model):
     post= models.ForeignKey(Post, related_name="kommentare",on_delete=models.CASCADE)
     name= models.CharField(max_length=100)
-    content = models.CharField(max_length=500)
+    content = models.CharField(max_length=500,name='kommentar')
     date_added = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_likes')
     dislikes=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_dislikes')
     
     def __str__(self):
-        return self.content
+        return self.kommentar
 
 
     def getKommentarLikes(self):
@@ -101,18 +101,17 @@ class Kommentar(models.Model):
 
 class UnterKommentar(models.Model):
     name=models.CharField(max_length=100)
-    content=models.TextField(max_length=500)
+    content=models.TextField(max_length=500,name='unterkommentar')
     date_added=models.DateTimeField(auto_now_add=True)
-    #war mit blank=true  und null=true
     post=models.ForeignKey(Post, related_name="pkPost", on_delete=models.CASCADE)
-    parent=models.ForeignKey(Kommentar, related_name="pkKommentar", on_delete=models.CASCADE)
+    parent=models.ForeignKey(Kommentar, related_name="pkKommentar", name='überkommentar', on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_likes')
     dislikes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_dislikes')
 
    
     def __str__(self):
-       return '%s - %s' % (self.parent.post_id , self.name)
+       return '%s - %s' % (self.überkommentar.post_id , self.name)
     
     def getUnterkommentarLikes(self):
         likecounter=self.likes.count()-self.dislikes.count()

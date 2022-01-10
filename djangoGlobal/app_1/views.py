@@ -194,7 +194,7 @@ class AddUnterkommentarView(CreateView):
        return reverse_lazy('blog-details', kwargs={'pk': self.kwargs['post']})
     
     def form_valid(self,form):
-        form.instance.parent_id=self.kwargs['kommentar']
+        form.instance.überkommentar_id=self.kwargs['kommentar']
         form.instance.post_id=self.kwargs['post']
         #Username hinzu
         form.instance.name = self.request.user.username
