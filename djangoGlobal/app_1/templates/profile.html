@@ -21,6 +21,7 @@
         <div class="alert alert-info mx-auto" style="width: 224px; text-align: center; margin-top: 10px; margin-bottom: 10px;"> {{ message | safe}}</div>
       {% endfor %}
      {% endif %}
+
 <form method="POST" enctype="multipart/form-data" >
     {%csrf_token%}
     <img src="{{user.profile_pic.url}}" id="profilbild-id">

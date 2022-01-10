@@ -108,9 +108,10 @@ class profile_edit (SuccessMessageMixin ,generic.UpdateView):
     
        
 
-class Passwords_View (PasswordChangeView):
+class Passwords_View (SuccessMessageMixin ,PasswordChangeView):
     form_class = Password_change_form
     success_url = reverse_lazy ('profile')
+    success_message = "Ihr Passwort wurde geändert!"
 
 
 def add_block_view(request):
