@@ -1,6 +1,4 @@
 from django.contrib import admin
-from django.contrib.admin.helpers import Fieldset
-from django.contrib.auth.models import Permission
 from app_1.models import NeueBenutzer
 from django.contrib.auth.admin import UserAdmin
 from .models import Post, Kommentar ,UnterKommentar

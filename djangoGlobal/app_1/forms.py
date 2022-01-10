@@ -4,7 +4,7 @@ from .models import NeueBenutzer, Post, Kommentar,UnterKommentar
 from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm, UserCreationForm
 from django import forms
 from django.contrib.auth import authenticate
-from django.forms.widgets import NumberInput, Widget
+
 
 class Registrierungsform(UserCreationForm):
     vorname = forms.CharField (label="Vorname")

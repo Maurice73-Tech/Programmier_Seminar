@@ -1,8 +1,7 @@
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
-from django.contrib.messages.api import success
-from django.http import request, HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import generic
 from django.views.generic.edit import CreateView
@@ -197,7 +196,7 @@ class AddUnterkommentarView(CreateView):
     def form_valid(self,form):
         form.instance.überkommentar_id=self.kwargs['kommentar']
         form.instance.post_id=self.kwargs['post']
-        #Username hinzu
+        #Username hinzugefügt
         form.instance.name = self.request.user.username
         return super().form_valid(form)
 
