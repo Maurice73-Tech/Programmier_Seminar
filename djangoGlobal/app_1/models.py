@@ -48,8 +48,9 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     
+    class Meta:
+        verbose_name_plural = "Benutzer"
     
- 
 
     objects = Benutzermanager()
     
@@ -80,7 +81,8 @@ class Post(models.Model):
     def getTotalLikes(self):
         likecounter=self.likes.count()-self.dislikes.count()
         return likecounter
-
+    class Meta:
+        verbose_name_plural = "Beiträge"
 class Kommentar(models.Model):
     post= models.ForeignKey(Post, related_name="kommentare",on_delete=models.CASCADE)
     name= models.CharField(max_length=100)
@@ -97,7 +99,8 @@ class Kommentar(models.Model):
     def getKommentarLikes(self):
         likecounter=self.likes.count()-self.dislikes.count()
         return likecounter
-    
+    class Meta:
+        verbose_name_plural = "Kommentare"
     
 
 
@@ -119,4 +122,5 @@ class UnterKommentar(models.Model):
     def getUnterkommentarLikes(self):
         likecounter=self.likes.count()-self.dislikes.count()
         return likecounter
-
+    class Meta:
+        verbose_name_plural = "Unterkommentare"
