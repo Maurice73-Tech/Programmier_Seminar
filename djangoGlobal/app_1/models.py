@@ -65,6 +65,7 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return True  
+    
 
 class Post(models.Model):
     title = models.CharField(max_length=100, name='Titel')

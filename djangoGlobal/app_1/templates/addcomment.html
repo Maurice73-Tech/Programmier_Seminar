@@ -19,7 +19,7 @@ Kommentar erstellen
     <div class="comment-group">
       <form method="POST">
         {% csrf_token %}
-
+        {{ form.media }}
         {{ form.as_p }}
         <br>
 
