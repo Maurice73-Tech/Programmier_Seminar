@@ -16,8 +16,6 @@
 	<div class="container" style="text-align: center;">
 		<form class="create-form" method="post" >{% csrf_token %}
 				<div class="form-group">
-                  
-{{Post.Autor.username}}
 					{% csrf_token %}
                     {{form.media}}
                     {{form.as_p}}
@@ -27,10 +25,7 @@
 		</form>	
 	</div>
 </div>
-<script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-<script>
-	CKEDITOR.replace( 'id_body' );
-</script>
+
 
 
 {% endblock content %}
