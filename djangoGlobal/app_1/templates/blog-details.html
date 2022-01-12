@@ -19,6 +19,14 @@
   <h1>{{post.Titel}} </h1>
   <small id="titlePost">
     Autor: {{post.Autor.username}}
+    
+
+    {% if user.username == post.Autor.username %}
+    - <a href="{% url 'update-blog' post.pk %}">Post ändern</a>
+    {% else %}
+     <h1></h1>
+   {% endif %}
+   
   </small>
 
   <div>

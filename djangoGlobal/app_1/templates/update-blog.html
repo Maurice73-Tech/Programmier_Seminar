@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block link%}
+<link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
+<link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
+{% endblock %}
+
+{% block title %}
+ Update Post
+{% endblock %}
+
+{% block content %}
+
+<div id="submissionsField">
+	<div class="container" style="text-align: center;">
+		<form class="create-form" method="post" >{% csrf_token %}
+				<div class="form-group">
+                  
+{{Post.Autor.username}}
+					{% csrf_token %}
+                    {{form.media}}
+                    {{form.as_p}}
+				</div>
+			
+			<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">Update Blog</button>
+		</form>	
+	</div>
+</div>
+<script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+<script>
+	CKEDITOR.replace( 'id_body' );
+</script>
+
+
+{% endblock content %}

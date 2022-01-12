@@ -1,10 +1,11 @@
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
+from django.db.models import fields
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import generic
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from app_1.forms import AddBlogForm, Registrierungsform, KommentarForm,UnterKommentarForm, Post, Profile_edit_form, Password_change_form
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, DetailView
@@ -21,6 +22,12 @@ class ForumView (ListView):
 class BlogDetailView (DetailView):
     model = Post
     template_name = 'blog-details.html'
+
+class UpdateBlogView (UpdateView):
+    model = Post
+    template_name = 'update-blog.html'
+    fields =['Titel','Inhalt']
+    success_message = "Ihr Blogpost wurde geändert!"
 
 def benutzeruebergabe (request):
     context = {}

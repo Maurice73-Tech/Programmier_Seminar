@@ -3,6 +3,7 @@ from django.contrib.auth.models import PermissionsMixin, User
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.conf import settings
+from django.urls.base import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
@@ -76,6 +77,9 @@ class Post(models.Model):
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_posts', null=True, blank=True)
     dislikes=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='dislikes', null=True, blank=True)
 
+    def get_absolute_url(self):
+            return reverse ('forum')
+
     def __str__(self): 
         return self.Inhalt
 
@@ -116,7 +120,6 @@ class UnterKommentar(models.Model):
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_likes', null=True, blank=True)
     dislikes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unterkommentar_dislikes', null=True, blank=True)
 
-   
     def __str__(self):
        return '%s - %s' % (self.überkommentar.post_id , self.name)
     

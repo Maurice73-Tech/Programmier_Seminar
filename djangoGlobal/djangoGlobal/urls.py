@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from app_1.views import (registrieren, benutzer_logout, benutzer_login, profile, impressum,authentifizieren_view,add_block_view,LikesPostView,DislikePostView,LikeKommentar,DislikeKommentar,LikeUnterkommentare,DislikeUnterkommentare,ForumView, BlogDetailView, AddKommentarView,AddUnterkommentarView,profile_edit, Passwords_View)
+from app_1.views import (registrieren, benutzer_logout, benutzer_login, profile, impressum,authentifizieren_view,add_block_view,LikesPostView,UpdateBlogView, DislikePostView,LikeKommentar,DislikeKommentar,LikeUnterkommentare,DislikeUnterkommentare,ForumView, BlogDetailView, AddKommentarView,AddUnterkommentarView,profile_edit, Passwords_View)
 from app_1.models import Post,Kommentar,UnterKommentar
 from django.conf import settings
 from django.conf.urls.static import static
@@ -11,6 +11,7 @@ urlpatterns = [
     path('impressum/', impressum,name='impressum'),
     path('forum/', ForumView.as_view (model=Post),name='forum'),
     path('blog-details/<int:pk>', BlogDetailView.as_view (model=Post),name='blog-details'),
+    path('blog-details/update/<int:pk>', UpdateBlogView.as_view (model=Post),name='update-blog'),
     path('addpost/', add_block_view ,name='addpost'),
     path('admin/', admin.site.urls),
     path('login/', benutzer_login, name='login'),
