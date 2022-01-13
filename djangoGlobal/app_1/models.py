@@ -78,7 +78,7 @@ class Post(models.Model):
     dislikes=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='dislikes', null=True, blank=True)
 
     def get_absolute_url(self):
-            return reverse ('forum')
+        return reverse("blog-details", args=[str(self.pk)])
 
     def __str__(self): 
         return self.Inhalt

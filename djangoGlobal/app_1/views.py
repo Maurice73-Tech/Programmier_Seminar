@@ -28,6 +28,7 @@ class UpdateBlogView (UpdateView):
     template_name = 'update-blog.html'
     fields =['Titel','Inhalt']
     success_message = "Ihr Blogpost wurde geändert!"
+    
 
 def benutzeruebergabe (request):
     context = {}
