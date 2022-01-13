@@ -4,6 +4,7 @@ from .models import NeueBenutzer, Post, Kommentar,UnterKommentar
 from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm, UserCreationForm
 from django import forms
 from django.contrib.auth import authenticate
+from ckeditor.fields import RichTextField
 
 
 class Registrierungsform(UserCreationForm):
@@ -45,13 +46,16 @@ class KommentarForm(forms.ModelForm):
 
     
     name: forms.HiddenInput() 
-    kommentar = forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Kommentar")
+    #kommentar = forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Kommentar")
+    kommentar = RichTextField(name='Kommentar', default='', null=True, blank=True)
+
 
         
 class UnterKommentarForm(forms.ModelForm) :
     
     name: forms.HiddenInput()
-    unterkommentar=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Unterkommentar")
+    #unterkommentar=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Unterkommentar")
+    unterkommentar = RichTextField(name='Unterkommentar', default='', null=True, blank=True)
 
     class Meta:
         model=UnterKommentar

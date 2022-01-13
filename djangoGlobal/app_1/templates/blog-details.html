@@ -4,6 +4,11 @@
 {%block link%}
 <link rel=stylesheet href="{% static 'css/navigationsbar2.css' %}"/>
 <link rel=stylesheet type="text/css" href="{% static 'css/anmeldenstyle.css' %}?{% now "U" %}"/>
+<style>
+  p{
+    display: inline;
+  }
+</style>
 {% endblock %}
 
 {% block title %}
@@ -79,7 +84,7 @@
       <h6>
         &#9492; {{Kommentar.kommentar|safe}}
         <br>
-        {{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i>
+        <br>{{Kommentar.getKommentarLikes}} <i class="far fa-thumbs-up"></i>
       
       <!--Kommentar Button-->  
       <!--Es muss auf spezifischen kommentar zugrgriffen werden können(sozusagen kommentar.id)+ Kommentarfunktion für spezifischen Kommentar muss gebaut werden, am besten in der Seite und nicht über seperates Form-->
@@ -119,7 +124,7 @@
         <h6 style="margin-left: 1rem;">
           {{unterkommentare.unterkommentar|safe}}
           <br>
-          {{unterkommentare.getUnterkommentarLikes}}
+          <br>{{unterkommentare.getUnterkommentarLikes}}
           <i class="far fa-thumbs-up"></i>
         </h6>
            <!--Like buttons für Unterkommentar Gruppiert-->

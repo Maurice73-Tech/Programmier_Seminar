@@ -88,6 +88,7 @@ class Post(models.Model):
         return likecounter
     class Meta:
         verbose_name_plural = "Beiträge"
+        
 class Kommentar(models.Model):
     post= models.ForeignKey(Post, related_name="kommentare",on_delete=models.CASCADE)
     name= models.CharField(max_length=100)
