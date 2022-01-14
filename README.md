@@ -1,13 +1,14 @@
 # Programmier_Seminar
 
-Programmierprojekt - Mitarbeiterforum mit Django und Python
+### :computer: Programmierprojekt - Mitarbeiterforum mit Django und Python
 
+Funktionalitäten: 
 * Neuen Mitarbeiter registrieren 
 * Als Mitarbeiter einloggen
 * Impressum
 * Forum Seite
 * Frage posten
-* Auf Fragen antworten und unterkommentare hinzu
+* Auf Fragen antworten und unterkommentare posten
 * Benutzerprofil ändern und updaten
 
 Pip install requirements:
