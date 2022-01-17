@@ -93,7 +93,7 @@ class Kommentar(models.Model):
     post= models.ForeignKey(Post, related_name="kommentare",on_delete=models.CASCADE)
     name= models.CharField(max_length=100)
     #content = models.CharField(max_length=500,name='kommentar')
-    content = RichTextField(name='kommentar', max_length=100, null=True, blank=True)
+    content = RichTextField(name='kommentar', max_length=1000, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_likes', null=True, blank=True)
     dislikes=models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_dislikes', null=True, blank=True)
@@ -113,7 +113,7 @@ class Kommentar(models.Model):
 class UnterKommentar(models.Model):
     name=models.CharField(max_length=100)
     #content=models.TextField(max_length=500,name='unterkommentar')
-    content= RichTextField(max_length=500,name='unterkommentar', null=True, blank=True)
+    content= RichTextField(max_length=1000,name='unterkommentar', null=True, blank=True)
     date_added=models.DateTimeField(auto_now_add=True)
     post=models.ForeignKey(Post, related_name="pkPost", on_delete=models.CASCADE)
     parent=models.ForeignKey(Kommentar, related_name="pkKommentar", name='überkommentar', on_delete=models.CASCADE)
