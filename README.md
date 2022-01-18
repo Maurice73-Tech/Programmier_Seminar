@@ -2,6 +2,10 @@
 
 ### :computer: Programmierprojekt - Mitarbeiterforum mit Django und Python
 
+##### Mitarbeiterforum Bild:
+
+![](Image/MitarbeiterForum-Image.png)
+
 ##### Funktionalitäten: 
 * Neuen Mitarbeiter registrieren 
 * Als Mitarbeiter einloggen
