@@ -1,3 +1,4 @@
+#Imports
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, User
 from django.db import models
@@ -8,11 +9,11 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from datetime import datetime
 from ckeditor.fields import RichTextField
-
 from djangoGlobal.settings import AUTH_USER_MODEL
 
+# Abstrahierte Klasse von BaseUsermanager  
 class Benutzermanager(BaseUserManager):
-    
+    # Funktion für die Erstellung eines Superusers mit geänderten Attributen, um spezielle Rechte zu gewähren
     def create_superuser(self, username,vorname, nachname, geburtsdatum, email, abteilung, password, **other_fields):
         user = self.create_user (username=username, vorname= vorname,nachname= nachname, geburtsdatum= geburtsdatum, email=email, abteilung= abteilung, password=password)
         user.is_admin = True
@@ -20,10 +21,8 @@ class Benutzermanager(BaseUserManager):
         user.is_superuser = True
         user.save(using=self._db)
         return user
-
-
-    #return self.create_user (username, vorname, nachname, geburtsdatum, abteilung, password, **other_fields)
     
+    # Funktion für die Erstellung eines normalen Users mit Standardrechten
     def create_user(self, username, vorname,nachname, geburtsdatum, abteilung, email,  password):
         
         if not username:
@@ -34,6 +33,7 @@ class Benutzermanager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+# Usermodel mit teils definierten Attributen für die Rollenverteilung
 class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     username= models.CharField (max_length=30, unique=True)
     vorname =models.CharField(max_length=30, blank=True)
@@ -41,6 +41,7 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     email =models.EmailField(max_length=30, blank=True)
     geburtsdatum = models.DateField(default=datetime.now)
     abteilung = models.CharField(max_length=30, blank=True)
+    # Default Profilbild wird geladen
     profile_pic = models.ImageField (null=True, blank = True, upload_to = 'profilbilder/', default='default.jpg')
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
@@ -51,10 +52,10 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     
     class Meta:
         verbose_name_plural = "Benutzer"
-    
-
+    # Alle erstellen User/Superuser werden in objects gespeichert
     objects = Benutzermanager()
     
+    # Erforderliche Attribute werden definiert
     USERNAME_FIELD= 'username'
     REQUIRED_FIELDS = ['vorname' , 'nachname', 'geburtsdatum', 'abteilung', 'email']
 
@@ -67,10 +68,9 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         return True  
     
-
+# Post Model wird erstellt
 class Post(models.Model):
     title = models.CharField(max_length=100, name='Titel')
-    #ckeditor in Post content
     content = RichTextField(name='Inhalt', default='', null=True, blank=True)
     date_posted = models.DateTimeField(default=timezone.now, name='Postdatum')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, name= 'Autor')
@@ -86,9 +86,11 @@ class Post(models.Model):
     def getTotalLikes(self):
         likecounter=self.likes.count()-self.dislikes.count()
         return likecounter
+        
     class Meta:
         verbose_name_plural = "Beiträge"
-        
+
+# Kommentar Model wird erstellt        
 class Kommentar(models.Model):
     post= models.ForeignKey(Post, related_name="kommentare",on_delete=models.CASCADE)
     name= models.CharField(max_length=100)
@@ -101,15 +103,14 @@ class Kommentar(models.Model):
     def __str__(self):
         return self.kommentar
 
-
     def getKommentarLikes(self):
         likecounter=self.likes.count()-self.dislikes.count()
         return likecounter
+
     class Meta:
         verbose_name_plural = "Kommentare"
-    
 
-
+# Unterkommentar Model wird erstellt
 class UnterKommentar(models.Model):
     name=models.CharField(max_length=100)
     #ckeditor in UnterKommentar content
@@ -127,5 +128,6 @@ class UnterKommentar(models.Model):
     def getUnterkommentarLikes(self):
         likecounter=self.likes.count()-self.dislikes.count()
         return likecounter
+
     class Meta:
         verbose_name_plural = "Unterkommentare"

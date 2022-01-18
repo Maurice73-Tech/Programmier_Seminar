@@ -1,3 +1,4 @@
+#Imports
 from django.contrib.auth import get_user_model
 from django.forms.fields import ImageField
 from .models import NeueBenutzer, Post, Kommentar,UnterKommentar
@@ -7,6 +8,7 @@ from django.contrib.auth import authenticate
 from ckeditor.fields import RichTextField
 
 
+# Eigene Form für die Registrierung
 class Registrierungsform(UserCreationForm):
     vorname = forms.CharField (label="Vorname")
     nachname = forms.CharField (label="Nachname")
@@ -17,50 +19,46 @@ class Registrierungsform(UserCreationForm):
     class Meta:
         model= NeueBenutzer
         fields = ('vorname', 'nachname','abteilung','username', 'geburtsdatum', 'email', 'password1', 'password2')
-
         
-
+# Eigene Form für die Anmeldung
 class Anmeldeform (forms.ModelForm):
     password = forms.CharField (label='Password', widget=forms.PasswordInput)
 
     class Meta:
         model = NeueBenutzer
         fields =('username', 'password')
-
+    # Username und Passwort zur Authentifizierung übergeben
     def clean (self):
         username = self.cleaned_data ('username')
         password = self.cleaned_data ('password')
         if not authenticate (username=username, password= password):
             raise forms.ValidationError ('Keine Anmeldung möglich!')
-            
+
+# Eigene Form für das Erstellen eines Blogposts            
 class AddBlogForm (forms.ModelForm):
     class Meta:
         model= Post
         fields = ['Titel', 'Inhalt']
 
+# Eigene Form für das Erstellen eines Kommentars      
 class KommentarForm(forms.ModelForm):
-    
     class Meta:
         model=Kommentar
         fields = ('kommentar', )
 
-    
     name: forms.HiddenInput() 
-    #kommentar = forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Kommentar")
     kommentar = RichTextField(name='Kommentar', default='', null=True, blank=True)
 
-
-        
+# Eigene Form für das Erstellen eines Unterkommentars          
 class UnterKommentarForm(forms.ModelForm) :
-    
     name: forms.HiddenInput()
-    #unterkommentar=forms.CharField (widget=forms.Textarea(attrs={'class':'form-control'}), label="Unterkommentar")
     unterkommentar = RichTextField(name='Unterkommentar', default='', null=True, blank=True)
 
     class Meta:
         model=UnterKommentar
         fields=('unterkommentar', )
 
+# Eigene Form mit Widgets für das Editieren des Userprofils  
 class Profile_edit_form(UserChangeForm):
     username = forms.CharField (widget=forms.TextInput (attrs={'class':'form-control'}), label="Username")
     vorname = forms.CharField (widget=forms.TextInput (attrs={'class':'form-control'}), label="Vorname")
@@ -74,13 +72,11 @@ class Profile_edit_form(UserChangeForm):
         model= NeueBenutzer
         fields = ('username','vorname', 'nachname','email','abteilung', 'geburtsdatum', 'profile_pic')
 
-
+# Eigene Form mit Widgets für das Ändern des Passworts  
 class Password_change_form(PasswordChangeForm):
     old_password = forms.CharField (widget=forms.PasswordInput (attrs={'class':'form-control'}), label="Altes Passwort")
     new_password1 = forms.CharField (widget=forms.PasswordInput (attrs={'class':'form-control'}), label="Neues Passwort")
     new_password2 = forms.CharField (widget=forms.PasswordInput (attrs={'class':'form-control'}), label="Neues Passwort wiederholen")
-   
-    
 
     class Meta:
         model= NeueBenutzer
