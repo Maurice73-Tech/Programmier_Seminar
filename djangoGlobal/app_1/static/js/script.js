@@ -1,4 +1,5 @@
 // Google Web Speech API for using mic
+// Speech to Text
 var speechRecognition = window.webkitSpeechRecognition
 
 var recognition = new speechRecognition()

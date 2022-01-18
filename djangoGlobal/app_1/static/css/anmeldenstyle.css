@@ -1,9 +1,10 @@
+/* DarkMode scheme */
 @media (prefers-color-scheme: dark) {
     body {
       background: #121212;
     }
 
-    #submissionsField{
+    #submissionField{
         width: 100%;
         padding: 30px;
         box-sizing: border-box;
@@ -134,96 +135,97 @@
     }
 }
 
+/* LightMode scheme */
 @media (prefers-color-scheme: light) {
 
-body{
-    background-color: whitesmoke;
-}
+    body{
+        background-color: whitesmoke;
+    }
 
-#submissionsField{
-    width: 100%;
-    padding: 30px;
-    box-sizing: border-box;
-    border-radius: 15px 15px 15px 15px;
-    background: white;
-    margin-right: auto;
-    margin-left: auto;
-    border: 1px solid rgb(216, 221, 230);
-    box-shadow: 0 0 1em grey;
-}
+    #submissionField{
+        width: 100%;
+        padding: 30px;
+        box-sizing: border-box;
+        border-radius: 15px 15px 15px 15px;
+        background: white;
+        margin-right: auto;
+        margin-left: auto;
+        border: 1px solid rgb(216, 221, 230);
+        box-shadow: 0 0 1em grey;
+    }
 
-input{
-    margin-top: 5px;
-}
+    input{
+        margin-top: 5px;
+    }
 
-a:not([href]):not([tabindex]) {
-    color: white;
-}
+    a:not([href]):not([tabindex]) {
+        color: white;
+    }
 
-.btn-primary{
-    cursor: pointer;
-}
+    .btn-primary{
+        cursor: pointer;
+    }
 
-a:not([href]):not([tabindex]):hover{
-    color: white;
-}
+    a:not([href]):not([tabindex]):hover{
+        color: white;
+    }
 
-.navbar-dark .navbar-toggler{
-    border-color: transparent;
-}
+    .navbar-dark .navbar-toggler{
+        border-color: transparent;
+    }
 
-#post-card:hover{
-    background-color: whitesmoke;
-}
+    #post-card:hover{
+        background-color: whitesmoke;
+    }
 
-#searchInput{
-    margin-bottom: 20px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-}
+    #searchInput{
+        margin-bottom: 20px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+    }
 
-#myList{
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
+    #myList{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
 
-.container :is(#start-btn, #stop-btn) {
-    border-radius: 50%;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    height: 30px;
-    width: 30px;
-  }
+    .container :is(#start-btn, #stop-btn) {
+        border-radius: 50%;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        height: 30px;
+        width: 30px;
+    }
 
-#profilbild-id{
-    width: 240px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+    #profilbild-id{
+        width: 240px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.input-group-text{
-    background-color: white;
-    border: none;
-}
+    .input-group-text{
+        background-color: white;
+        border: none;
+    }
 
-.btn-warning{
-    margin-right: 5px;
-    margin-top: 5px;
-}
+    .btn-warning{
+        margin-right: 5px;
+        margin-top: 5px;
+    }
 
-.btn-light{
-    margin-top: 5px;
-}
+    .btn-light{
+        margin-top: 5px;
+    }
 
-.unterkommentare{
-    margin-left: 2rem;
-    color: #173361;
-}
+    .unterkommentare{
+        margin-left: 2rem;
+        color: #173361;
+    }
 }

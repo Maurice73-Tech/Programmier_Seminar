@@ -70,7 +70,7 @@ class NeueBenutzer(AbstractBaseUser, PermissionsMixin):
 
 class Post(models.Model):
     title = models.CharField(max_length=100, name='Titel')
-    #content = models.TextField(name='Inhalt',default='')
+    #ckeditor in Post content
     content = RichTextField(name='Inhalt', default='', null=True, blank=True)
     date_posted = models.DateTimeField(default=timezone.now, name='Postdatum')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, name= 'Autor')
@@ -92,7 +92,7 @@ class Post(models.Model):
 class Kommentar(models.Model):
     post= models.ForeignKey(Post, related_name="kommentare",on_delete=models.CASCADE)
     name= models.CharField(max_length=100)
-    #content = models.CharField(max_length=500,name='kommentar')
+    #ckeditor in Kommentar content
     content = RichTextField(name='kommentar', max_length=1000, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='kommentar_likes', null=True, blank=True)
@@ -112,7 +112,7 @@ class Kommentar(models.Model):
 
 class UnterKommentar(models.Model):
     name=models.CharField(max_length=100)
-    #content=models.TextField(max_length=500,name='unterkommentar')
+    #ckeditor in UnterKommentar content
     content= RichTextField(max_length=1000,name='unterkommentar', null=True, blank=True)
     date_added=models.DateTimeField(auto_now_add=True)
     post=models.ForeignKey(Post, related_name="pkPost", on_delete=models.CASCADE)

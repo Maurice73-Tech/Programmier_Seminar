@@ -24,7 +24,8 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-  <div id="submissionsField">
+  <!-- Forum Startseite html -->
+  <div id="submissionField">
     <div class="container" style="text-align: center;">
       <h1 id="userpost">Forumsbeiträge</h1>
       <br/>
@@ -87,7 +88,7 @@
 
 {% else %}
 
-<div class="card ml-auto" id="submissionsField" style="width: 20rem;">
+<div class="card ml-auto" id="submissionField" style="width: 20rem;">
   <img class="card-img-top" src="../static/bilder/logo.jpeg" alt="Card image cap">
   <div class="card-body">
     <h4 class="card-title">Keine Authentifizierung!</h4>
